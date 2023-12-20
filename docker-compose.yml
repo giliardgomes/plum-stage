@@ -1,0 +1,32 @@
+services:
+    plum:
+        build:
+            context: "."
+        image: plum
+        volumes:
+            - ./:/code
+            - exclude:/code/.git
+            - node_modules:/code/node_modules
+
+    storybook:
+        build:
+            context: "."
+        command: >
+            npm run storybook
+        environment:
+            CHROMATIC_PROJECT_TOKEN: ${CHROMATIC_PROJECT_TOKEN:-""}
+        healthcheck:
+            test: ["CMD", "curl", "http://localhost:6106"]
+            start_period: 20s
+            timeout: 300s
+        image: storybook
+        ports:
+            - "6106:6106"
+        volumes:
+            - ./:/code:delegated
+            - exclude:/code/.git
+            - node_modules:/code/node_modules
+
+volumes:
+    exclude:
+    node_modules:
