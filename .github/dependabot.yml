@@ -7,3 +7,19 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    groups:
+      mantine:
+        patterns:
+        - "@mantine*"
+        update-types:
+        - "minor"
+        - "patch"
+      storybook:
+        patterns:
+        - "@storybook*"
+        update-types:
+        - "minor"
+        - "patch"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
