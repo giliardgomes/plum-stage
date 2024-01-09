@@ -17,7 +17,7 @@
   },
   "repository": "https://github.com/QuorumUS/plum.git",
   "dependencies": {
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.11.3",
     "@mantine/core": "^6.0.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
