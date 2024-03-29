@@ -48,7 +48,7 @@ npm run storybook
 Run tests:
 
 ```shell
-npx jest
+npm run test
 ```
 
 ## Deployment

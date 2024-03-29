@@ -38,7 +38,7 @@ tasks:
       Separate multiple test files/folders/paths with a space:
         task test:frontend -- some/path/ some/other
     cmds:
-      - docker compose run --rm plum npx jest {{.CLI_ARGS}}
+      - docker compose run --rm plum npx vitest {{.CLI_ARGS}}
 
   # -------- STORYBOOK -------
   "start:storybook":
