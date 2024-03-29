@@ -1,4 +1,4 @@
-import { render, screen, userEvent } from "../../test-utils"
+import { render, screen, userEvent } from "../../../src/test-utils"
 
 import { Example } from "./Example"
 

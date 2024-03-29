@@ -1,7 +1,15 @@
 {
   "name": "@quorumus/plum",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "type": "module",
+  "main": "dist/plum.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "build": "tsc && vite build",
     "dev": "vite",
@@ -9,18 +17,27 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6106",
     "storybook:build": "storybook build",
-    "test": "vitest"
+    "test": "vitest",
+    "prepublishOnly": "npm run build"
   },
   "publishConfig": {
     "access": "restricted",
     "registry": "https://npm.pkg.github.com"
   },
-  "repository": "https://github.com/QuorumUS/plum.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuorumUS/plum.git"
+  },
+  "engines": {
+    "node": ">=20.11.0"
+  },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@mantine/core": "^7.7.1",
     "@mantine/hooks": "^7.7.1",
-    "clsx": "^2.1.0",
+    "clsx": "^2.1.0"
+  },
+  "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -58,11 +75,15 @@
     "postcss-preset-mantine": "^1.13.0",
     "postcss-simple-vars": "^7.0.1",
     "prettier": "^3.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-test-renderer": "^18.2.0",
     "storybook": "^8.0.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.3",
     "vite": "^5.2.7",
+    "vite-plugin-dts": "^3.8.1",
+    "vite-plugin-lib-inject-css": "^2.0.1",
     "vitest": "^1.4.0"
   }
 }

@@ -1,4 +1,4 @@
-import { render } from "../../test-utils"
+import { render } from "../../../src/test-utils"
 import { Badge } from "@mantine/core"
 
 import { Tile } from "./Tile"
@@ -11,7 +11,7 @@ import {
     itSupportsFocusEvents,
     itSupportsOthers,
     itSupportsRef,
-} from "../../test-utils/helpers"
+} from "../../../src/test-utils/helpers"
 
 const defaultProps: TileProps = {
     children: "Tile label",

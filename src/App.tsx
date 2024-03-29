@@ -6,7 +6,8 @@ import viteLogo from "/vite.svg"
 import "@mantine/core/styles.css"
 import "./App.css"
 
-import { theme } from "./theme"
+import { theme } from "../lib/theme"
+import { Tile } from "../lib/main"
 
 function App() {
     const [count, setCount] = useState(0)
@@ -22,6 +23,9 @@ function App() {
                 </a>
             </div>
             <h1>Vite + React</h1>
+            <Tile>
+                Hello World
+            </Tile>
             <div className="card">
                 <button onClick={() => setCount((count) => count + 1)}>
                     count is {count}
