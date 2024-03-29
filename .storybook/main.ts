@@ -8,7 +8,7 @@ const config: StorybookConfig = {
         "@storybook/addon-onboarding",
         "@storybook/addon-interactions",
         "@storybook/addon-a11y",
-        "@storybook/addon-mdx-gfm"
+        "@storybook/addon-mdx-gfm",
     ],
     framework: {
         name: "@storybook/react-vite",
@@ -19,6 +19,9 @@ const config: StorybookConfig = {
     },
     docs: {
         autodocs: "tag",
+    },
+    typescript: {
+        reactDocgen: "react-docgen-typescript",
     },
 }
 export default config
