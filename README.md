@@ -29,7 +29,10 @@ Run tests:
 task test
 ```
 
-#### Running "Natively" on your Computer / for VSCode Intellisense
+### Running "Natively" on your Computer / for VSCode Intellisense
+
+First, ensure Node is up to date. If you have [NVM](https://github.com/nvm-sh/nvm) installed, `nvm use` will automatically install and switch to the latest LTS version.
+
 Install dependencies:
 
 ```shell
