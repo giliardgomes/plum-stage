@@ -15,6 +15,8 @@ export default defineConfig({
         setupFiles: "./vitest.setup.ts",
     },
     build: {
+        // In quorum-site, we exclude node_modules/ from babel-loader, so we need to ensure we output ES2015 code here
+        target: "es2015",
         copyPublicDir: false,
         lib: {
             entry: resolve(__dirname, "lib/main.ts"),

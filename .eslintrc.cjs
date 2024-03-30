@@ -7,7 +7,7 @@ module.exports = {
         "plugin:@stylistic/recommended-extends",
         "prettier",
     ],
-    ignorePatterns: ["dist", ".eslintrc.cjs"],
+    ignorePatterns: ["dist", "storybook-static", ".eslintrc.cjs"],
     parser: "@typescript-eslint/parser",
     plugins: ["react-refresh"],
     rules: {
