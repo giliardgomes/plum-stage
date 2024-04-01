@@ -3,7 +3,7 @@
   "version": "0.1.4",
   "type": "module",
   "main": "dist/main.js",
-  "types": "dist/lib/main.d.ts",
+  "types": "dist/main.d.ts",
   "files": [
     "dist"
   ],
@@ -49,8 +49,6 @@
     "@storybook/addon-essentials": "^8.0.5",
     "@storybook/addon-interactions": "^8.0.5",
     "@storybook/addon-links": "^8.0.5",
-    "@storybook/addon-mdx-gfm": "^8.0.5",
-    "@storybook/addon-onboarding": "^8.0.5",
     "@storybook/blocks": "^8.0.5",
     "@storybook/manager-api": "^8.0.5",
     "@storybook/react": "^8.0.5",
@@ -79,6 +77,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-test-renderer": "^18.2.0",
+    "rollup-plugin-visualizer": "^5.12.0",
     "storybook": "^8.0.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.3",

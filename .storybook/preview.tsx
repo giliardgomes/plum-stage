@@ -3,7 +3,7 @@ import { MantineProvider } from "@mantine/core"
 import type { Preview } from "@storybook/react"
 import '@mantine/core/styles.css';
 
-import { theme } from "../lib/theme"
+import { theme } from "../src/theme"
 
 export const decorators = [
     (renderStory: any) => (

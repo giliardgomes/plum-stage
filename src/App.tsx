@@ -6,7 +6,7 @@ import viteLogo from "/vite.svg"
 import "@mantine/core/styles.css"
 import "./App.css"
 
-import { theme } from "../lib/theme"
+import { theme } from "./theme"
 import { Tile } from "../lib/main"
 
 function App() {
