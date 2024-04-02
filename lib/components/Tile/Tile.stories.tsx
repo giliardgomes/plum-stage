@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Badge } from "@mantine/core"
 
-import { Tile, TileProps } from "./Tile"
+import { Tile, TileProps } from "./index"
 
 const meta: Meta<typeof Tile> = {
     component: Tile,

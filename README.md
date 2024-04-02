@@ -1,35 +1,6 @@
 # Plum
 
 ## Development
-### Running in Docker
-
-#### Install task runner
-
-[Task Homepage](https://taskfile.dev/)
-
-_Task runner streamlines all local commands to simple verb:object commands, such as "task test:backend"._
-
-```
-brew install go-task
-```
-
-Confirm task runner installed correctly by listing all available tasks from the repository root directory using `task -l`.
-
-_See information on any specific task, if available, using `task --summary <TASK NAME>`, e.g. `task --summary test`._
-
-Build Containers:
-
-```shell
-task build
-```
-
-Run tests:
-
-```shell
-task test
-```
-
-### Running "Natively" on your Computer / for VSCode Intellisense
 
 First, ensure Node is up to date. If you have [NVM](https://github.com/nvm-sh/nvm) installed, `nvm use` will automatically install and switch to the latest LTS version.
 

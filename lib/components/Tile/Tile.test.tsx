@@ -1,8 +1,8 @@
 import { render } from "../../../src/test-utils"
 import { Badge } from "@mantine/core"
 
-import { Tile } from "./Tile"
-import type { TileProps } from "./Tile"
+import { Tile } from "./index"
+import type { TileProps } from "./index"
 
 import {
     itIsPolymorphic,
