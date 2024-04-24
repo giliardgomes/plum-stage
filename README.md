@@ -1,35 +1,73 @@
 # Plum
 
-## Development
+This is the repository for Quorum's component library, Plum. You can find documentation for Plum in [ZeroHeight](https://zeroheight.com/4a128e208/p/224e31-plum-design-system), [Figma](), and [Confluence](https://quorumanalytics.atlassian.net/wiki/spaces/DEVTEAM/pages/1289879592/DSGG).
 
-First, ensure Node is up to date. If you have [NVM](https://github.com/nvm-sh/nvm) installed, `nvm use` will automatically install and switch to the latest LTS version.
+## Contributing to Plum
 
-Install dependencies:
+### Dependencies
+First, ensure Node is up to date. If you are using [Volta](https://volta.sh/), it will automatically use the version of node defined in `package.json`. If you have [NVM](https://github.com/nvm-sh/nvm) installed, `nvm use` will automatically install and switch to the latest LTS version.
 
+Next, install the dependencies:
 ```shell
 npm install
 ```
 
-Run storybook:
-
-```shell
-npm run storybook
-```
-
-Run tests:
+### Tests
+Run the [vitest](https://vitest.dev/) suite with:
 
 ```shell
 npm run test
 ```
 
-## Deployment
+By default, this command will watch for changes to the source code and automatically re-run tests as needed.
 
-Code is automatically deployed using [AWS Amplify](https://aws.amazon.com/amplify/). The main branch is deployed to https://plum.quorum.us. Pull requests are deployed using Amplify's built-in preview functionality. When you create a pull request, Amplify will add a comment to your pull request with the URL to the deployment:
+### Documentation
+The usage of each component should be documented in [Storybook](https://storybook.js.org/). You can start the storybook server with:
+
+```shell
+npm run storybook
+```
+
+#### Deploying Storybook
+When a PR is opened (or when a new change is pushed to the `main` branch) Storybook is automatically deployed using [AWS Amplify](https://aws.amazon.com/amplify/). The main branch is deployed to https://plum.quorum.us. Pull requests are deployed using Amplify's built-in preview functionality. When you create a pull request, Amplify will add a comment to your pull request with the URL to the deployment:
 
 ![Amplify adds a comment in your pull request](/.github/amplify-comment.png)
 
-An alert will also be sent to the #alerts-design-system channel in Slack:
+An alert will also be sent to the `#alerts-design-system` channel in Slack.
 
-TODO: add screenshot
+[Configuration for Amplify](https://us-east-1.console.aws.amazon.com/amplify/home?region=us-east-1#/d29y5g8bf7q44y) is in the Development account in AWS. There you can change build settings, notifications, access control, URL rewrites, and more. Amplify builds are triggered by a webhook integration defined in the GitHub Repo.
 
-[Configuration for the plum app in Amplify](https://us-east-1.console.aws.amazon.com/amplify/home?region=us-east-1#/d29y5g8bf7q44y) is in the Development account in AWS. There you can change build settings, notifications, access control, URL rewrites, and more.
+### Publishing
+
+#### Building
+The package can be built using:
+```shell
+npm run build
+```
+The output is in the `dist/` directory. For developmental purposes, you can declare Plum as a file dependency with the following syntax:
+```json
+{
+    "dependencies": {
+        "@quorumus/plum": "file:path/to/plum",
+    }
+}
+```
+
+This will create a symlink from the `node_modules/@quorumus/plum` directory to your local copy of the Plum repo, but beware that this symlink can be difficult for Docker to manage, so you'll want to `rm -rf node_modules/@quorumus` after reverting your `package.json` change.
+
+#### Publishing
+To authenticate with GitHub's NPM registry, you'll first need to create a `.npmrc` file with the following contents:
+```
+@quorumus:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken={TOKEN}
+```
+
+The token is a GitHub Access Token (Classic) that you'll need to generate with the proper scopes. Review [GitHub's documentation](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages) for more information.
+
+You can then manually publish a new version of the package with:
+```shell
+npm publish
+```
+
+#### Releasing
+Typically, you won't need to manually publish the package. The repository is set up to automatically publish the latest version of the repo on creating a new release in GitHub.
