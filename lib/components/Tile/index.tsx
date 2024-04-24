@@ -3,7 +3,7 @@ import { Paper, createPolymorphicComponent } from "@mantine/core"
 import type { PaperProps } from "@mantine/core"
 import { clsx } from "clsx"
 
-import classes from "./Tile.module.css"
+import classes from "@/components/Tile/Tile.module.css"
 
 export type TileOrientation = "horizontal" | "vertical"
 export type TileSize = "sm" | "md" | "lg"

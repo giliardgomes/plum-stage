@@ -10,6 +10,12 @@ import { visualizer } from "rollup-plugin-visualizer"
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    resolve: {
+        alias: {
+            "@": resolve(__dirname, "./lib"),
+            "@test-utils": resolve(__dirname, "./src/test-utils"),
+        },
+    },
     plugins: [
         react(),
         libInjectCss(),
@@ -18,7 +24,6 @@ export default defineConfig({
             // Don't generate type declarations for non-exported files
             exclude: ["lib/**/*.test.{ts,tsx}", "lib/**/*.stories.{ts,tsx}"],
         }),
-        visualizer() as any as PluginOption,
     ],
     test: {
         globals: true,

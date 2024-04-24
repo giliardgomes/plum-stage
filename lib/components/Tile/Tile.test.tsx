@@ -1,9 +1,6 @@
-import { render } from "../../../src/test-utils"
 import { Badge } from "@mantine/core"
 
-import { Tile } from "./index"
-import type { TileProps } from "./index"
-
+import { render } from "@test-utils"
 import {
     itIsPolymorphic,
     itRendersChildren,
@@ -11,7 +8,10 @@ import {
     itSupportsFocusEvents,
     itSupportsOthers,
     itSupportsRef,
-} from "../../../src/test-utils/helpers"
+} from "@test-utils/helpers"
+
+import { Tile } from "@/components/Tile"
+import type { TileProps } from "@/components/Tile"
 
 const defaultProps: TileProps = {
     children: "Tile label",
