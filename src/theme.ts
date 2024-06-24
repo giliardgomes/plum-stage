@@ -92,6 +92,13 @@ export const plumTheme: MantineThemeOverride = createTheme({
             "#2F1980",
         ],
     },
+    spacing: {
+        xs: "0.5rem",
+        sm: "0.75rem",
+        md: "1rem",
+        lg: "1.25rem",
+        xl: "1.5rem",
+    },
     fontFamily: "Helvetica Neue, Helvetica, sans-serif",
     fontSizes: {
         xs: "0.75rem",
@@ -100,6 +107,7 @@ export const plumTheme: MantineThemeOverride = createTheme({
         lg: "1.125rem",
         xl: "1.375rem",
     },
+    activeClassName: "",
     defaultRadius: "0.25rem",
     primaryColor: "violet",
 })
