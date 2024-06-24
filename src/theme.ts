@@ -1,7 +1,10 @@
-import { createTheme } from "@mantine/core"
-import type { MantineThemeOverride } from "@mantine/core"
+import {
+    createTheme,
+    MantineThemeOverride,
+    CSSVariablesResolver,
+} from "@mantine/core"
 
-export const theme: MantineThemeOverride = createTheme({
+export const plumTheme: MantineThemeOverride = createTheme({
     /** Put your mantine theme override here */
     colors: {
         primary: [
@@ -96,5 +99,17 @@ export const theme: MantineThemeOverride = createTheme({
         md: "1rem",
         lg: "1.125rem",
         xl: "1.375rem",
+    },
+    defaultRadius: "0.25rem",
+    primaryColor: "violet",
+})
+
+export const plumVariables: CSSVariablesResolver = (theme) => ({
+    variables: {
+    },
+    light: {
+        "--mantine-color-error": theme.colors.red[9],
+    },
+    dark: {
     },
 })

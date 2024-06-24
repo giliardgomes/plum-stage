@@ -3,11 +3,14 @@ import { MantineProvider } from "@mantine/core"
 import type { Preview } from "@storybook/react"
 import '@mantine/core/styles.css';
 
-import { theme } from "../src/theme"
+import { plumVariables, plumTheme } from "../src/theme"
 
 export const decorators = [
     (renderStory: any) => (
-        <MantineProvider theme={theme}>{renderStory()}</MantineProvider>
+        <MantineProvider 
+            theme={plumTheme}
+            cssVariablesResolver={plumVariables}
+        >{renderStory()}</MantineProvider>
     )
 ]
 

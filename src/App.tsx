@@ -6,14 +6,14 @@ import viteLogo from "/vite.svg"
 import "@mantine/core/styles.css"
 import "./App.css"
 
-import { theme } from "./theme"
+import { plumTheme } from "./theme"
 import { Tile } from "../lib/main"
 
 function App() {
     const [count, setCount] = useState(0)
 
     return (
-        <MantineProvider theme={theme}>
+        <MantineProvider theme={plumTheme}>
             <div>
                 <a href="https://vitejs.dev" target="_blank">
                     <img src={viteLogo} className="logo" alt="Vite logo" />
