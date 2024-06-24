@@ -70,4 +70,13 @@ npm publish
 ```
 
 #### Releasing
-Typically, you won't need to manually publish the package. The repository is set up to automatically publish the latest version of the repo on creating a new release in GitHub.
+Typically, you won't need to manually publish the package. The repository is set up to automatically publish the latest version of the repo when you [create a new release in GitHub](https://github.com/QuorumUS/plum/releases/new).
+
+<div>
+    <a href="https://www.loom.com/share/dbd161e117694643b6dcfa12f5ec3e0d">
+      <p>Plum - Create New Release - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/dbd161e117694643b6dcfa12f5ec3e0d">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/dbd161e117694643b6dcfa12f5ec3e0d-with-play.gif">
+    </a>
+  </div>
