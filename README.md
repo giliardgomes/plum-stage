@@ -64,6 +64,8 @@ To authenticate with GitHub's NPM registry, you'll first need to create a `.npmr
 
 The token is a GitHub Access Token (Classic) that you'll need to generate with the proper scopes. Review [GitHub's documentation](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages) for more information.
 
+Be sure to increment the `version` key in `package.json` before publishing, or the registry will reject it! Follow [Semantic Versioning](https://semver.org/).
+
 You can then manually publish a new version of the package with:
 ```shell
 npm publish
