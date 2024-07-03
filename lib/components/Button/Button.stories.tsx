@@ -22,13 +22,13 @@ type Story = StoryObj<typeof Button>
 
 export const Default: Story = {
     args: {
-        designVariant: "accent",
+        variant: "accent",
         size: "sm",
         children: "My Button",
     },
     render: (props: ButtonProps) => (
         <Button
-            designVariant={props.designVariant}
+            variant={props.variant}
             leftSection={props.leftSection}
             rightSection={props.rightSection}
             size={props.size}
@@ -42,14 +42,14 @@ export const Default: Story = {
 
 export const IconOnlyWithTooltip: Story = {
     args: {
-        designVariant: "accent",
+        variant: "accent",
         size: "sm",
         leftSection: "♺",
     },
     render: (props: ButtonProps) => (
         <Tooltip label="Recycle">
             <Button
-                designVariant={props.designVariant}
+                variant={props.variant}
                 leftSection={props.leftSection}
                 rightSection={props.rightSection}
                 size={props.size}
@@ -64,14 +64,14 @@ export const IconOnlyWithTooltip: Story = {
 
 export const WithLeftSection: Story = {
     args: {
-        designVariant: "accent",
+        variant: "accent",
         size: "sm",
         children: "My Button",
         leftSection: "♺",
     },
     render: (props: ButtonProps) => (
         <Button
-            designVariant={props.designVariant}
+            variant={props.variant}
             leftSection={props.leftSection}
             rightSection={props.rightSection}
             size={props.size}
@@ -85,14 +85,14 @@ export const WithLeftSection: Story = {
 
 export const WithRightSection: Story = {
     args: {
-        designVariant: "accent",
+        variant: "accent",
         size: "sm",
         rightSection: "♺",
         children: "My Button",
     },
     render: (props: ButtonProps) => (
         <Button
-            designVariant={props.designVariant}
+            variant={props.variant}
             leftSection={props.leftSection}
             rightSection={props.rightSection}
             size={props.size}
@@ -106,7 +106,7 @@ export const WithRightSection: Story = {
 
 export const WithBothSections: Story = {
     args: {
-        designVariant: "accent",
+        variant: "accent",
         size: "sm",
         rightSection: "♺",
         leftSection: "♺",
@@ -114,7 +114,7 @@ export const WithBothSections: Story = {
     },
     render: (props: ButtonProps) => (
         <Button
-            designVariant={props.designVariant}
+            variant={props.variant}
             leftSection={props.leftSection}
             rightSection={props.rightSection}
             size={props.size}

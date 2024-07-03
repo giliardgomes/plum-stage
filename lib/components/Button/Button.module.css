@@ -2,7 +2,7 @@
     font-weight: 400;
     font-size: var(--mantine-font-size-sm);
     min-width: 2rem;
-    height: 2rem;  
+    height: 2rem;
     padding: var(--mantine-spacing-xs) var(--mantine-spacing-md);
     color: var(--mantine-color-white);
     border-color: var(--mantine-color-violet-7);
@@ -59,7 +59,7 @@
             color: var(--mantine-color-gray-4);
             border-color: var(--mantine-color-gray-2);
         }
-    }   
+    }
     &[data-design-variant='tertiary'] {
         color: var(--mantine-color-gray-8);
         border-color: var(--mantine-color-white);
@@ -99,7 +99,7 @@
     &[data-size='md'] {  
         min-width:  2.5rem; 
         height:  2.5rem;
-    }  
+    }
     &[data-size='lg'] {  
         font-size: var(--mantine-font-size-md);
         min-width: 3rem; 
@@ -115,10 +115,10 @@
     .label {
         height: 1rem;
     }
-    transition:  
-        background-color 0.3s ease-in-out,  
-        color 0.3s ease-in-out,  
-        box-shadow 0.3s ease-in-out,  
-        border-color 0.3s ease-in-out;  
+    transition:
+        background-color 0.3s ease-in-out,
+        color 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out,
+        border-color 0.3s ease-in-out;
     transform: none;
 }

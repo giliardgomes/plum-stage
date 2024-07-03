@@ -2,7 +2,7 @@ import React from "react"
 import { Button as MantineButton, ButtonProps as MantineButtonProps } from "@mantine/core"
 import classes from "@/components/Button/Button.module.css"
 
-export interface ButtonProps extends MantineButtonProps {
+export interface ButtonProps extends MantineButtonProps, Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "color" | "style"> {
     /** Set a static selector for engagement tracking with third party tools (ie: Pendo) */
     "data-plum-id"?: string
     /** Set the button to be disabled */
@@ -16,13 +16,13 @@ export interface ButtonProps extends MantineButtonProps {
     /** Set the size of button, md and lg are better suitable for touch interfaces. Default to "sm" */
     size?: "sm" | "md" | "lg"
     /** Button variant type. Defaults to "accent" */
-    designVariant?: "accent" | "primary" | "secondary" | "tertiary" | "danger"
+    variant?: "accent" | "primary" | "secondary" | "tertiary" | "danger"
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
     children,
     size = "sm",
-    designVariant = "accent",
+    variant = "accent",
     ...props
 }, ref) => {
     const isIconOnly = !children
@@ -39,7 +39,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
             mod={{
                 "data-icon-only": isIconOnly,
                 size,
-                "data-design-variant": designVariant,
+                "data-design-variant": variant,
             }}
         >
             {children}
