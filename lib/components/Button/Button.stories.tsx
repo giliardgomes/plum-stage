@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react"
 import { Button, ButtonProps } from "@/components/Button"
 import { Tooltip } from "@mantine/core"
+import type { Meta, StoryObj } from "@storybook/react"
 
 const meta: Meta<typeof Button> = {
     component: Button,
@@ -44,7 +44,6 @@ export const IconOnlyWithTooltip: Story = {
     args: {
         variant: "accent",
         size: "sm",
-        leftSection: "♺",
     },
     render: (props: ButtonProps) => (
         <Tooltip label="Recycle">
@@ -56,7 +55,7 @@ export const IconOnlyWithTooltip: Story = {
                 loading={props.loading}
                 disabled={props.disabled}
             >
-                {props.children}
+                ♺
             </Button>
         </Tooltip>
     ),
