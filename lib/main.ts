@@ -4,6 +4,7 @@ import "@mantine/core/styles.css"
 export { MantineProvider as PlumProvider } from "@mantine/core"
 
 export { Button } from "./components/Button"
+export { Menu } from "./components/Menu"
 export { TextField } from "./components/TextField"
 export { Tile } from "./components/Tile"
 export { Tooltip } from "./components/Tooltip"
