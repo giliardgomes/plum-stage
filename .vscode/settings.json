@@ -1,0 +1,12 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.lightbulb.enabled": "off",
+    "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "cSpell.words": ["Mantine"]
+}
