@@ -3,6 +3,7 @@ module.exports = {
     env: { browser: true, es2020: true },
     extends: [
         "plugin:react-hooks/recommended",
+        "plugin:jsx-a11y/recommended",
         "plugin:storybook/recommended",
         "plugin:@stylistic/recommended-extends",
         "prettier",

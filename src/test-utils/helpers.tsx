@@ -52,7 +52,7 @@ export function itIsPolymorphic<Props>(options: Options<Props>, name = "is polym
     it(`${name}: renderRoot`, () => {
         const { container } = render(
             <options.component
-                renderRoot={(props: any) => <a href="#test-link" {...props} />}
+                renderRoot={(props: any) => <a href="#test-link" {...props}>Testing</a>}
                 {...options.props}
             />,
         )
