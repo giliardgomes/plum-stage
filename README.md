@@ -29,7 +29,7 @@ npm run storybook
 ```
 
 #### Deploying Storybook
-When a PR is opened (or when a new change is pushed to the `main` branch) Storybook is automatically deployed using [AWS Amplify](https://aws.amazon.com/amplify/). The main branch is deployed to https://plum.quorum.us. Pull requests are deployed using Amplify's built-in preview functionality. When you create a pull request, Amplify will add a comment to your pull request with the URL to the deployment:
+When a PR is opened (or when a new change is pushed to the `main` branch) Storybook is automatically deployed using [AWS Amplify](https://aws.amazon.com/amplify/). The main branch is deployed to https://plum-code.quorum.us. Pull requests are deployed using Amplify's built-in preview functionality. When you create a pull request, Amplify will add a comment to your pull request with the URL to the deployment:
 
 ![Amplify adds a comment in your pull request](/.github/amplify-comment.png)
 
