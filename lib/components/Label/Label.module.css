@@ -1,0 +1,19 @@
+.asterisk {
+    color: var(--mantine-color-red-8);
+    display: inline;
+    font-size: var(--mantine-font-size-sm);
+}
+
+.group {
+    align-items: center;
+    display: inline;
+    flex-direction: row;
+    gap: rem(4px);
+    justify-content: flex-start;
+}
+
+.label {
+    color: var(--mantine-color-gray-7);
+    display: inline;
+    font-size: var(--mantine-font-size-sm);
+}

@@ -11,8 +11,8 @@ export interface TextFieldProps extends MantineTextAreaProps {
     "data-plum-id"?: string
     /** Determines if the TextField is disabled. */
     disabled?: boolean
-    /** The label for the TextField. */
-    label: string
+    /** The label for the TextField, either text or a Label component. */
+    label: string | React.ReactNode
     /** The placeholder text for the TextField. */
     placeholder?: string
     /** The description text for the TextField. */
