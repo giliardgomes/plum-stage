@@ -6,6 +6,7 @@ module.exports = {
         "plugin:jsx-a11y/recommended",
         "plugin:storybook/recommended",
         "plugin:@stylistic/recommended-extends",
+        "plugin:jsonc/recommended-with-jsonc",
         "prettier",
     ],
     ignorePatterns: ["dist", "storybook-static", ".eslintrc.cjs"],
@@ -21,4 +22,13 @@ module.exports = {
         "@stylistic/quotes": ["error", "double"],
         "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
     },
+    overrides: [
+        {
+            files: ["**/*.json"],
+            rules: {
+                "@stylistic/quote-props": ["error", "always", {}],
+                "@stylistic/comma-dangle": ["error", "never"],
+            },
+        },
+    ],
 }

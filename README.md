@@ -5,14 +5,33 @@ This is the repository for Quorum's component library, Plum. You can find docume
 ## Contributing to Plum
 
 ### Dependencies
+
 First, ensure Node is up to date. If you are using [Volta](https://volta.sh/), it will automatically use the version of node defined in `package.json`. If you have [NVM](https://github.com/nvm-sh/nvm) installed, `nvm use` will automatically install and switch to the latest LTS version.
 
 Next, install the dependencies:
+
 ```shell
 npm install
 ```
 
+### Use git hooks
+
+We setup git hooks with [Husky](https://typicode.github.io/husky/) to automate checks and code formatting before changes make their way upstream.
+
+To install hooks manually with Husky:
+
+```shell
+npx husky install
+```
+
+To uninstall hooks manually with Husky:
+
+```shell
+npx husky uninstall
+```
+
 ### Tests
+
 Run the [vitest](https://vitest.dev/) suite with:
 
 ```shell
@@ -22,6 +41,7 @@ npm run test
 By default, this command will watch for changes to the source code and automatically re-run tests as needed.
 
 ### Documentation
+
 The usage of each component should be documented in [Storybook](https://storybook.js.org/). You can start the storybook server with:
 
 ```shell
@@ -29,6 +49,7 @@ npm run storybook
 ```
 
 #### Deploying Storybook
+
 When a PR is opened (or when a new change is pushed to the `main` branch) Storybook is automatically deployed using [AWS Amplify](https://aws.amazon.com/amplify/). The main branch is deployed to https://plum-code.quorum.us. Pull requests are deployed using Amplify's built-in preview functionality. When you create a pull request, Amplify will add a comment to your pull request with the URL to the deployment:
 
 ![Amplify adds a comment in your pull request](/.github/amplify-comment.png)
@@ -40,15 +61,19 @@ An alert will also be sent to the `#alerts-design-system` channel in Slack.
 ### Publishing
 
 #### Building
+
 The package can be built using:
+
 ```shell
 npm run build
 ```
+
 The output is in the `dist/` directory. For developmental purposes, you can declare Plum as a file dependency with the following syntax:
+
 ```json
 {
     "dependencies": {
-        "@quorumus/plum": "file:path/to/plum",
+        "@quorumus/plum": "file:path/to/plum"
     }
 }
 ```
@@ -56,7 +81,9 @@ The output is in the `dist/` directory. For developmental purposes, you can decl
 This will create a symlink from the `node_modules/@quorumus/plum` directory to your local copy of the Plum repo, but beware that this symlink can be difficult for Docker to manage, so you'll want to `rm -rf node_modules/@quorumus` after reverting your `package.json` change.
 
 #### Publishing
+
 To authenticate with GitHub's NPM registry, you'll first need to create a `.npmrc` file with the following contents:
+
 ```
 @quorumus:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken={TOKEN}
@@ -67,11 +94,13 @@ The token is a GitHub Access Token (Classic) that you'll need to generate with t
 Be sure to increment the `version` key in `package.json` before publishing, or the registry will reject it! Follow [Semantic Versioning](https://semver.org/).
 
 You can then manually publish a new version of the package with:
+
 ```shell
 npm publish
 ```
 
 #### Releasing
+
 Typically, you won't need to manually publish the package. The repository is set up to automatically publish the latest version of the repo when you [create a new release in GitHub](https://github.com/QuorumUS/plum/releases/new).
 
 <div>
