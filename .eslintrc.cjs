@@ -7,7 +7,6 @@ module.exports = {
         "plugin:storybook/recommended",
         "plugin:@stylistic/recommended-extends",
         "plugin:jsonc/recommended-with-jsonc",
-        "prettier",
     ],
     ignorePatterns: ["dist", "storybook-static", ".eslintrc.cjs"],
     parser: "@typescript-eslint/parser",
