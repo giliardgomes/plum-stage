@@ -26,7 +26,8 @@ export const Label: FC<LabelProps> = ({ className, label, rightSection, withAste
             {withAsterisk && (
                 <Text aria-hidden={true} className={classes.asterisk}>
                     {" "}
-                    *{" "}
+                    *
+                    {" "}
                 </Text>
             )}
         </Group>

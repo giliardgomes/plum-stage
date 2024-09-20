@@ -1,17 +1,19 @@
 import React from "react"
 import { MantineProvider } from "@mantine/core"
 import type { Preview } from "@storybook/react"
-import '@mantine/core/styles.css';
+import "@mantine/core/styles.css"
 
 import { plumVariables, plumTheme } from "../src/theme"
 
 export const decorators = [
     (renderStory: any) => (
-        <MantineProvider 
+        <MantineProvider
             theme={plumTheme}
             cssVariablesResolver={plumVariables}
-        >{renderStory()}</MantineProvider>
-    )
+        >
+            {renderStory()}
+        </MantineProvider>
+    ),
 ]
 
 const preview: Preview = {
@@ -30,7 +32,7 @@ const preview: Preview = {
                 {
                     name: "offwhite",
                     value: "#FAF3E0",
-                }
+                },
             ],
         },
         controls: {

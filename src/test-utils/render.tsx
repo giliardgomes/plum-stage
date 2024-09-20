@@ -9,7 +9,8 @@ export function render(ui: React.ReactNode) {
             <MantineProvider
                 theme={plumTheme}
                 cssVariablesResolver={plumVariables}
-            >{children}
+            >
+                {children}
             </MantineProvider>
         ),
     })
