@@ -55,6 +55,7 @@
         }
         &:focus, &:active {
             box-shadow: 0 0 0 rem(2px) var(--mantine-color-violet-4);
+            border-color: var(--mantine-color-violet-2);
         }
         &[data-loading], &[data-disabled] {
             color: var(--mantine-color-gray-4);
@@ -71,7 +72,7 @@
             border-color: var(--mantine-color-gray-1);
         }
         &:focus, &:active {
-            box-shadow: 0 0 0 rem(2px) rgb(155, 143, 246);
+            box-shadow: 0 0 0 rem(2px) var(--mantine-color-violet-4)
         }
         &:active {
             --button-color: var(--mantine-color-gray-7);
@@ -83,8 +84,8 @@
     }
     &[data-design-variant='danger'] {
         color: var(--mantine-color-red-9);
-        border-color: var(--mantine-color-white);
-        background: var(--mantine-color-white);
+        border-color: transparent;
+        background: transparent;
         &:hover, &:focus {
             color: var(--mantine-color-red-9);
             background: var(--mantine-color-red-0);
@@ -110,9 +111,6 @@
     }
     &[data-icon-only] {
         padding: 0.5rem;
-        .section {
-            margin-inline-end: 0;
-        }
     }
     transition:
         background-color 0.3s ease-in-out,
@@ -122,8 +120,14 @@
     transform: none;
 }
 
+.section {
+    margin-inline-end: 0;
+    margin-inline-start: 0;
+}
+
 .inner {
     background-color: inherit;
+    gap: rem(8px);
 }
 
 .label {

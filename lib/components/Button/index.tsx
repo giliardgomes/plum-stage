@@ -25,6 +25,24 @@ export interface ButtonProps extends Omit<MantineButtonProps, "size">, Omit<Reac
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
+/**
+ * Helper function to count children size including leaf nodes
+ * This approach ensures that even if the children prop contains nested elements,
+ * the component can accurately determine if only one visual item is rendered considering even primitive types.
+ */
+const countVisualElements = (node: React.ReactNode): number => {
+    if (React.isValidElement(node)) {
+        if (React.Children.count(node.props.children) === 0) {
+            return 1
+        }
+        return React.Children.toArray(node.props.children).reduce((count: number, child) => count + countVisualElements(child), 0)
+    }
+    if (typeof node === "string" || typeof node === "number") {
+        return node.toString().length
+    }
+    return 0
+}
+
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
     children,
     size = "sm",
@@ -37,7 +55,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
         {...rest}
         ref={ref}
         mod={{
-            "data-icon-only": React.Children.count(children) === 1,
+            "data-icon-only": countVisualElements(children) === 1,
             size,
             "data-design-variant": variant,
         }}

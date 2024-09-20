@@ -27,14 +27,7 @@ export const Default: Story = {
         children: "My Button",
     },
     render: (props: ButtonProps) => (
-        <Button
-            variant={props.variant}
-            leftSection={props.leftSection}
-            rightSection={props.rightSection}
-            size={props.size}
-            loading={props.loading}
-            disabled={props.disabled}
-        >
+        <Button {...props}>
             {props.children}
         </Button>
     ),
@@ -47,15 +40,8 @@ export const IconOnlyWithTooltip: Story = {
     },
     render: (props: ButtonProps) => (
         <Tooltip label="Recycle">
-            <Button
-                variant={props.variant}
-                leftSection={props.leftSection}
-                rightSection={props.rightSection}
-                size={props.size}
-                loading={props.loading}
-                disabled={props.disabled}
-            >
-                ♺
+            <Button {...props}>
+                <span>♺</span>
             </Button>
         </Tooltip>
     ),
@@ -69,14 +55,7 @@ export const WithLeftSection: Story = {
         leftSection: "♺",
     },
     render: (props: ButtonProps) => (
-        <Button
-            variant={props.variant}
-            leftSection={props.leftSection}
-            rightSection={props.rightSection}
-            size={props.size}
-            loading={props.loading}
-            disabled={props.disabled}
-        >
+        <Button {...props}>
             {props.children}
         </Button>
     ),
@@ -90,14 +69,7 @@ export const WithRightSection: Story = {
         children: "My Button",
     },
     render: (props: ButtonProps) => (
-        <Button
-            variant={props.variant}
-            leftSection={props.leftSection}
-            rightSection={props.rightSection}
-            size={props.size}
-            loading={props.loading}
-            disabled={props.disabled}
-        >
+        <Button {...props}>
             {props.children}
         </Button>
     ),
@@ -112,14 +84,7 @@ export const WithBothSections: Story = {
         children: "My Button",
     },
     render: (props: ButtonProps) => (
-        <Button
-            variant={props.variant}
-            leftSection={props.leftSection}
-            rightSection={props.rightSection}
-            size={props.size}
-            loading={props.loading}
-            disabled={props.disabled}
-        >
+        <Button {...props}>
             {props.children}
         </Button>
     ),
