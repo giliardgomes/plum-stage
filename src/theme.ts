@@ -99,7 +99,7 @@ export const plumTheme: MantineThemeOverride = createTheme({
         lg: "1.25rem",
         xl: "1.5rem",
     },
-    fontFamily: "Helvetica Neue, Helvetica, sans-serif",
+    fontFamily: "Roboto, Arial, sans-serif",
     fontSizes: {
         xs: "0.75rem",
         sm: "0.875rem",

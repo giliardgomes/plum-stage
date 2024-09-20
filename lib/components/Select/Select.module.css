@@ -1,0 +1,77 @@
+.inputBaseInput {
+    height: auto;
+    padding: 0.75rem;
+
+    line-height: normal;
+
+    &[data-expanded] + * > .chevron {
+        transform: rotate(180deg);
+    }
+    &:not([data-disabled]) {
+        &:hover {
+            border: 1px solid var(--mantine-color-violet-5);
+        }
+
+        &:focus,
+        &:focus-within {
+            border: 1px solid var(--mantine-color-violet-5);
+            /* --mantine-color-violet-5 with alpha */
+            box-shadow: 0px 0px 0px 2px rgba(114, 89, 239, 0.48);
+        }
+    }
+
+    &[data-disabled] {
+        cursor: unset;
+        color: var(--mantine-color-gray-5);
+        background-color: var(--mantine-color-gray-0);
+
+        & + * > .chevron {
+            color: var(--mantine-color-gray-3);
+        }
+    }
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.option {
+    padding: 0.75rem;
+
+    color: var(--mantine-color-gray-7);
+    line-height: normal;
+
+    &[data-combobox-selected] {
+        background-color: var(--mantine-color-violet-1);
+        color: var(--mantine-color-violet-7);
+    }
+
+    &[data-combobox-active] {
+        background-color: var(--mantine-color-violet-1);
+        color: var(--mantine-color-violet-8);
+    }
+}
+
+/* ------- Combobox.Chevron ------- */
+.chevron {
+    --combobox-chevron-size-xs: 12px;
+    --combobox-chevron-size-sm: 16px;
+    --combobox-chevron-size-md: 18px;
+    --combobox-chevron-size-lg: 22px;
+    --combobox-chevron-size-xl: 26px;
+    --combobox-chevron-size: var(--combobox-chevron-size-sm);
+
+    width: var(--combobox-chevron-size);
+    height: var(--combobox-chevron-size);
+
+    &:where([data-error]) {
+        color: var(--mantine-color-error);
+    }
+
+    transition: transform 0.3s ease-in-out;
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}

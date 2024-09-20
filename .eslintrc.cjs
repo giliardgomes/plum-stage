@@ -14,6 +14,7 @@ module.exports = {
     plugins: ["react-refresh"],
     rules: {
         "@stylistic/arrow-parens": ["error", "always"],
+        "@stylistic/brace-style": ["error", "1tbs"],
         "@stylistic/indent": ["error", 4],
         "@stylistic/jsx-indent": ["error", 4],
         "@stylistic/jsx-indent-props": ["error", 4],

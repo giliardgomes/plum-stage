@@ -20,18 +20,16 @@ interface Options<Props = any> {
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-const TestComponent = forwardRef<HTMLElement, React.ComponentPropsWithoutRef<"mark">>(
-    (props, ref) => <mark ref={ref} data-child-prop {...props} />,
-)
+const TestComponent = forwardRef<HTMLElement, React.ComponentPropsWithoutRef<"mark">>((props, ref) => (
+    <mark ref={ref} data-child-prop {...props} />
+))
 
 export function itIsPolymorphic<Props>(options: Options<Props>, name = "is polymorphic") {
     const getTarget = (container: HTMLElement): HTMLElement =>
         container.querySelector(options.selector || "*:not(style)")!
 
     it(`${name}: html element`, () => {
-        const { container } = render(
-            <options.component component="a" href="#test-link" {...options.props} />,
-        )
+        const { container } = render(<options.component component="a" href="#test-link" {...options.props} />)
 
         const target = getTarget(container)
         expect(target.tagName).toBe("A")
@@ -52,7 +50,11 @@ export function itIsPolymorphic<Props>(options: Options<Props>, name = "is polym
     it(`${name}: renderRoot`, () => {
         const { container } = render(
             <options.component
-                renderRoot={(props: any) => <a href="#test-link" {...props}>Testing</a>}
+                renderRoot={(props: any) => (
+                    <a href="#test-link" {...props}>
+                        Testing
+                    </a>
+                )}
                 {...options.props}
             />,
         )
@@ -70,30 +72,20 @@ export function itRendersChildren<Props>(options: Options<Props>, name = "render
     })
 }
 
-export function itSupportsClassName<Props>(
-    options: Options<Props>,
-    name = "supports className prop",
-) {
+export function itSupportsClassName<Props>(options: Options<Props>, name = "supports className prop") {
     it(name, () => {
-        const { container } = render(
-            <options.component {...options.props} className="test-class-name" />,
-        )
+        const { container } = render(<options.component {...options.props} className="test-class-name" />)
 
         expect(container.querySelector(".test-class-name")).toBeInTheDocument()
     })
 }
 
-export function itSupportsFocusEvents<Props>(
-    options: Options<Props>,
-    name = "supports focus events",
-) {
+export function itSupportsFocusEvents<Props>(options: Options<Props>, name = "supports focus events") {
     it(name, () => {
         const onFocus = vi.fn()
         const onBlur = vi.fn()
 
-        const { container } = render(
-            <options.component {...options.props} onFocus={onFocus} onBlur={onBlur} />,
-        )
+        const { container } = render(<options.component {...options.props} onFocus={onFocus} onBlur={onBlur} />)
 
         fireEvent.focus(container.querySelector(options.selector || "*:not(style)")!)
         expect(onFocus).toHaveBeenCalled()
@@ -103,10 +95,7 @@ export function itSupportsFocusEvents<Props>(
     })
 }
 
-export function itSupportsOthers<Props>(
-    options: Options<Props>,
-    name = "supports ...others props",
-) {
+export function itSupportsOthers<Props>(options: Options<Props>, name = "supports ...others props") {
     it(name, () => {
         const { container } = render(<options.component {...options.props} data-test-attribute />)
         expect(container.querySelector("[data-test-attribute]")).toBeInTheDocument()
@@ -118,5 +107,36 @@ export function itSupportsRef<Props>(options: Options<Props>, name = "supports r
         const ref = createRef<typeof options.refType>()
         render(<options.component {...options.props} {...{ [options.refProp || "ref"]: ref }} />)
         expect(ref.current).toBeInstanceOf(options.refType)
+    })
+}
+
+export function itSupportsMod<Props>(options: Options<Props>, name = "supports mod") {
+    it(`${name}: string`, () => {
+        const { container } = render(<options.component {...options.props} mod="test" />)
+        expect(container.querySelector(options.selector || "*:not(style)")!).toHaveAttribute("data-test")
+    })
+
+    it(`${name}: object`, () => {
+        const { container } = render(<options.component {...options.props} mod={{ test: true, test2: false }} />)
+
+        expect(container.querySelector(options.selector || "*:not(style)")!).toHaveAttribute("data-test")
+
+        expect(container.querySelector(options.selector || "*:not(style)")!).not.toHaveAttribute("data-test2")
+    })
+
+    it(`${name}: array`, () => {
+        const { container } = render(<options.component {...options.props} mod={["test", "test2"]} />)
+
+        expect(container.querySelector(options.selector || "*:not(style)")!).toHaveAttribute("data-test")
+
+        expect(container.querySelector(options.selector || "*:not(style)")!).toHaveAttribute("data-test2")
+    })
+
+    it(`${name}: array with object`, () => {
+        const { container } = render(<options.component {...options.props} mod={["test", { test2: true }]} />)
+
+        expect(container.querySelector(options.selector || "*:not(style)")!).toHaveAttribute("data-test")
+
+        expect(container.querySelector(options.selector || "*:not(style)")!).toHaveAttribute("data-test2")
     })
 }
