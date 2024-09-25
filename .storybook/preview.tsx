@@ -19,19 +19,19 @@ export const decorators = [
 const preview: Preview = {
     parameters: {
         backgrounds: {
-            default: "offwhite", // Default background color
+            default: "white", // Default background color
             values: [
                 {
                     name: "white",
                     value: "#ffffff", // White background color
                 },
                 {
-                    name: "gray",
-                    value: "#gray", // Gray background color
+                    name: "Sidebar Background",
+                    value: "#FBFAFE", // Violet 0, Sidebar Background
                 },
                 {
-                    name: "offwhite",
-                    value: "#FAF3E0",
+                    name: "Topbar Background",
+                    value: "#503ABD", // Violet 7, Top Nav Background
                 },
             ],
         },

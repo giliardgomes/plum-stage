@@ -25,6 +25,7 @@ export default [
             "@stylistic/arrow-parens": ["error", "always"],
             "@stylistic/brace-style": ["error", "1tbs"],
             "@stylistic/indent": ["error", 4],
+            "@stylistic/jsx-indent": ["error", 4],
             "@stylistic/jsx-indent-props": ["error", 4],
             "@stylistic/quote-props": ["error", "as-needed", { numbers: true }],
             "@stylistic/quotes": ["error", "double"],
