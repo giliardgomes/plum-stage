@@ -1,0 +1,73 @@
+.list {
+    background-color: white;
+}
+
+/* https: //help.mantine.dev/q/tabs-border-color */
+.list::before {
+    border-color: var(--mantine-color-gray-2);
+}
+
+.list:where([data-orientation="vertical"])::before {
+    border: none;
+}
+
+.tab {
+    padding: .75rem 1rem;
+    background-color: white;
+    color: var(--mantine-color-gray-7);
+    border-color: var(--mantine-color-gray-2);
+    font-weight: 400;
+    line-height: 1rem;
+
+    &:focus {
+        border-radius: .5rem .5rem 0 0;
+        outline: none;
+        box-shadow: 0 0 0 .125rem var(--mantine-color-violet-3);
+    }
+
+    &[data-disabled] {
+        border-color: var(--mantine-color-gray-3);
+    }
+
+    &:not([data-disabled]) {
+        &:hover {
+            background-color: var(--mantine-color-gray-1);
+            border-color: var(--mantine-color-gray-1);
+        }
+    }
+
+    &[data-active] {
+        color: var(--mantine-color-violet-9);
+        font-weight: 500;
+        border-color: var(--mantine-color-violet-9);
+
+        &:hover {
+            background-color: var(--mantine-color-violet-0);
+            border-color: var(--mantine-color-violet-9);
+        }
+    }
+
+    &[data-orientation="vertical"] {
+        border-radius: .5rem;
+        border: none;
+        min-height: 3rem;
+        width: 15rem;
+
+        &[data-active] {
+            background-color: var(--mantine-color-violet-1);
+            border-color: var(--mantine-color-violet-1);
+
+            &:hover {
+                background-color: var(--mantine-color-violet-2);
+                border-color: var(--mantine-color-violet-2);
+            }
+        }
+    }
+
+}
+
+.tabLabel {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
