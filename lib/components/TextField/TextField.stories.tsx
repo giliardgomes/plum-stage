@@ -7,7 +7,7 @@ const meta: Meta<typeof TextField> = {
     parameters: {
         docs: {
             description: {
-                component: "Documentation: https://zeroheight.com/4a128e208/p/3311f2-text-field",
+                component: "Documentation: https://plum.quorum.us/4a128e208/p/3311f2-text-field",
             },
         },
     },

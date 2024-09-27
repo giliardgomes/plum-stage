@@ -7,7 +7,7 @@ const meta: Meta<typeof Tooltip> = {
     parameters: {
         docs: {
             description: {
-                component: "Documentation: https://zeroheight.com/4a128e208/p/164fbd-tooltip",
+                component: "Documentation: https://plum.quorum.us/4a128e208/p/164fbd-tooltip",
             },
         },
     },

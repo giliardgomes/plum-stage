@@ -1,6 +1,6 @@
 # Plum
 
-This is the repository for Quorum's component library, Plum. You can find documentation for Plum in [ZeroHeight](https://zeroheight.com/4a128e208/p/224e31-plum-design-system), [Figma](), and [Confluence](https://quorumanalytics.atlassian.net/wiki/spaces/DEVTEAM/pages/1289879592/DSGG).
+This is the repository for Quorum's component library, Plum. You can find documentation for Plum in [ZeroHeight](https://plum.quorum.us/), [Figma](), and [Confluence](https://quorumanalytics.atlassian.net/wiki/spaces/DEVTEAM/pages/1289879592/DSGG).
 
 ## Contributing to Plum
 

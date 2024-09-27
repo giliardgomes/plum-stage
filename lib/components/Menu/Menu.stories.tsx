@@ -8,7 +8,7 @@ const meta: Meta<typeof Menu> = {
     parameters: {
         docs: {
             description: {
-                component: "Documentation: https://zeroheight.com/4a128e208/p/450258-menu",
+                component: "Documentation: https://plum.quorum.us/4a128e208/p/450258-menu",
             },
         },
     },

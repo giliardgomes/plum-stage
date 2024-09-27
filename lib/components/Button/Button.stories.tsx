@@ -7,7 +7,7 @@ const meta: Meta<typeof Button> = {
     parameters: {
         docs: {
             description: {
-                component: "Documentation: https://zeroheight.com/4a128e208/p/86dae8-button",
+                component: "Documentation: https://plum.quorum.us/4a128e208/p/86dae8-button",
             },
         },
     },
