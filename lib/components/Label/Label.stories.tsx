@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Label, LabelProps } from "@/components/Label"
 import { Tooltip } from "@/components/Tooltip"
-import { StorybookDemoIcon } from "./StorybookDemoIcon"
+import { CircleInfoFarFAIcon } from "@/components/Icons/index"
 import { TextField } from "@/components/TextField"
 
 const meta: Meta<typeof Label> = {
@@ -43,7 +43,7 @@ export const WithTooltip: Story = {
             withAsterisk={props.withAsterisk}
             rightSection={(
                 <Tooltip label="This label has a tooltip.">
-                    <StorybookDemoIcon />
+                    <CircleInfoFarFAIcon ariaHidden="false" />
                 </Tooltip>
             )}
         />

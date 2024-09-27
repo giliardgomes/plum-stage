@@ -5,7 +5,7 @@ import "./App.css"
 
 import { plumTheme } from "./theme"
 import { Button, Tabs, TextField, Tile } from "../lib/main"
-import { TriangleExclamationFarFAIcon } from "../lib/components/TextField/Icon/TriangleExclamationFarFAIcon"
+import { CircleInfoFarFAIcon, TriangleExclamationFarFAIcon } from "../lib/components/Icons"
 
 function App() {
     return (
@@ -22,10 +22,10 @@ function App() {
                         <Tabs.Tab value="video" leftSection={<TriangleExclamationFarFAIcon />}>
                             Video
                         </Tabs.Tab>
-                        <Tabs.Tab value="image" leftSection={<TriangleExclamationFarFAIcon />}>
+                        <Tabs.Tab value="image" leftSection={<CircleInfoFarFAIcon />}>
                             Image
                         </Tabs.Tab>
-                        <Tabs.Tab value="audio" leftSection={<TriangleExclamationFarFAIcon />}>
+                        <Tabs.Tab value="audio" leftSection={<CircleInfoFarFAIcon />}>
                             Audio
                         </Tabs.Tab>
                     </Tabs.List>

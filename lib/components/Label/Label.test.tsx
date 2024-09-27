@@ -3,7 +3,7 @@ import { render } from "@test-utils"
 
 import { Label } from "./index"
 import { Tooltip } from "@/components/Tooltip"
-import { StorybookDemoIcon } from "./StorybookDemoIcon"
+import { CircleInfoFarFAIcon } from "@/components/Icons"
 
 describe("Label", () => {
     it("renders without a11y violations", async () => {
@@ -16,7 +16,7 @@ describe("Label", () => {
                     withAsterisk
                     rightSection={(
                         <Tooltip label="This label has a tooltip.">
-                            <StorybookDemoIcon />
+                            <CircleInfoFarFAIcon />
                         </Tooltip>
                     )}
                 />

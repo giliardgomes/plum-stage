@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler } from "react"
 
 import { Textarea as MantineTextArea, TextareaProps as MantineTextAreaProps } from "@mantine/core"
-import { TriangleExclamationFarFAIcon } from "./Icon/TriangleExclamationFarFAIcon"
+import { TriangleExclamationFarFAIcon } from "@/components/Icons"
 
 import classes from "@/components/TextField/TextField.module.css"
 

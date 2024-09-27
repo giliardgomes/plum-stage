@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
 import { Tabs, TabsProps } from "@/components/Tabs"
-import { TriangleExclamationFarFAIcon } from "@/components/TextField/Icon/TriangleExclamationFarFAIcon"
+import { TriangleExclamationFarFAIcon } from "@/components/Icons"
 
 const meta: Meta<typeof Tabs> = {
     component: Tabs,
