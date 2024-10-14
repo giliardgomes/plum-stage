@@ -13,7 +13,7 @@ import {
     useProps,
     useStyles,
 } from "@mantine/core"
-import classes from "./Select.module.css"
+import classes from "./ComboboxChevron.module.css"
 
 export type ComboboxChevronStylesNames = "chevron"
 export type ComboboxChevronCSSVariables = {

@@ -1,0 +1,20 @@
+.chevron {
+    --combobox-chevron-size-xs: 12px;
+    --combobox-chevron-size-sm: 16px;
+    --combobox-chevron-size-md: 18px;
+    --combobox-chevron-size-lg: 22px;
+    --combobox-chevron-size-xl: 26px;
+    --combobox-chevron-size: var(--combobox-chevron-size-sm);
+
+    width: var(--combobox-chevron-size);
+    height: var(--combobox-chevron-size);
+
+    &:where([data-error]) {
+        color: var(--mantine-color-error);
+    }
+
+    transition: transform 0.3s ease-in-out;
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}

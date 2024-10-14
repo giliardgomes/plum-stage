@@ -1,6 +1,7 @@
-.inputBaseInput {
-    height: auto;
-    padding: 0.75rem;
+.pillsInput {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 
     line-height: normal;
 
@@ -29,6 +30,14 @@
         }
     }
 }
+
+.pill {
+    background-color: var(--mantine-color-gray-1);
+
+    line-height: normal;
+    color: var(--mantine-color-gray-7);
+}
+
 
 .options {
     display: flex;

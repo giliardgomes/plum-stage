@@ -3,10 +3,10 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Flex, Stack } from "@mantine/core"
 
 import { Button } from "@/components/Button"
-import { Select, SelectProps } from "./index"
+import { MultiSelect, MultiSelectProps } from "./index"
 
-const meta: Meta<typeof Select> = {
-    component: Select,
+const meta: Meta<typeof MultiSelect> = {
+    component: MultiSelect,
     tags: ["autodocs"],
     argTypes: {
         label: { control: "text" },
@@ -25,45 +25,45 @@ const meta: Meta<typeof Select> = {
             "Melon",
         ],
         label: "Favorite Fruit",
-        placeholder: "Select a fruit",
+        placeholder: "Select fruit",
         onChange: (value, selectedOption) => console.log({ value, selectedOption }),
     },
 }
 
 export default meta
 
-type Story = StoryObj<typeof Select>
+type Story = StoryObj<typeof MultiSelect>
 
 export const Basic: Story = {
-    render: (props: SelectProps) => <Select {...props} />,
+    render: (props: MultiSelectProps) => <MultiSelect {...props} />,
 }
 
 export const WithDescription: Story = {
     args: {
         description: "Gift baskets will be made based on your preference",
     },
-    render: (props: SelectProps) => <Select {...props} />,
+    render: (props: MultiSelectProps) => <MultiSelect {...props} />,
 }
 
 export const WithDefaultValue: Story = {
     args: {
-        defaultValue: "Blueberry",
+        defaultValue: ["Blueberry"],
     },
-    render: (props: SelectProps) => <Select {...props} />,
+    render: (props: MultiSelectProps) => <MultiSelect {...props} />,
 }
 
 export const WithControlledValue: Story = {
     args: {
-        value: "Banana",
+        value: ["Apple"],
     },
-    render: (props: SelectProps) => {
+    render: (props: MultiSelectProps) => {
         const [value, setValue] = useState(props.value)
         return (
             <Stack>
-                <Select {...props} value={value} />
+                <MultiSelect {...props} value={value} />
                 <Flex gap="md">
-                    <Button onClick={() => setValue("Apple")}>Set Apple</Button>
-                    <Button onClick={() => setValue("Banana")}>Set Banana</Button>
+                    <Button onClick={() => setValue(["Banana", "Blueberry", "Strawberry"])}>Make Smoothie</Button>
+                    <Button onClick={() => setValue(["Cherry"])}>Set Cherry</Button>
                 </Flex>
             </Stack>
         )
@@ -74,7 +74,7 @@ export const Disabled: Story = {
     args: {
         disabled: true,
     },
-    render: (props: SelectProps) => <Select {...props} />,
+    render: (props: MultiSelectProps) => <MultiSelect {...props} />,
 }
 
 export const DisabledItem: Story = {
@@ -88,13 +88,13 @@ export const DisabledItem: Story = {
             "Melon",
         ],
     },
-    render: (props: SelectProps) => <Select {...props} />,
+    render: (props: MultiSelectProps) => <MultiSelect {...props} />,
 }
 
 export const WithError: Story = {
     args: {
-        description: "Select your favorite fruit from the list",
+        description: "Select your favorite fruits from the list",
         error: "This field is required",
     },
-    render: (props: SelectProps) => <Select {...props} />,
+    render: (props: MultiSelectProps) => <MultiSelect {...props} />,
 }

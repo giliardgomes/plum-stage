@@ -10,7 +10,7 @@ import {
 } from "@mantine/core"
 import { useUncontrolled } from "@mantine/hooks"
 
-import { ComboboxChevron } from "@/components/Select/ComboboxChevron"
+import { ComboboxChevron } from "@/icons/ComboboxChevron"
 
 import classes from "@/components/Select/Select.module.css"
 
@@ -90,21 +90,22 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
         const selectedItem = typeof _value === "string" ? optionsLockup[_value] : undefined
 
         const handleValueSelect = (selectedValue: string) => {
+            const selectedOption = optionsLockup[selectedValue]
+
             // If allowed, deselect the currently selected option
             if (allowDeselect && selectedValue === _value) {
-                handleChange("")
+                handleChange("", selectedOption)
                 combobox.updateSelectedOptionIndex("active")
                 combobox.closeDropdown()
                 return
             }
 
-            const selectedOption = optionsLockup[selectedValue]
             handleChange(selectedValue, selectedOption)
             combobox.updateSelectedOptionIndex("active")
             combobox.closeDropdown()
         }
 
-        const options = parsedData?.map((item, index) => (
+        const options = parsedData.map((item, index) => (
             <Combobox.Option
                 key={item.value}
                 active={item.value === _value}
