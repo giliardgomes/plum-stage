@@ -46,7 +46,7 @@
     }
     &[data-design-variant='secondary'] {
         color: var(--mantine-color-gray-7);
-        background: var(--mantine-color-white);
+        background: transparent;
         border-color: var(--mantine-color-gray-3);
         &:hover, &:focus {
             color: var(--mantine-color-violet-8);
