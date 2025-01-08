@@ -77,7 +77,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(({
     return (
         <MantineAlert
             {...props}
-            classNames={{ root: classes.root, closeButton: classes.closeButton }}
+            classNames={{ closeButton: classes.closeButton, message: classes.message, root: classes.root }}
             radius="8px"
             title={titleElement}
             {...{
