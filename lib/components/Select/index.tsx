@@ -10,6 +10,7 @@ import {
 } from "@mantine/core"
 import { useUncontrolled } from "@mantine/hooks"
 
+import { ErrorMessage } from "@/components/ErrorMessage"
 import { ComboboxChevron } from "@/icons/ComboboxChevron"
 
 import classes from "@/components/Select/Select.module.css"
@@ -132,7 +133,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                         label={label}
                         description={description}
                         descriptionProps={{ c: "gray.8" }}
-                        error={error}
+                        error={error && <ErrorMessage error={error} />}
                         // Render either the error or the description
                         inputWrapperOrder={["label", "input", error ? "error" : "description"]}
                         classNames={{ input: classes.inputBaseInput }}

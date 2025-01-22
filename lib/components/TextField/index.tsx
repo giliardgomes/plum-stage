@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler } from "react"
 
 import { Textarea as MantineTextArea, TextareaProps as MantineTextAreaProps } from "@mantine/core"
-import { TriangleExclamationFarFAIcon } from "@/components/Icons"
+import { ErrorMessage } from "@/components/ErrorMessage"
 
 import classes from "@/components/TextField/TextField.module.css"
 
@@ -57,19 +57,15 @@ export const TextField = React.forwardRef<HTMLTextAreaElement, TextFieldProps>((
                 error: classes.error,
                 description: classes.description,
             }}
-            inputWrapperOrder={["label", "input", "description", "error"]}
+            // Render either the error or the description
+            inputWrapperOrder={["label", "input", error ? "error" : "description"]}
             autosize={true}
             maxRows={maxRows}
             minRows={minRows}
-            error={error}
+            error={error && <ErrorMessage error={error} />}
             {...props}
             ref={ref}
-            rightSection={(
-                <>
-                    {error && <TriangleExclamationFarFAIcon />}
-                    {rightSection}
-                </>
-            )}
+            rightSection={rightSection}
             component={multiline ? undefined : "input"}
         />
     )

@@ -15,6 +15,7 @@ import {
 } from "@mantine/core"
 import { useUncontrolled } from "@mantine/hooks"
 
+import { ErrorMessage } from "@/components/ErrorMessage"
 import { ComboboxChevron } from "@/icons/ComboboxChevron"
 
 import classes from "@/components/MultiSelect/MultiSelect.module.css"
@@ -136,7 +137,7 @@ export const MultiSelect = (
                     label={label}
                     description={description}
                     descriptionProps={{ c: "gray.8" }}
-                    error={error}
+                    error={error && <ErrorMessage error={error} />}
                     // Render either the error or the description
                     inputWrapperOrder={["label", "input", error ? "error" : "description"]}
                     // Spread additional props like data-* attributes

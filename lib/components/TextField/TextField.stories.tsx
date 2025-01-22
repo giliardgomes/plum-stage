@@ -72,3 +72,17 @@ export const WithIconAndTrailingIcon: Story = {
         />
     ),
 }
+
+export const WithError: Story = {
+    args: {
+        label: "Label",
+        placeholder: "Placeholder text",
+        description: "Description",
+        error: "There is an error",
+    },
+    render: (props: TextFieldProps) => (
+        <TextField
+            {...props}
+        />
+    ),
+}
