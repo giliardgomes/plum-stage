@@ -1,0 +1,53 @@
+.radioGroupRoot {
+    display: flex;
+    flex-direction: column;
+    gap: rem(8px);
+}
+.radioGroupLabel {
+    font-weight: 500;
+    color: var(--mantine-color-gray-7);
+}
+.radio {
+    border-color: var(--mantine-color-gray-5);
+    border-width: rem(1.6px);
+    width: rem(16px);
+    height: rem(16px);
+
+    &:not(:disabled) {
+        &:hover {
+            background-color: var(--mantine-color-violet-2);
+            border-color: var(--mantine-color-violet-4);
+        }
+        &:checked {
+            border-color: var(--mantine-color-violet-5);
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.radioInner {
+    width: rem(16px);
+    height: rem(16px);
+}
+
+.radioBody, .radioLabel {
+    height: rem(16px);
+    line-height: rem(16px);
+    color: var(--mantine-color-gray-7);
+    &:disabled {
+        color: var(--mantine-color-gray-5);
+    }
+}
+
+.radioBody {
+    width: fit-content;
+    &:not(:disabled) {
+        &:focus-within {
+            outline: 1px solid var(--mantine-color-violet-5);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+    }
+}
