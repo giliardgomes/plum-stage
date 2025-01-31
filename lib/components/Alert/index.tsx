@@ -1,5 +1,5 @@
 import React from "react"
-import { Grid, Alert as MantineAlert, AlertProps as MantineAlertProps, Text, useMantineTheme } from "@mantine/core"
+import { Grid, Alert as MantineAlert, AlertProps as MantineAlertProps, Text, useMantineTheme, rem, Loader } from "@mantine/core"
 
 import { Button } from "@/components/Button"
 import { CircleInfoFarFAIcon, CircleXmarkFarFAIcon, TriangleExclamationFarFAIcon } from "@/components/Icons"
@@ -12,7 +12,7 @@ interface StandardAlertProps extends Omit<MantineAlertProps, "color" | "icon" | 
     /** Label for the Action button */
     actionLabel?: string
     /** Variant of the Alert */
-    variant: "error" | "info" | "warning"
+    variant: "error" | "info" | "warning" | "loading"
 }
 
 interface InlineAlertProps extends StandardAlertProps {
@@ -51,6 +51,10 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(({
         case "warning":
             color = "yellow"
             icon = <TriangleExclamationFarFAIcon color={theme.colors.yellow[7]} filled />
+            break
+        case "loading":
+            color = "blue"
+            icon = <Loader size={rem(16)} color={theme.colors.blue[7]} />
             break
     }
 

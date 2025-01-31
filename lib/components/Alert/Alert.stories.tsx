@@ -79,3 +79,17 @@ export const DismissibleErrorAlert: Story = {
         )
     },
 }
+
+/**
+ * Loading alerts are used to indicate that an action is in progress.
+ */
+export const LoadingAlert: Story = {
+    args: {
+        variant: "loading",
+    },
+    render: (props: AlertProps) => (
+        <Alert {...props}>
+            This is a loading alert.
+        </Alert>
+    ),
+}
