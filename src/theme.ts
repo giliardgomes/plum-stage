@@ -3,6 +3,7 @@ import {
     MantineThemeOverride,
     CSSVariablesResolver,
     MantineColorsTuple,
+    rem,
 } from "@mantine/core"
 
 const quorumViolet: MantineColorsTuple = [
@@ -108,6 +109,9 @@ export const plumTheme: MantineThemeOverride = createTheme({
         ],
         violet: quorumViolet,
     },
+    headings: {
+        fontWeight: "500",
+    },
     spacing: {
         xs: "0.5rem",
         sm: "0.75rem",
@@ -129,7 +133,20 @@ export const plumTheme: MantineThemeOverride = createTheme({
 })
 
 export const plumVariables: CSSVariablesResolver = (theme) => ({
+
     variables: {
+        // TYPOGRAPHY - see https://plum.quorum.us/4a128e208/p/642274-typography/b/114c78
+
+        // TYPOGRAPHY - HEADINGS
+        "--plum-font-size-heading-xs": rem("18px"),
+        "--plum-line-height-heading-xs": rem("24px"),
+        "--plum-letter-spacing-heading-xs": rem("0.3px"),
+
+        // TYPOGRAPHY - PARAGRAPH
+
+        "--plum-font-size-paragraph-md": rem("14px"),
+        "--plum-line-height-paragraph-md": rem("20px"),
+        "--plum-letter-spacing-paragraph-md": rem("0.3px"),
     },
     light: {
         "--mantine-color-error": theme.colors.red[7],
