@@ -25,7 +25,7 @@
         "storybook": "storybook dev -p 6106",
         "storybook:build": "storybook build",
         "test": "vitest",
-        "prepublishOnly": "npm run build",
+        "prepublishOnly": "pnpm run build",
         "prepare": "husky"
     },
     "publishConfig": {
@@ -63,6 +63,7 @@
         "@storybook/addon-links": "^8.4.7",
         "@storybook/blocks": "^8.2.5",
         "@storybook/manager-api": "^8.4.7",
+        "@storybook/preview-api": "^8.5.3",
         "@storybook/react": "^8.4.7",
         "@storybook/react-vite": "^8.4.7",
         "@storybook/test": "^8.2.5",
@@ -72,6 +73,7 @@
         "@testing-library/jest-dom": "^6.5.0",
         "@testing-library/react": "^16.0.1",
         "@testing-library/user-event": "^14.5.2",
+        "@types/node": "^22.13.1",
         "@types/react": "^18.3.11",
         "@types/react-dom": "^18.2.25",
         "@typescript-eslint/parser": "^8.18.2",
@@ -82,7 +84,7 @@
         "eslint-plugin-jsx-a11y": "^6.10.2",
         "eslint-plugin-react-hooks": "^5.1.0-rc-e4953922-20240919",
         "eslint-plugin-react-refresh": "^0.4.12",
-        "eslint-plugin-storybook": "^0.8.0",
+        "eslint-plugin-storybook": "^0.11.2",
         "glob": "^11.0.0",
         "husky": "^9.1.6",
         "jsdom": "^24.1.3",

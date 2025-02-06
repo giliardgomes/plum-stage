@@ -8,10 +8,16 @@ This is the repository for Quorum's component library, Plum. You can find docume
 
 First, ensure Node is up to date. If you are using [Volta](https://volta.sh/), it will automatically use the version of node defined in `package.json`. If you have [NVM](https://github.com/nvm-sh/nvm) installed, `nvm use` will automatically install and switch to the latest LTS version.
 
+We also use [PNPM](https://pnpm.io/) as our package manager. If you don't have it installed, you can install it with:
+
+```shell
+volta install pnpm
+```
+
 Next, install the dependencies:
 
 ```shell
-npm install
+pnpm install
 ```
 
 ### Use git hooks
@@ -21,13 +27,13 @@ We setup git hooks with [Husky](https://typicode.github.io/husky/) to automate c
 To install hooks manually with Husky:
 
 ```shell
-npx husky install
+pnpx husky install
 ```
 
 To uninstall hooks manually with Husky:
 
 ```shell
-npx husky uninstall
+pnpx husky uninstall
 ```
 
 ### Tests
@@ -35,7 +41,7 @@ npx husky uninstall
 Run the [vitest](https://vitest.dev/) suite with:
 
 ```shell
-npm run test
+pnpm run test
 ```
 
 By default, this command will watch for changes to the source code and automatically re-run tests as needed.
@@ -45,7 +51,7 @@ By default, this command will watch for changes to the source code and automatic
 The usage of each component should be documented in [Storybook](https://storybook.js.org/). You can start the storybook server with:
 
 ```shell
-npm run storybook
+pnpm run storybook
 ```
 
 #### Deploying Storybook
@@ -65,7 +71,7 @@ An alert will also be sent to the `#alerts-design-system` channel in Slack.
 The package can be built using:
 
 ```shell
-npm run build
+pnpm run build
 ```
 
 The output is in the `dist/` directory. For developmental purposes, you can declare Plum as a file dependency with the following syntax:
@@ -96,7 +102,7 @@ Be sure to increment the `version` key in `package.json` before publishing, or t
 You can then manually publish a new version of the package with:
 
 ```shell
-npm publish
+pnpm publish
 ```
 
 #### Releasing
