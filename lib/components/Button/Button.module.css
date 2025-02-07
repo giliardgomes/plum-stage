@@ -12,6 +12,13 @@
     border-radius: var(--mantine-radius-xl);
     background: var(--mantine-color-violet-7);
     box-shadow: none;
+    &[data-dangerous] {
+        &:focus-visible {
+            outline: 2px solid var(--mantine-color-red-6);
+            outline-offset: 2px;
+        }
+    }
+
     &[data-design-variant='accent'] {
         &:hover, &:focus {
             background: var(--mantine-color-violet-9);
@@ -25,13 +32,29 @@
             border-color: var(--mantine-color-violet-1);
             background: var(--mantine-color-violet-1);
         }
+        &[data-dangerous] {
+            border-color: var(--mantine-color-red-7);
+            background: var(--mantine-color-red-7);
+            &:hover, &:focus {
+                background: var(--mantine-color-red-9);
+                border-color: var(--mantine-color-red-9);
+            }
+            &:focus, &:active {
+                box-shadow: 0 0 0 rem(2px) var(--mantine-color-red-5);
+            }
+            &[data-loading], &[data-disabled] {
+                color: var(--mantine-color-red-3);
+                border-color: var(--mantine-color-red-1);
+                background: var(--mantine-color-red-1);
+            }
+        }
     }
+
     &[data-design-variant='primary'] {
         color: var(--mantine-color-violet-8);
         border-color: var(--mantine-color-violet-2);
         background: var(--mantine-color-violet-2);
         &:hover, &:focus {
-            color: var(--mantine-color-violet-8);
             background: var(--mantine-color-violet-3);
             border-color: var(--mantine-color-violet-3);
         }
@@ -43,7 +66,25 @@
             border-color: var(--mantine-color-violet-0);
             background: var(--mantine-color-violet-0);
         }
+        &[data-dangerous] {
+            color: var(--mantine-color-red-9);
+            background: var(--mantine-color-red-0);
+            border-color: var(--mantine-color-red-0);
+            &:hover, &:focus {
+                background:  var(--mantine-color-red-1);
+                border-color: var(--mantine-color-red-1);
+            }
+            &:focus,  &:active {
+                box-shadow: 0 0 0 rem(2px) var(--mantine-color-red-5);
+            }
+            &[data-loading], &[data-disabled] {
+                border-color: var(--mantine-color-red-0);
+                background: var(--mantine-color-red-0);
+                color: var(--mantine-color-red-1);
+            }
+        }
     }
+
     &[data-design-variant='secondary'] {
         color: var(--mantine-color-gray-7);
         background: transparent;
@@ -59,7 +100,23 @@
         }
         &[data-loading], &[data-disabled] {
             color: var(--mantine-color-gray-4);
+            background: transparent;
             border-color: var(--mantine-color-gray-2);
+        }
+        &[data-dangerous] {
+            color: var(--mantine-color-red-9);
+            border-color: var(--mantine-color-red-3);
+            &:hover, &:focus {
+                background: var(--mantine-color-red-0);
+                border-color: var(--mantine-color-red-4);
+            }
+            &:focus,  &:active {
+                box-shadow: 0 0 0 rem(2px) var(--mantine-color-red-5);
+            }
+            &[data-loading], &[data-disabled] {
+                background: transparent;
+                color: var(--mantine-color-red-1);
+            }
         }
     }
     &[data-design-variant='tertiary'] {
@@ -75,29 +132,29 @@
             box-shadow: 0 0 0 rem(2px) var(--mantine-color-violet-4)
         }
         &:active {
-            --button-color: var(--mantine-color-gray-7);
+            border-color: var(--mantine-color-gray-7);
         }
         &[data-loading], &[data-disabled]  {
-            color: var(--mantine-color-gray-4);
             background: var(--mantine-color-gray-0);
+            border-color: transparent;
+            color: var(--mantine-color-gray-4);
         }
-    }
-    &[data-design-variant='danger'] {
-        color: var(--mantine-color-red-9);
-        border-color: transparent;
-        background: transparent;
-        &:hover, &:focus {
+        &[data-dangerous] {
             color: var(--mantine-color-red-9);
-            background: var(--mantine-color-red-0);
-            border-color: var(--mantine-color-red-0);
-        }
-        &:focus,  &:active {
-            box-shadow: 0 0 0 rem(2px) var(--mantine-color-red-4);
-        }
-        &[data-loading], &[data-disabled] {
-            color: var(--mantine-color-red-1);
+            &:hover, &:focus {
+                background: var(--mantine-color-red-0);
+            }
+            &:focus,  &:active {
+                box-shadow: 0 0 0 rem(2px) var(--mantine-color-red-5);
+            }
+            &[data-loading], &[data-disabled] {
+                background: transparent;
+                border-color: transparent;
+                color: var(--mantine-color-red-1);
+            }
         }
     }
+
     &[data-size='md'] {
         min-width:  2.5rem;
         height:  2.5rem;

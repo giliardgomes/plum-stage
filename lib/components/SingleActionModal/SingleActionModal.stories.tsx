@@ -55,7 +55,7 @@ export const Default: Story = {
     },
 }
 
-export const IconAndTwoButtons: Story = {
+export const IconAndTwoButtonsAndDangerVariant: Story = {
     render: () => {
         const [isOpen, setIsOpen] = useState(false)
 
@@ -87,8 +87,9 @@ export const IconAndTwoButtons: Story = {
                     icon={icon}
                     data-plum-id="Testing"
                     secondaryButtonProps={{
-                        children: "No",
+                        children: "Dangerous No",
                         onClick: () => clickButton("No"),
+                        danger: true,
                     }}
                 >
                     You have done something that requires confirmation.  Do you wish to proceed?

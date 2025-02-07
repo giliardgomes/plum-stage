@@ -13,6 +13,13 @@ const meta: Meta<typeof Button> = {
     },
     tags: ["autodocs"],
     argTypes: {
+        variant: {
+            control: "radio",
+            options: ["accent", "primary", "secondary", "tertiary"],
+        },
+    },
+    args: {
+        danger: false,
     },
 }
 
@@ -30,6 +37,96 @@ export const Default: Story = {
         <Button {...props}>
             {props.children}
         </Button>
+    ),
+}
+
+export const AllTheVariants: Story = {
+    render: () => (
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+        }}
+        >
+            <div
+                style={{
+                    display: "flex",
+                    gap: "10px",
+                }}
+            >
+                <Button variant="accent" size="sm">
+                    Accent
+                </Button>
+                <Button variant="accent" size="sm" danger={true}>
+                    Accent
+                </Button>
+
+                <Button variant="accent" size="sm" disabled={true}>
+                    Accent
+                </Button>
+
+                <Button variant="accent" size="sm" danger={true} disabled={true}>
+                    Accent
+                </Button>
+            </div>
+            <div
+                style={{
+                    display: "flex",
+                    gap: "10px",
+                }}
+            >
+                <Button variant="primary" size="sm">
+                    Primary
+                </Button>
+                <Button variant="primary" size="sm" danger={true}>
+                    Primary
+                </Button>
+                <Button variant="primary" size="sm" disabled={true}>
+                    Primary
+                </Button>
+                <Button variant="primary" size="sm" danger={true} disabled={true}>
+                    Primary
+                </Button>
+            </div>
+            <div
+                style={{
+                    display: "flex",
+                    gap: "10px",
+                }}
+            >
+                <Button variant="secondary" size="sm">
+                    Secondary
+                </Button>
+                <Button variant="secondary" size="sm" danger={true}>
+                    Secondary
+                </Button>
+                <Button variant="secondary" size="sm" disabled={true}>
+                    Secondary
+                </Button>
+                <Button variant="secondary" size="sm" danger={true} disabled={true}>
+                    Secondary
+                </Button>
+            </div>
+            <div
+                style={{
+                    display: "flex",
+                    gap: "10px",
+                }}
+            >
+                <Button variant="tertiary" size="sm">
+                    Tertiary
+                </Button>
+                <Button variant="tertiary" size="sm" danger={true}>
+                    Tertiary
+                </Button>
+                <Button variant="tertiary" size="sm" disabled={true}>
+                    Tertiary
+                </Button>
+                <Button variant="tertiary" size="sm" danger={true} disabled={true}>
+                    Tertiary
+                </Button>
+            </div>
+        </div>
     ),
 }
 

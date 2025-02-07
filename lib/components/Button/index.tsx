@@ -4,9 +4,13 @@ import { Button as MantineButton, ButtonProps as MantineButtonProps } from "@man
 
 import classes from "@/components/Button/Button.module.css"
 
+export type ButtonVariant = "accent" | "primary" | "secondary" | "tertiary"
+
 export interface ButtonProps extends Omit<MantineButtonProps, "size">, Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "color" | "style"> {
     /** Button variant type. Defaults to "accent" */
-    variant?: "accent" | "danger" | "primary" | "secondary" | "tertiary"
+    variant?: ButtonVariant
+    /** Is this button Dangerous (should it be Red) */
+    danger?: boolean
     /** Set the button to be disabled */
     disabled?: boolean
     /** Set the button to display a loading spinner */
@@ -48,8 +52,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
     size = "sm",
     variant = "accent",
     classNames,
+    danger = false,
     ...rest
 }, ref) => (
+
     <MantineButton
         classNames={classNames ?? classes}
         {...rest}
@@ -58,6 +64,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
             "data-icon-only": countVisualElements(children) === 1,
             size,
             "data-design-variant": variant,
+            "data-dangerous": danger,
         }}
     >
         {children}

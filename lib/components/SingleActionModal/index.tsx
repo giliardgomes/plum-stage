@@ -1,5 +1,5 @@
 import { Modal, Title } from "@mantine/core"
-import { Button } from "@/components/Button"
+import { Button, ButtonVariant } from "@/components/Button"
 import classes from "@/components/SingleActionModal/SingleActionModal.module.css"
 import { forwardRef } from "react"
 
@@ -7,6 +7,8 @@ interface modalButtonProps {
     onClick: () => void
     children: React.ReactNode
     ref?: React.RefObject<HTMLButtonElement>
+    variant?: ButtonVariant
+    danger?: boolean
 }
 
 export interface SingleActionModalProps {
@@ -62,8 +64,8 @@ export const SingleActionModal = forwardRef<HTMLDivElement, SingleActionModalPro
                 {children}
             </div>
             <div className={classes.buttonContainer}>
-                {secondaryButtonProps && <Button {...secondaryButtonProps} variant="secondary" />}
-                <Button {...buttonProps} variant="accent" data-autofocus />
+                {secondaryButtonProps && <Button variant="secondary" {...secondaryButtonProps} />}
+                <Button variant="accent" data-autofocus {...buttonProps} />
             </div>
         </Modal>
     )
