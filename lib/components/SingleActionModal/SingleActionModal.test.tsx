@@ -30,16 +30,15 @@ describe("SingleActionModal", () => {
             <SingleActionModal
 
                 {...defaultProps}
-                buttonProps={{
-                    onClick: () => null,
-                    children: "Ok",
-                    ref: buttonRef,
-                }}
-                secondaryButtonProps={{
+                buttonProps={[{
                     onClick: () => null,
                     children: "No",
                     ref: secondaryButtonRef,
-                }}
+                }, {
+                    onClick: () => null,
+                    children: "Ok",
+                    ref: buttonRef,
+                }]}
             >
                 Tile label
             </SingleActionModal>,
@@ -57,12 +56,15 @@ describe("SingleActionModal", () => {
     it("renders given second button, icon, and badge", () => {
         const screen = render(
             <SingleActionModal
-                secondaryButtonProps={{
-                    onClick: () => null,
-                    children: "No",
-                }}
                 icon={<CircleInfoFarFAIcon data-testid="modal-icon" />}
                 {...defaultProps}
+                buttonProps={[{
+                    onClick: () => null,
+                    children: "No",
+                }, {
+                    onClick: () => null,
+                    children: "Ok",
+                }]}
                 isOpen={true}
             >
                 Tile label
@@ -81,14 +83,13 @@ describe("SingleActionModal", () => {
             <SingleActionModal
 
                 {...defaultProps}
-                buttonProps={{
+                buttonProps={[{
                     onClick: clickOk,
                     children: "Ok",
-                }}
-                secondaryButtonProps={{
+                }, {
                     onClick: clickNo,
                     children: "No",
-                }}
+                }]}
             >
                 Tile label
             </SingleActionModal>,

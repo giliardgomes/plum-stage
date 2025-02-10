@@ -12,8 +12,13 @@ interface modalButtonProps {
 }
 
 export interface SingleActionModalProps {
-    /** Button to be displayed in the Modal; on the right if there is a Secondary button, receives focus by default */
-    buttonProps: modalButtonProps
+    /** Button(s) to be displayed in the Modal; variant for the right-most defaults to Accent, others to Secondary */
+    buttonProps: (
+        modalButtonProps
+        | [modalButtonProps]
+        | [modalButtonProps, modalButtonProps]
+        | [modalButtonProps, modalButtonProps, modalButtonProps]
+    )
 
     /** Displayed content of the Modal */
     children: React.ReactNode
@@ -22,9 +27,6 @@ export interface SingleActionModalProps {
 
     /** Handler when user closes modal without clicking EITHER button */
     onClose: () => void
-
-    /** Secondary button to be displayed in the Modal (on the left) */
-    secondaryButtonProps?: modalButtonProps
     title: string
 }
 
@@ -34,10 +36,16 @@ export const SingleActionModal = forwardRef<HTMLDivElement, SingleActionModalPro
     icon,
     isOpen,
     onClose,
-    secondaryButtonProps,
     title,
     ...rest
 }: SingleActionModalProps, ref) => {
+    let leftButton, middleButton, rightButton
+    if (Array.isArray(buttonProps)) {
+        // Buttons fill from the right to the left; spread the reversed array (use slice to not mutate the prop)
+        [rightButton, middleButton, leftButton] = buttonProps.slice().reverse()
+    } else {
+        rightButton = buttonProps
+    }
     return (
         <Modal
             centered
@@ -64,8 +72,9 @@ export const SingleActionModal = forwardRef<HTMLDivElement, SingleActionModalPro
                 {children}
             </div>
             <div className={classes.buttonContainer}>
-                {secondaryButtonProps && <Button variant="secondary" {...secondaryButtonProps} />}
-                <Button variant="accent" data-autofocus {...buttonProps} />
+                {leftButton && <Button variant="secondary" {...leftButton} />}
+                {middleButton && <Button variant="secondary" {...middleButton} />}
+                <Button variant="accent" data-autofocus {...rightButton} />
             </div>
         </Modal>
     )
