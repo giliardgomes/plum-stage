@@ -23,6 +23,10 @@ jobs:
       - name: Install dependencies
         run: pnpm i
       - name: Publish
-        run: pnpm publish
+        # NOTE: Git Checks in PNPM Publish check that you are publishing a branch and that everything
+        # is up-to-date with your "publish" branch - it is incompatible with publishing a tag,
+        # and so needs to be disabled
+        # See https://github.com/pnpm/pnpm/issues/9011, https://pnpm.io/cli/publish#--no-git-checks
+        run: pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
