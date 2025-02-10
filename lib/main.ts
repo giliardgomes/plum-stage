@@ -5,6 +5,7 @@ export { MantineProvider as PlumProvider } from "@mantine/core"
 
 export { Alert } from "./components/Alert"
 export { Button } from "./components/Button"
+export { Checkbox } from "./components/Checkbox"
 export { Menu } from "./components/Menu"
 export { MultiSelect } from "./components/MultiSelect"
 export { Select } from "./components/Select"
