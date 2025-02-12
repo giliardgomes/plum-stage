@@ -1,12 +1,12 @@
 .asterisk {
-    color: var(--mantine-color-red-8);
+    color: var(--mantine-color-red-5);
     display: inline;
     font-size: var(--mantine-font-size-sm);
 }
 
 .group {
+    display: inline-flex;
     align-items: center;
-    display: inline;
     flex-direction: row;
     gap: rem(4px);
     justify-content: flex-start;
@@ -14,6 +14,17 @@
 
 .label {
     color: var(--mantine-color-gray-7);
-    display: inline;
     font-size: var(--mantine-font-size-sm);
+    display: inline;
+    font-weight: 500;
+    line-height: 16px; /* 114.286% */
+    letter-spacing: 0.1px;
+}
+
+.rightSection {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

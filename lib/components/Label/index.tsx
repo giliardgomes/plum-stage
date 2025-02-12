@@ -22,7 +22,11 @@ export const Label: FC<LabelProps> = ({ children, className, label, rightSection
     return (
         <Group className={classes.group}>
             <Text className={`${classes.label} ${className}`}>{children || label}</Text>
-            {rightSection}
+            {rightSection && (
+                <div className={classes.rightSection}>
+                    {rightSection}
+                </div>
+            )}
             {withAsterisk && (
                 <Text aria-hidden={true} className={classes.asterisk}>
                     {" "}
