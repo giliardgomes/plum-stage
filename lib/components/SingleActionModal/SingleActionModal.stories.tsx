@@ -38,11 +38,11 @@ export const Default: Story = {
             <>
                 <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
                 <SingleActionModal
-                    isOpen={isOpen}
                     buttonProps={{
                         onClick: () => setIsOpen(false),
                         children: "Close",
                     }}
+                    isOpen={isOpen}
                     onClose={() => setIsOpen(false)}
                     title={props.title}
                 >
@@ -72,7 +72,6 @@ export const IconAndTwoButtonsAndDangerVariant: Story = {
             <>
                 <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
                 <SingleActionModal
-                    isOpen={isOpen}
                     buttonProps={[{
                         children: "Yes",
                         onClick: () => clickButton("Yes"),
@@ -81,13 +80,14 @@ export const IconAndTwoButtonsAndDangerVariant: Story = {
                         onClick: () => clickButton("No"),
                         danger: true,
                     }]}
+                    data-plum-id="Testing"
+                    icon={icon}
+                    isOpen={isOpen}
                     onClose={() => {
                         alert("User closed modal")
                         setIsOpen(false)
                     }}
                     title="Modal Title"
-                    icon={icon}
-                    data-plum-id="Testing"
                 >
                     You have done something that requires confirmation.  Do you wish to proceed?
                 </SingleActionModal>
@@ -116,7 +116,6 @@ export const ThreeButtonModalWithButtonFormatting: Story = {
             <>
                 <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
                 <SingleActionModal
-                    isOpen={isOpen}
                     buttonProps={[{
                         children: (
                             <>
@@ -134,15 +133,75 @@ export const ThreeButtonModalWithButtonFormatting: Story = {
                         children: "Moe",
                         onClick: () => clickButton("Moe"),
                     }]}
+                    data-plum-id="Testing"
+                    icon={icon}
+                    isOpen={isOpen}
                     onClose={() => {
                         alert("User closed modal")
                         setIsOpen(false)
                     }}
                     title="Modal Title"
-                    icon={icon}
-                    data-plum-id="Testing"
                 >
                     The three stooges, in the order Larry, Curly, and Moe.
+                </SingleActionModal>
+            </>
+        )
+    },
+}
+
+/** This modal has three absurdly long buttons. */
+export const ThreeButtonModalWithLongContent: Story = {
+    render: () => {
+        const [isOpen, setIsOpen] = useState(false)
+
+        const clickButton = (which: string) => {
+            alert(`Clicked ${which}`)
+            setIsOpen(false)
+        }
+        const icon = (
+            <div style={{ width: rem("48px"), height: rem("48px"), borderRadius: "50%", backgroundColor: "#FDDFB2", display: "flex",
+                alignItems: "center", justifyContent: "center" }}
+            >
+                <TriangleExclamationFarFAIcon color="#B34E1E" size={16} />
+            </div>
+        )
+        return (
+            <>
+                <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+                <SingleActionModal
+                    buttonProps={[{
+                        children: (
+                            <>
+                                Really Long Text for A button But What Can You Do
+                                <CircleInfoFarFAIcon style={{ padding: "3px" }} />
+                            </>
+                        ),
+                        onClick: () => clickButton("Larry"),
+                        variant: "tertiary",
+                    }, {
+                        children: "Except put up with some weird things once in a while",
+                        onClick: () => clickButton("Curly"),
+                        danger: true,
+                    }, {
+                        children: "And Long Buttons Sometimes Happen",
+                        onClick: () => clickButton("Moe"),
+                    }]}
+                    data-plum-id="Testing"
+                    icon={icon}
+                    isOpen={isOpen}
+                    onClose={() => {
+                        alert("User closed modal")
+                        setIsOpen(false)
+                    }}
+                    size="800px"
+                    title="Modal Title"
+                >
+                    Some really long lorem ipsum: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
                 </SingleActionModal>
             </>
         )

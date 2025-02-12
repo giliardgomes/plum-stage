@@ -27,6 +27,7 @@ export interface SingleActionModalProps {
 
     /** Handler when user closes modal without clicking EITHER button */
     onClose: () => void
+    size?: string
     title: string
 }
 
@@ -36,6 +37,7 @@ export const SingleActionModal = forwardRef<HTMLDivElement, SingleActionModalPro
     icon,
     isOpen,
     onClose,
+    size = "360px",
     title,
     ...rest
 }: SingleActionModalProps, ref) => {
@@ -61,7 +63,7 @@ export const SingleActionModal = forwardRef<HTMLDivElement, SingleActionModalPro
                 backgroundOpacity: 0.40,
             }}
             ref={ref}
-            size="360px"
+            size={size}
             withCloseButton={false}
             // Spread additional props like data-* attributes
             {...rest}
