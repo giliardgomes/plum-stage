@@ -136,7 +136,11 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                         error={error && <ErrorMessage error={error} />}
                         // Render either the error or the description
                         inputWrapperOrder={["label", "input", error ? "error" : "description"]}
-                        classNames={{ input: classes.inputBaseInput }}
+                        classNames={{
+                            wrapper: classes.inputWrapper,
+                            input: classes.inputBaseInput,
+                            root: classes.root,
+                        }}
                         ref={ref}
                         // Spread additional props like data-* attributes
                         {...rest}

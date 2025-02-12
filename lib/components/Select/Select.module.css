@@ -1,7 +1,22 @@
-.inputBaseInput {
-    height: auto;
-    padding: 0.75rem;
 
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 400px;
+    min-width: 240px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.inputWrapper {
+    width: 100%;
+}
+
+.inputBaseInput {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--mantine-color-gray-5);
+    color: var(--mantine-color-gray-8);
     line-height: normal;
 
     &[data-expanded] + * > svg {
@@ -38,13 +53,11 @@
 
 .option {
     padding: 0.75rem;
-
     color: var(--mantine-color-gray-7);
     line-height: normal;
 
     &[data-combobox-selected] {
-        background-color: var(--mantine-color-violet-1);
-        color: var(--mantine-color-violet-7);
+        background-color: var(--mantine-color-gray-1);
     }
 
     &[data-combobox-active] {
