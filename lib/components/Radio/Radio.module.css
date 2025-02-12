@@ -3,10 +3,12 @@
     flex-direction: column;
     gap: rem(8px);
 }
+
 .radioGroupLabel {
     font-weight: 500;
     color: var(--mantine-color-gray-7);
 }
+
 .radio {
     border-color: var(--mantine-color-gray-5);
     border-width: rem(1.6px);
@@ -15,8 +17,8 @@
 
     &:not(:disabled) {
         &:hover {
-            background-color: var(--mantine-color-violet-2);
-            border-color: var(--mantine-color-violet-4);
+            background-color: var(--mantine-color-gray-1);
+            border-color: var(--mantine-color-gray-6);
         }
         &:checked {
             border-color: var(--mantine-color-violet-5);
@@ -25,6 +27,12 @@
             outline: none;
         }
     }
+}
+
+.radioIcon {
+    transform: var(--radio-icon-transform, scale(0.2));
+    top: 4px;
+    left: 4px;
 }
 
 .radioInner {
@@ -50,4 +58,8 @@
             border-radius: 4px;
         }
     }
+}
+
+.radioLabel {
+    padding-inline-start: rem(8px);
 }

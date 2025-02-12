@@ -1,4 +1,3 @@
-// import { useState } from "react"
 import axe from "axe-core"
 
 import { render, userEvent } from "@test-utils"
@@ -18,6 +17,41 @@ const defaultGroupProps: RadioGroupProps = {
     label: "Favorite Fruit",
     onChange: () => {},
 }
+
+describe("RadioWithGroup", () => {
+    it("Allows clearing with click", async () => {
+        const spy = vi.fn()
+        const { getByLabelText } = render(<Radio.Group {...defaultGroupProps} clearable={true} value="A" onChange={spy} />)
+        await userEvent.click(getByLabelText("Apple"))
+        expect(spy).toHaveBeenCalledWith(null)
+    })
+    it("Allows clearing and setting with Space bar", async () => {
+        const spy = vi.fn()
+        const { getByLabelText } = render(<Radio.Group {...defaultGroupProps} clearable={true} value="A" onChange={spy} />)
+        const appleRadio = getByLabelText("Apple")
+        await appleRadio.focus()
+        await userEvent.keyboard(" ")
+        expect(spy).toHaveBeenCalledWith(null)
+        expect(appleRadio).not.toBeChecked()
+        spy.mockClear()
+        await userEvent.keyboard(" ")
+        expect(spy).toHaveBeenCalledWith("A")
+        expect(appleRadio).toBeChecked()
+    })
+
+    it("Allows changing with arrow keys", async () => {
+        const spy = vi.fn()
+        const { getByLabelText } = render(<Radio.Group {...defaultGroupProps} clearable={true} onChange={spy} />)
+        const appleRadio = getByLabelText("Apple")
+        const bananaRadio = getByLabelText("Banana")
+        await appleRadio.focus()
+        await userEvent.keyboard("{ArrowDown}")
+        expect(spy).toHaveBeenCalledWith("B")
+        expect(appleRadio).not.toBeChecked()
+        expect(bananaRadio).toHaveFocus()
+        expect(bananaRadio).toBeChecked()
+    })
+})
 
 describe("RadioGroup", () => {
     it("renders without a11y violations", async () => {

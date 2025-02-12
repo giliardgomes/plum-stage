@@ -2,12 +2,12 @@ import { FC, ReactNode } from "react"
 import { Group, Text } from "@mantine/core"
 import classes from "@/components/Label/Label.module.css"
 
-export interface LabelProps {
+export interface LabelProps extends React.PropsWithChildren {
     // Class name to apply to the label.
     className?: string
 
-    // The label to display.
-    label: string
+    // The label to display; can also pass in Children instead
+    label?: string
 
     // Optionally, something to render to the right of the label, e.g. a tool tip or other icon.
     rightSection?: ReactNode
@@ -18,10 +18,10 @@ export interface LabelProps {
     withAsterisk?: boolean
 }
 
-export const Label: FC<LabelProps> = ({ className, label, rightSection, withAsterisk }: LabelProps) => {
+export const Label: FC<LabelProps> = ({ children, className, label, rightSection, withAsterisk }: LabelProps) => {
     return (
         <Group className={classes.group}>
-            <Text className={`${classes.label} ${className}`}>{label}</Text>
+            <Text className={`${classes.label} ${className}`}>{children || label}</Text>
             {rightSection}
             {withAsterisk && (
                 <Text aria-hidden={true} className={classes.asterisk}>

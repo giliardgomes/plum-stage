@@ -1,11 +1,19 @@
-import React, { forwardRef } from "react"
+import React, { forwardRef, createContext, useContext } from "react"
 import { Radio as MantineRadio, Flex, rem } from "@mantine/core"
 import classes from "@/components/Radio/Radio.module.css"
 import { ErrorMessage } from "@/components/ErrorMessage"
+import { useForwardedRef } from "@/hooks"
+
+interface RadioGroupContext {
+    onClick?: (ref: React.RefObject<HTMLInputElement>) => void
+}
+const RadioGroupContext = createContext<RadioGroupContext>({})
 
 export interface RadioGroupProps {
-    /** The value for a controlled component */
-    value?: string | null
+    children: React.ReactNode
+
+    /** Can the selected option be unselected by clicking on the selected item */
+    clearable?: boolean
 
     /** The default value for an uncontrolled component */
     defaultValue?: string | null
@@ -20,61 +28,85 @@ export interface RadioGroupProps {
     label: string | React.ReactNode
 
     /** The function to call when the value changes */
-    onChange: (value: string) => void
+    onChange: (value: string | null) => void
 
     /** Where possible, use 'rules { required: "Reason" }' to identify required fields instead. */
     required?: boolean
 
-    children: React.ReactNode
+    /** The value for a controlled component */
+    value?: string | null
 }
 
-const Group = forwardRef<HTMLDivElement, RadioGroupProps> (({
+const Group = forwardRef<HTMLDivElement, RadioGroupProps>(({
+    clearable = false,
     error,
     horizontal,
+    onChange,
+    value,
     ...props
 }, ref) => {
+    const onClick = (ref: React.RefObject<HTMLInputElement>) => {
+        if (!ref.current) {
+            return
+        }
+        const wasChecked = ref.current.checked
+        ref.current.checked = !wasChecked
+        onChange(wasChecked ? null : ref.current.value)
+    }
     return (
         <MantineRadio.Group
-            error={error && (
-                <ErrorMessage error={error} />
-            )}
             aria-invalid={Boolean(error)}
-            {...props}
             classNames={{
                 label: classes.radioGroupLabel,
                 root: classes.radioGroupRoot,
             }}
+            error={error && (
+                <ErrorMessage error={error} />
+            )}
+            onChange={onChange}
             ref={ref}
+            value={value}
+            {...props}
         >
-            <Flex direction={horizontal ? "row" : "column"} gap={rem(horizontal ? 24 : 8)}>
-                {props.children}
-            </Flex>
+            <RadioGroupContext.Provider value={(clearable && { onClick }) || {}}>
+                <Flex direction={horizontal ? "row" : "column"} gap={rem(horizontal ? 24 : 8)}>
+                    {props.children}
+                </Flex>
+            </RadioGroupContext.Provider>
         </MantineRadio.Group>
     )
 })
 
 export interface RadioProps {
-    /** The display label text or Component for the radio item */
+    disabled?: boolean
+
     label: string | React.ReactNode
 
-    /** The value of the Radio */
     value: string | number
-
-    disabled?: boolean
 }
 
-const Item = forwardRef<HTMLInputElement, RadioProps> (({ label, disabled, ...props }: RadioProps, ref) => {
+const Item = forwardRef<HTMLInputElement, RadioProps>(({ label, disabled, ...props }: RadioProps, ref) => {
+    const { onClick } = useContext(RadioGroupContext)
+    const thisRef = useForwardedRef(ref)
     return (
         <MantineRadio
             classNames={{
                 body: classes.radioBody,
-                radio: classes.radio,
+                icon: classes.radioIcon,
                 inner: classes.radioInner,
                 label: classes.radioLabel,
+                radio: classes.radio,
             }}
             disabled={disabled}
             label={label}
-            ref={ref}
+            onClick={onClick && (() => onClick(thisRef))}
+            onKeyDown={(e) => {
+                if (thisRef.current && (e.key === " ")) {
+                    e.preventDefault()
+                    onClick && onClick(thisRef)
+                }
+            }}
+            ref={thisRef}
             variant="outline"
             {...props}
         />

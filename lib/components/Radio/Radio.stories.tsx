@@ -16,7 +16,7 @@ const meta: Meta<typeof Radio.Group> = {
         function Component(Story, ctx) {
             const [, setArgs] = useArgs<typeof ctx.args>()
 
-            const onChange = (value: string) => {
+            const onChange = (value: string | null) => {
                 ctx.args.onChange?.(value)
                 // Check if the component is controlled
                 if (ctx.args.value !== undefined) {
@@ -65,17 +65,31 @@ export const Basic: Story = {
     ),
 }
 
-export const ControlledOptions: Story = {
+export const Clearable: Story = {
+    args: {
+        defaultValue: "A",
+        label: "Favorite Fruit",
+        required: false,
+        error: "",
+        horizontal: false,
+        clearable: true,
+    },
+    render: (props: RadioGroupProps) => (
+        <Radio.Group {...props}>
+            <Radio label="Apple" value="A" />
+            <Radio label="Banana" value="B" />
+        </Radio.Group>
+    ),
+}
+
+export const ControlledOptionsClearable: Story = {
     args: {
         value: "e",
         label: "Default Region",
+        clearable: true,
     },
     render: (props: RadioGroupProps) => (
-        <Radio.Group
-            label={props.label}
-            value={props.value}
-            onChange={props.onChange}
-        >
+        <Radio.Group {...props}>
             <Radio label="East" value="e" />
             <Radio label="West" value="w" />
             <Radio label="North" value="n" />
