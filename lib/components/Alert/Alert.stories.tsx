@@ -31,13 +31,12 @@ export const Default: Story = {
     },
     render: (props: AlertProps) => (
         <Alert {...props}>
-            This is a basic inline info alert.
+            Alert!
         </Alert>
     ),
 }
 
 /**
- * Inline Alert with Action
  * Providing a function as the action prop will render an Action button; you must also supply an actionLabel.
  */
 export const InlineWarningAlertWithAction: Story = {
@@ -58,12 +57,56 @@ export const InlineWarningAlertWithAction: Story = {
     ),
 }
 
+export const MultilineWithoutTitle: Story = {
+    args: {
+        variant: "warning",
+        action: () => alert("Action!"),
+        actionLabel: "Action",
+    },
+    render: (props: AlertProps) => {
+        const [showAlert, setShowAlert] = useState(true)
+        if (!showAlert) {
+            return <Button onClick={() => setShowAlert(true)}>Bring back the alert!</Button>
+        }
+        props.onClose = () => setShowAlert(false)
+        return (
+            <Alert {...props}>
+                <ul>
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                </ul>
+            </Alert>
+        )
+    },
+}
+
 /**
  * Dismissible alerts can be closed by the user.
  * An alert is made Dismissible (rather than inline) by providing a function as the onClose prop.
  */
 export const DismissibleErrorAlert: Story = {
     args: {
+        variant: "error",
+    },
+    render: (props: AlertProps) => {
+        const [showAlert, setShowAlert] = useState(true)
+        if (!showAlert) {
+            return <Button onClick={() => setShowAlert(true)}>Bring back the alert!</Button>
+        }
+        props.onClose = () => setShowAlert(false)
+        return (
+            <Alert {...props}>
+                This alert can be dismissed!
+            </Alert>
+        )
+    },
+}
+
+export const DismissibleErrorAlertWithAction: Story = {
+    args: {
+        action: () => alert("Action!"),
+        actionLabel: "Action",
         variant: "error",
     },
     render: (props: AlertProps) => {

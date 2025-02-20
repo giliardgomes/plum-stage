@@ -60,6 +60,29 @@ export const TriangleExclamationFarFAIcon = React.forwardRef<SVGSVGElement, FAIc
     </svg>
 ))
 
+export const CircleExclamationFarFAIcon = React.forwardRef<SVGSVGElement, FAIconProps>(({ ariaHidden = "true", color, filled = false, size = 16, style, ...others }, ref) => (
+    <svg
+        // Provided by FontAwesome SVG
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512"
+        // Plum properties
+        aria-hidden={ariaHidden}
+        color={color}
+        ref={ref}
+        role="img"
+        style={{ width: rem(size), height: rem(size), ...style }}
+        {...others}
+    >
+        {/* <!--!Font Awesome Pro 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2025 Fonticons, Inc.--> */}
+        <path
+            fill="currentColor"
+            d={filled
+                ? "M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24l0 112c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-112c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                : "M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"}
+        />
+    </svg>
+))
+
 export const CircleXmarkFarFAIcon = React.forwardRef<SVGSVGElement, FAIconProps>(({ ariaHidden = "true", color, filled = false, size = 16, style, ...others }, ref) => (
     <svg
         // Provided by FontAwesome SVG
