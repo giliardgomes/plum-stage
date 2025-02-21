@@ -4,30 +4,31 @@ import {
     itSupportsRef,
 } from "@test-utils/helpers"
 
-import { SingleActionModal, SingleActionModalProps } from "@/components/SingleActionModal"
+import { Dialog, DialogProps } from "@/components/Dialog"
 import { CircleInfoFarFAIcon } from "@/components/Icons"
 import { createRef } from "react"
+import axe from "axe-core"
 
-const defaultProps: SingleActionModalProps = {
+const defaultProps: DialogProps = {
     buttonProps: {
         onClick: () => null,
         children: "Ok",
     },
     children: "You opened the modal!",
-    isOpen: true,
+    opened: true,
     onClose: () => null,
     title: "Modal Title",
 }
 
-describe("SingleActionModal", () => {
-    itRendersChildren<SingleActionModalProps>({ component: SingleActionModal, props: defaultProps })
-    itSupportsRef<SingleActionModalProps>({ component: SingleActionModal, props: defaultProps, refType: HTMLDivElement })
+describe("Dialog", () => {
+    itRendersChildren<DialogProps>({ component: Dialog, props: defaultProps })
+    itSupportsRef<DialogProps>({ component: Dialog, props: defaultProps, refType: HTMLDivElement })
 
     it("supports refs for the buttons", () => {
         const buttonRef = createRef<HTMLButtonElement>()
         const secondaryButtonRef = createRef<HTMLButtonElement>()
         render(
-            <SingleActionModal
+            <Dialog
 
                 {...defaultProps}
                 buttonProps={[{
@@ -41,7 +42,7 @@ describe("SingleActionModal", () => {
                 }]}
             >
                 Tile label
-            </SingleActionModal>,
+            </Dialog>,
         )
         expect(buttonRef.current).toBeInTheDocument()
         expect(secondaryButtonRef.current).toBeInTheDocument()
@@ -49,13 +50,13 @@ describe("SingleActionModal", () => {
 
     it("supports ...others props", () => {
         // Because the modal is rendered differently than normal components, the standard "itSupportsOthers" test fails
-        const screen = render(<SingleActionModal {...defaultProps} data-random-attribute data-testid="modal" />)
+        const screen = render(<Dialog {...defaultProps} data-random-attribute data-testid="modal" />)
         expect(screen.getByTestId("modal")).toHaveAttribute("data-random-attribute")
     })
 
     it("renders given second button, icon, and badge", () => {
         const screen = render(
-            <SingleActionModal
+            <Dialog
                 icon={<CircleInfoFarFAIcon data-testid="modal-icon" />}
                 {...defaultProps}
                 buttonProps={[{
@@ -65,10 +66,10 @@ describe("SingleActionModal", () => {
                     onClick: () => null,
                     children: "Ok",
                 }]}
-                isOpen={true}
+                opened={true}
             >
                 Tile label
-            </SingleActionModal>,
+            </Dialog>,
         )
         expect(screen.getByText("Ok")).toBeInTheDocument()
         expect(screen.getByText("No")).toBeInTheDocument()
@@ -80,7 +81,7 @@ describe("SingleActionModal", () => {
         const clickNo = vi.fn()
 
         const screen = render(
-            <SingleActionModal
+            <Dialog
 
                 {...defaultProps}
                 buttonProps={[{
@@ -92,11 +93,17 @@ describe("SingleActionModal", () => {
                 }]}
             >
                 Tile label
-            </SingleActionModal>,
+            </Dialog>,
         )
         screen.getByText("Ok").click()
         expect(clickOk).toHaveBeenCalled()
         screen.getByText("No").click()
         expect(clickNo).toHaveBeenCalled()
+    })
+
+    it("renders without a11y violations", async () => {
+        const { container } = render(<Dialog {...defaultProps} />)
+        const results = await axe.run(container)
+        expect(results.violations).toEqual([])
     })
 })

@@ -12,9 +12,9 @@ const meta: Meta<typeof Modal> = {
         docs: {
             description: {
                 component: (
-                    "Documentation: Not Available Yet (see documentation for Single Action Modal)"
+                    "Documentation: Not Available Yet (see documentation for Dialog Component)"
                     + "<br>"
-                    + "Figma: Not Available Yet (see documentation for Single Action Modal)"
+                    + "Figma: Not Available Yet (see documentation for Dialog Component)"
                 ),
             },
         },

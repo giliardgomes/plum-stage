@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { SingleActionModal, SingleActionModalProps } from "@/components/SingleActionModal"
+import { Dialog, DialogProps } from "@/components/Dialog"
 import { CircleInfoFarFAIcon, TriangleExclamationFarFAIcon } from "@/components/Icons/index"
 import { Button } from "@/components/Button"
 import { useState } from "react"
 import { rem } from "@mantine/core"
 
-const meta: Meta<typeof SingleActionModal> = {
-    component: SingleActionModal,
+const meta: Meta<typeof Dialog> = {
+    component: Dialog,
     parameters: {
         docs: {
             description: {
@@ -25,29 +25,29 @@ const meta: Meta<typeof SingleActionModal> = {
 
 export default meta
 
-type Story = StoryObj<typeof SingleActionModal>
+type Story = StoryObj<typeof Dialog>
 
 export const Default: Story = {
     args: {
-        children: "You have triggered a Single Action Modal.",
-        title: "Modal Title",
+        children: "You have triggered a Dialog.",
+        title: "Dialog Title",
     },
-    render: (props: SingleActionModalProps) => {
-        const [isOpen, setIsOpen] = useState(false)
+    render: (props: DialogProps) => {
+        const [opened, setOpened] = useState(false)
         return (
             <>
-                <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
-                <SingleActionModal
+                <Button onClick={() => setOpened(true)}>Open Dialog</Button>
+                <Dialog
                     buttonProps={{
-                        onClick: () => setIsOpen(false),
+                        onClick: () => setOpened(false),
                         children: "Close",
                     }}
-                    isOpen={isOpen}
-                    onClose={() => setIsOpen(false)}
+                    opened={opened}
+                    onClose={() => setOpened(false)}
                     title={props.title}
                 >
                     {props.children}
-                </SingleActionModal>
+                </Dialog>
             </>
         )
     },
@@ -55,12 +55,7 @@ export const Default: Story = {
 
 export const IconAndTwoButtonsAndDangerVariant: Story = {
     render: () => {
-        const [isOpen, setIsOpen] = useState(false)
-
-        const clickButton = (which: string) => {
-            alert(`Clicked ${which}`)
-            setIsOpen(false)
-        }
+        const [opened, setOpened] = useState(false)
         const icon = (
             <div style={{ width: rem("48px"), height: rem("48px"), borderRadius: "50%", backgroundColor: "#FDDFB2", display: "flex",
                 alignItems: "center", justifyContent: "center" }}
@@ -70,41 +65,33 @@ export const IconAndTwoButtonsAndDangerVariant: Story = {
         )
         return (
             <>
-                <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
-                <SingleActionModal
+                <Button onClick={() => setOpened(true)}>Open Dialog</Button>
+                <Dialog
                     buttonProps={[{
                         children: "Yes",
-                        onClick: () => clickButton("Yes"),
+                        onClick: () => setOpened(false),
                     }, {
                         children: "Dangerous No",
-                        onClick: () => clickButton("No"),
+                        onClick: () => setOpened(false),
                         danger: true,
                     }]}
                     data-plum-id="Testing"
                     icon={icon}
-                    isOpen={isOpen}
-                    onClose={() => {
-                        alert("User closed modal")
-                        setIsOpen(false)
-                    }}
-                    title="Modal Title"
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                    title="Dialog Title"
                 >
                     You have done something that requires confirmation.  Do you wish to proceed?
-                </SingleActionModal>
+                </Dialog>
             </>
         )
     },
 }
 
-/** This modal has three buttons, and the button labels are react nodes rather than plain text. */
-export const ThreeButtonModalWithButtonFormatting: Story = {
+/** This Dialog has three buttons, and the button labels are react nodes rather than plain text. */
+export const ThreeButtonDialogWithButtonFormatting: Story = {
     render: () => {
-        const [isOpen, setIsOpen] = useState(false)
-
-        const clickButton = (which: string) => {
-            alert(`Clicked ${which}`)
-            setIsOpen(false)
-        }
+        const [opened, setOpened] = useState(false)
         const icon = (
             <div style={{ width: rem("48px"), height: rem("48px"), borderRadius: "50%", backgroundColor: "#FDDFB2", display: "flex",
                 alignItems: "center", justifyContent: "center" }}
@@ -114,8 +101,8 @@ export const ThreeButtonModalWithButtonFormatting: Story = {
         )
         return (
             <>
-                <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
-                <SingleActionModal
+                <Button onClick={() => setOpened(true)}>Open Dialog</Button>
+                <Dialog
                     buttonProps={[{
                         children: (
                             <>
@@ -123,41 +110,33 @@ export const ThreeButtonModalWithButtonFormatting: Story = {
                                 <CircleInfoFarFAIcon style={{ padding: "3px" }} />
                             </>
                         ),
-                        onClick: () => clickButton("Larry"),
+                        onClick: () => setOpened(false),
                         variant: "tertiary",
                     }, {
                         children: <strong>Curly</strong>,
-                        onClick: () => clickButton("Curly"),
+                        onClick: () => setOpened(false),
                         danger: true,
                     }, {
                         children: "Moe",
-                        onClick: () => clickButton("Moe"),
+                        onClick: () => setOpened(false),
                     }]}
                     data-plum-id="Testing"
                     icon={icon}
-                    isOpen={isOpen}
-                    onClose={() => {
-                        alert("User closed modal")
-                        setIsOpen(false)
-                    }}
-                    title="Modal Title"
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                    title="Dialog Title"
                 >
                     The three stooges, in the order Larry, Curly, and Moe.
-                </SingleActionModal>
+                </Dialog>
             </>
         )
     },
 }
 
-/** This modal has three absurdly long buttons. */
-export const ThreeButtonModalWithLongContent: Story = {
+/** This Dialog has three absurdly long buttons. */
+export const ThreeButtonDialogWithLongContent: Story = {
     render: () => {
-        const [isOpen, setIsOpen] = useState(false)
-
-        const clickButton = (which: string) => {
-            alert(`Clicked ${which}`)
-            setIsOpen(false)
-        }
+        const [opened, setOpened] = useState(false)
         const icon = (
             <div style={{ width: rem("48px"), height: rem("48px"), borderRadius: "50%", backgroundColor: "#FDDFB2", display: "flex",
                 alignItems: "center", justifyContent: "center" }}
@@ -167,8 +146,8 @@ export const ThreeButtonModalWithLongContent: Story = {
         )
         return (
             <>
-                <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
-                <SingleActionModal
+                <Button onClick={() => setOpened(true)}>Open Dialog</Button>
+                <Dialog
                     buttonProps={[{
                         children: (
                             <>
@@ -176,25 +155,22 @@ export const ThreeButtonModalWithLongContent: Story = {
                                 <CircleInfoFarFAIcon style={{ padding: "3px" }} />
                             </>
                         ),
-                        onClick: () => clickButton("Larry"),
+                        onClick: () => setOpened(false),
                         variant: "tertiary",
                     }, {
                         children: "Except put up with some weird things once in a while",
-                        onClick: () => clickButton("Curly"),
+                        onClick: () => setOpened(false),
                         danger: true,
                     }, {
                         children: "And Long Buttons Sometimes Happen",
-                        onClick: () => clickButton("Moe"),
+                        onClick: () => setOpened(false),
                     }]}
                     data-plum-id="Testing"
                     icon={icon}
-                    isOpen={isOpen}
-                    onClose={() => {
-                        alert("User closed modal")
-                        setIsOpen(false)
-                    }}
+                    opened={opened}
+                    onClose={() => setOpened(false)}
                     size="800px"
-                    title="Modal Title"
+                    title="Dialog Title"
                 >
                     Some really long lorem ipsum: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -202,7 +178,7 @@ export const ThreeButtonModalWithLongContent: Story = {
                     aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
                     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                     deserunt mollit anim id est laborum.
-                </SingleActionModal>
+                </Dialog>
             </>
         )
     },

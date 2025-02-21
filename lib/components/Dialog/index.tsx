@@ -1,46 +1,48 @@
-import { Modal, Title } from "@mantine/core"
+import { Title } from "@mantine/core"
 import { Button, ButtonVariant } from "@/components/Button"
-import classes from "@/components/SingleActionModal/SingleActionModal.module.css"
+import { Modal } from "@/components/Modal"
+import classes from "@/components/Dialog/Dialog.module.css"
 import { forwardRef } from "react"
 
-interface modalButtonProps {
-    onClick: () => void
+interface ButtonProps {
+    danger?: boolean
     children: React.ReactNode
+    onClick: () => void
     ref?: React.RefObject<HTMLButtonElement>
     variant?: ButtonVariant
-    danger?: boolean
 }
 
-export interface SingleActionModalProps {
+export interface DialogProps {
     /** Button(s) to be displayed in the Modal; variant for the right-most defaults to Accent, others to Secondary */
     buttonProps: (
-        modalButtonProps
-        | [modalButtonProps]
-        | [modalButtonProps, modalButtonProps]
-        | [modalButtonProps, modalButtonProps, modalButtonProps]
+        ButtonProps
+        | [ButtonProps]
+        | [ButtonProps, ButtonProps]
+        | [ButtonProps, ButtonProps, ButtonProps]
     )
 
     /** Displayed content of the Modal */
     children: React.ReactNode
     icon?: React.ReactNode
-    isOpen: boolean
 
     /** Handler when user closes modal without clicking EITHER button */
     onClose: () => void
+
+    opened: boolean
+
+    /** Modal MAX Width - Defaults to 360px (can shrink to fit window) */
     size?: string
     title: string
 }
 
-export const SingleActionModal = forwardRef<HTMLDivElement, SingleActionModalProps>(({
+export const Dialog = forwardRef<HTMLDivElement, DialogProps>(({
     buttonProps,
     children,
     icon,
-    isOpen,
-    onClose,
     size = "360px",
     title,
     ...rest
-}: SingleActionModalProps, ref) => {
+}: DialogProps, ref) => {
     let leftButton, middleButton, rightButton
     if (Array.isArray(buttonProps)) {
         // Buttons fill from the right to the left; spread the reversed array (use slice to not mutate the prop)
@@ -50,21 +52,8 @@ export const SingleActionModal = forwardRef<HTMLDivElement, SingleActionModalPro
     }
     return (
         <Modal
-            centered
-            classNames={{
-                body: classes.body,
-                content: classes.content,
-                title: classes.title,
-            }}
-            onClose={onClose}
-            opened={isOpen}
-            overlayProps={{
-                blur: 2,
-                backgroundOpacity: 0.40,
-            }}
             ref={ref}
             size={size}
-            withCloseButton={false}
             // Spread additional props like data-* attributes
             {...rest}
         >
