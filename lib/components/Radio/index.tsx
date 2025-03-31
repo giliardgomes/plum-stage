@@ -2,7 +2,7 @@ import React, { forwardRef, createContext, useContext } from "react"
 import { Radio as MantineRadio, Flex, rem } from "@mantine/core"
 import classes from "@/components/Radio/Radio.module.css"
 import { ErrorMessage } from "@/components/ErrorMessage"
-import { useForwardedRef } from "@/hooks"
+import { useForwardedRef } from "@/hooks/useForwardedRef"
 
 interface RadioGroupContext {
     onClick?: (ref: React.RefObject<HTMLInputElement>) => void
