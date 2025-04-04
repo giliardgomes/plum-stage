@@ -26,7 +26,8 @@
         "storybook:build": "storybook build",
         "test": "vitest",
         "prepublishOnly": "pnpm run build",
-        "prepare": "husky"
+        "prepare": "husky",
+        "demo": "vite Demo/index.tsx --host --port 5174"
     },
     "publishConfig": {
         "access": "restricted",

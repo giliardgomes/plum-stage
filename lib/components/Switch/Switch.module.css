@@ -1,0 +1,183 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mantine-spacing-xs);
+}
+
+.root {
+    /* Base Switch Custom Properties */
+    --switch-height: rem(24px);
+    --switch-width: rem(40px);
+    --switch-radius: rem(32px);
+    --switch-padding: rem(0);
+    
+    /* Colors */
+    --switch-track-bg: var(--mantine-color-gray-5);
+    --switch-track-checked-bg: var(--mantine-color-violet-7);
+    --switch-track-hover-bg: var(--mantine-color-violet-8);
+    --switch-thumb-bg: var(--mantine-color-white);
+    --switch-thumb-border: var(--mantine-color-violet-2);
+    --switch-thumb-checked-border: var(--mantine-color-violet-6);
+    
+    /* Focus and Error states */
+    --switch-focus-color: var(--mantine-color-violet-6);
+    --switch-error-color: var(--mantine-color-error);
+    
+    /* Transitions */
+    --switch-transition: 200ms ease-out;
+
+    cursor: pointer;
+
+    &:hover {
+        .track {
+            background-color: var(--mantine-color-gray-6);
+        }
+
+        .input[data-checked] + .track {
+            background-color: var(--mantine-color-violet-8);
+        }
+    }
+
+    &:active {
+        .track {
+            background-color: var(--mantine-color-gray-7);
+            
+            & .thumb {
+                box-shadow: 0px 0px 0px 8px rgba(134, 142, 150, 0.24);
+            }
+        }
+
+        .input[data-checked] + .track {
+            background-color: var(--mantine-color-violet-9);
+
+            & .thumb {
+                box-shadow: 0px 0px 0px 8px rgba(134, 142, 150, 0.24);
+            }
+        }
+    }
+}
+
+/* Wide variant */
+.root[data-variant="wide"] {
+    min-width: 320px;
+    max-width: 480px;
+    width: 100%;
+}
+
+.root[data-variant="wide"] .body {
+    justify-content: space-between;
+}
+
+/* Standalone variant */
+.root[data-variant="standalone"] .body {
+    gap: 0;
+}
+
+.root * {
+    overflow: visible;
+}
+
+.body {
+    align-items: center;
+    gap: var(--mantine-spacing-xs);
+}
+
+.track {
+    height: 1.5rem;
+    width: 2.5rem;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.root .track {
+    background-color: var(--mantine-color-gray-5);
+}
+
+.root[data-checked=true] .track {
+    background-color: var(--mantine-color-violet-7);
+}
+
+.thumb {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 100%;
+    background-color: white;
+    border: none;
+    transition: transform .25s ease, .25s ease;
+}
+
+.input:focus + .track .thumb {
+    box-shadow: 0px 0px 0px 8px rgba(134, 142, 150, 0.24);
+}
+
+.input[data-checked=true]:focus + .track .thumb {
+    box-shadow: 0px 0px 0px 8px rgba(114, 89, 239, 0.24);
+}
+
+.input + .track .thumb {
+    transform: translateX(2px);
+}
+
+.input[data-checked] + .track .thumb {
+    border: none;
+    transform: translateX(calc(100% - 1rem - 4px));
+}
+
+/* Error states */
+.root[data-error] .track {
+    outline: rem(2px) solid var(--switch-error-color);
+    outline-offset: rem(2px);
+}
+
+/* Disabled states */
+.root[data-disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    .track,
+    .thumb,
+    .input,
+    .label {
+        cursor: not-allowed;
+    }
+}
+
+/* Label styles */
+.label {
+    color: var(--mantine-color-text);
+    cursor: pointer;
+    font-size: var(--mantine-font-size-sm);
+    padding: 0;
+}
+
+.label p {
+    font-weight: 400;
+}
+
+/* Add this to your existing CSS */
+.track :global(.mantine-Switch-trackLabel) {
+    display: none;
+}
+
+/* Or alternatively, you can target it directly */
+:global(.mantine-Switch-trackLabel) {
+    display: none;
+}
+
+
+.error {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    color: var(--mantine-color-red-7);
+
+    p {
+        margin: 0;
+        font-size: 0.75rem;
+        line-height: 1rem;
+        letter-spacing: 0.03125rem;
+    }
+}

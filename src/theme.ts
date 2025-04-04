@@ -22,6 +22,18 @@ const quorumViolet: MantineColorsTuple = [
 export const plumTheme: MantineThemeOverride = createTheme({
     /** Put your mantine theme override here */
     colors: {
+        violet: [
+            "#FBFAFE",
+            "#EBEAFD",
+            "#D9D8FC",
+            "#BDB8FA",
+            "#9B8FF6",
+            "#7259EF",
+            "#6149D6",
+            "#503ABD",
+            "#3E2AA3",
+            "#2F1980",
+        ], 
         blue: [
             "#F5FAFF",
             "#E5F1FE",
@@ -106,8 +118,7 @@ export const plumTheme: MantineThemeOverride = createTheme({
             "#495057",
             "#343A40",
             "#212529",
-        ],
-        violet: quorumViolet,
+        ]
     },
     headings: {
         fontWeight: "500",

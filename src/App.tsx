@@ -1,6 +1,6 @@
 import { MantineProvider, Stack } from "@mantine/core"
 
-import "@mantine/core/styles.css"
+// import "@mantine/core/styles.css"
 import "./App.css"
 
 import { plumTheme } from "./theme"
