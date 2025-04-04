@@ -1,0 +1,33 @@
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "weekly"
+    groups:
+      mantine:
+        patterns:
+        - "@mantine*"
+        update-types:
+        - "minor"
+        - "patch"
+      react:
+        patterns:
+        - "react"
+        - "react-dom"
+        - "@types/react"
+        - "@types/react-dom"
+        update-types:
+        - "patch"
+      storybook:
+        patterns:
+        - "@storybook*"
+        update-types:
+        - "minor"
+        - "patch"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]

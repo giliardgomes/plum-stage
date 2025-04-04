@@ -1,0 +1,63 @@
+.pillsInput {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    line-height: normal;
+
+    &[data-expanded] + * > svg {
+        transform: rotate(180deg);
+    }
+    &:not([data-disabled]) {
+        &:hover {
+            border: 1px solid var(--mantine-color-violet-5);
+        }
+
+        &:focus,
+        &:focus-within {
+            border: 1px solid var(--mantine-color-violet-5);
+            box-shadow: 0px 0px 0px 2px alpha(var(--mantine-color-violet-5), 0.48);
+        }
+    }
+
+    &[data-disabled] {
+        cursor: unset;
+        color: var(--mantine-color-gray-5);
+        background-color: var(--mantine-color-gray-0);
+
+        & + * > svg {
+            color: var(--mantine-color-gray-3);
+        }
+    }
+}
+
+.pill {
+    background-color: var(--mantine-color-gray-1);
+
+    line-height: normal;
+    color: var(--mantine-color-gray-7);
+}
+
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.option {
+    padding: 0.75rem;
+
+    color: var(--mantine-color-gray-7);
+    line-height: normal;
+
+    &[data-combobox-selected] {
+        background-color: var(--mantine-color-violet-1);
+        color: var(--mantine-color-violet-7);
+    }
+
+    &[data-combobox-active] {
+        background-color: var(--mantine-color-violet-1);
+        color: var(--mantine-color-violet-8);
+    }
+}

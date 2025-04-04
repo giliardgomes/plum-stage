@@ -1,0 +1,32 @@
+name: Publish Plum to GitHub Packages
+on:
+  release:
+    types: [published]
+jobs:
+  build:
+    name: Build Package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'pnpm'
+          registry-url: 'https://npm.pkg.github.com'
+      - name: Install dependencies
+        run: pnpm i
+      - name: Publish
+        # NOTE: Git Checks in PNPM Publish check that you are publishing a branch and that everything
+        # is up-to-date with your "publish" branch - it is incompatible with publishing a tag,
+        # and so needs to be disabled
+        # See https://github.com/pnpm/pnpm/issues/9011, https://pnpm.io/cli/publish#--no-git-checks
+        run: pnpm publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

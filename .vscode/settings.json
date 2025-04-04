@@ -1,0 +1,12 @@
+{
+    "cSpell.words": ["Mantine"],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "editor.formatOnSave": false,
+    "editor.lightbulb.enabled": "off",
+    "eslint.useFlatConfig": true,
+    "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true
+}

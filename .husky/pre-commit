@@ -1,0 +1,7 @@
+# don't run hooks if this is a merge commit
+if [ -f ".git/MERGE_HEAD" ]; then
+    echo "Detected merge commit - skipping pre-commit hooks..."
+    exit 0
+fi
+
+npx lint-staged

@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "formulahendry.auto-rename-tag",
+        "JitSecurity.jitsecurity",
+        "ms-vsliveshare.vsliveshare",
+        "PKief.material-icon-theme",
+        "streetsidesoftware.code-spell-checker",
+        "unifiedjs.vscode-mdx"
+    ]
+}

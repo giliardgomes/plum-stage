@@ -1,0 +1,17 @@
+.error {
+    align-items: center;
+    color: var(--mantine-color-red-7);
+    display: flex;
+    gap: 0.25rem;
+
+    p {
+        font-size: 0.75rem;
+        letter-spacing: 0.03125rem;
+        line-height: 1rem;
+        margin: 0;
+    }
+
+    svg {
+        color: var(--mantine-color-red-7);
+    }
+}

@@ -1,0 +1,192 @@
+.root {
+    font-weight: 400;
+    font-size: var(--mantine-font-size-sm);
+    min-width: 2rem;
+    width: fit-content;
+    height: 2rem;
+    padding: 0.5rem 1rem;
+    color: var(--mantine-color-white);
+    border-color: var(--mantine-color-violet-7);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: var(--mantine-radius-xl);
+    background: var(--mantine-color-violet-7);
+    box-shadow: none;
+    &[data-dangerous] {
+        &:focus-visible {
+            outline: 2px solid var(--mantine-color-red-6);
+            outline-offset: 2px;
+        }
+    }
+
+    &[data-design-variant='accent'] {
+        &:hover, &:focus {
+            background: var(--mantine-color-violet-9);
+            border-color: var(--mantine-color-violet-9);
+        }
+        &:focus, &:active {
+            box-shadow: 0 0 0 rem(2px) var(--mantine-color-violet-5);
+        }
+        &[data-loading], &[data-disabled] {
+            color: var(--mantine-color-violet-3);
+            border-color: var(--mantine-color-violet-1);
+            background: var(--mantine-color-violet-1);
+        }
+        &[data-dangerous] {
+            border-color: var(--mantine-color-red-7);
+            background: var(--mantine-color-red-7);
+            &:hover, &:focus {
+                background: var(--mantine-color-red-9);
+                border-color: var(--mantine-color-red-9);
+            }
+            &:focus, &:active {
+                box-shadow: 0 0 0 rem(2px) var(--mantine-color-red-5);
+            }
+            &[data-loading], &[data-disabled] {
+                color: var(--mantine-color-red-3);
+                border-color: var(--mantine-color-red-1);
+                background: var(--mantine-color-red-1);
+            }
+        }
+    }
+
+    &[data-design-variant='primary'] {
+        color: var(--mantine-color-violet-8);
+        border-color: var(--mantine-color-violet-2);
+        background: var(--mantine-color-violet-2);
+        &:hover, &:focus {
+            background: var(--mantine-color-violet-3);
+            border-color: var(--mantine-color-violet-3);
+        }
+        &:focus, &:active {
+            box-shadow: 0 0 0 rem(2px) var(--mantine-color-violet-4);
+        }
+        &[data-loading], &[data-disabled] {
+            color: var(--mantine-color-violet-2);
+            border-color: var(--mantine-color-violet-0);
+            background: var(--mantine-color-violet-0);
+        }
+        &[data-dangerous] {
+            color: var(--mantine-color-red-9);
+            background: var(--mantine-color-red-0);
+            border-color: var(--mantine-color-red-0);
+            &:hover, &:focus {
+                background:  var(--mantine-color-red-1);
+                border-color: var(--mantine-color-red-1);
+            }
+            &:focus,  &:active {
+                box-shadow: 0 0 0 rem(2px) var(--mantine-color-red-5);
+            }
+            &[data-loading], &[data-disabled] {
+                border-color: var(--mantine-color-red-0);
+                background: var(--mantine-color-red-0);
+                color: var(--mantine-color-red-1);
+            }
+        }
+    }
+
+    &[data-design-variant='secondary'] {
+        color: var(--mantine-color-gray-7);
+        background: transparent;
+        border-color: var(--mantine-color-gray-3);
+        &:hover, &:focus {
+            color: var(--mantine-color-violet-8);
+            background: var(--mantine-color-violet-1);
+            border-color: var(--mantine-color-violet-2);
+        }
+        &:focus, &:active {
+            box-shadow: 0 0 0 rem(2px) var(--mantine-color-violet-4);
+            border-color: var(--mantine-color-violet-2);
+        }
+        &[data-loading], &[data-disabled] {
+            color: var(--mantine-color-gray-4);
+            background: transparent;
+            border-color: var(--mantine-color-gray-2);
+        }
+        &[data-dangerous] {
+            color: var(--mantine-color-red-9);
+            border-color: var(--mantine-color-red-3);
+            &:hover, &:focus {
+                background: var(--mantine-color-red-0);
+                border-color: var(--mantine-color-red-4);
+            }
+            &:focus,  &:active {
+                box-shadow: 0 0 0 rem(2px) var(--mantine-color-red-5);
+            }
+            &[data-loading], &[data-disabled] {
+                background: transparent;
+                color: var(--mantine-color-red-1);
+            }
+        }
+    }
+    &[data-design-variant='tertiary'] {
+        color: var(--mantine-color-gray-7);
+        border-color: transparent;
+        background: transparent;
+        &:hover, &:focus {
+            color: var(--mantine-color-violet-8);
+            background: var(--mantine-color-gray-1);
+            border-color: var(--mantine-color-gray-1);
+        }
+        &:focus, &:active {
+            box-shadow: 0 0 0 rem(2px) var(--mantine-color-violet-4)
+        }
+        &:active {
+            border-color: var(--mantine-color-gray-7);
+        }
+        &[data-loading], &[data-disabled]  {
+            background: var(--mantine-color-gray-0);
+            border-color: transparent;
+            color: var(--mantine-color-gray-4);
+        }
+        &[data-dangerous] {
+            color: var(--mantine-color-red-9);
+            &:hover, &:focus {
+                background: var(--mantine-color-red-0);
+            }
+            &:focus,  &:active {
+                box-shadow: 0 0 0 rem(2px) var(--mantine-color-red-5);
+            }
+            &[data-loading], &[data-disabled] {
+                background: transparent;
+                border-color: transparent;
+                color: var(--mantine-color-red-1);
+            }
+        }
+    }
+
+    &[data-size='md'] {
+        min-width:  2.5rem;
+        height:  2.5rem;
+        padding: 0.5rem 1.5rem;
+    }
+    &[data-size='lg'] {
+        font-size: var(--mantine-font-size-md);
+        min-width: 3rem;
+        height: 3rem;
+        padding: 0.5rem 1.5rem;
+    }
+    &[data-icon-only] {
+        padding: 0.5rem;
+    }
+    transition:
+        background-color 0.3s ease-in-out,
+        color 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out,
+        border-color 0.3s ease-in-out;
+    transform: none;
+}
+
+.section {
+    margin-inline-end: 0;
+    margin-inline-start: 0;
+}
+
+.inner {
+    background-color: inherit;
+    gap: rem(8px);
+}
+
+.label {
+    height: 1rem;
+}
