@@ -1,0 +1,11 @@
+.actionBar {
+    padding: 1rem;
+    background-color: var(--mantine-color-white);
+    position: fixed;
+    left: 81.96px;
+    bottom: 1rem;
+    width: calc(100% - 1rem - 81.96px);
+    z-index: 1000;
+    border-top: 1px solid var(--mantine-color-gray-2);
+    border-radius: 0 0 1rem 1rem;
+}

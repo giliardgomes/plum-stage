@@ -1,10 +1,14 @@
+.root {
+    height: auto;
+}
+
 .list {
     background-color: white;
 }
 
 /* https: //help.mantine.dev/q/tabs-border-color */
 .list::before {
-    border-color: var(--mantine-color-gray-2);
+    border-bottom: 1px solid var(--mantine-color-gray-2);
 }
 
 .list:where([data-orientation="vertical"])::before {
@@ -15,7 +19,7 @@
     padding: .75rem 1rem;
     background-color: white;
     color: var(--mantine-color-gray-7);
-    border-color: var(--mantine-color-gray-2);
+    border-bottom: 1px solid var(--mantine-color-gray-2);
     font-weight: 400;
     line-height: 1rem;
 
@@ -40,6 +44,16 @@
         color: var(--mantine-color-violet-9);
         font-weight: 500;
         border-color: var(--mantine-color-violet-9);
+
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: var(--mantine-color-violet-9);
+        }
 
         &:hover {
             background-color: var(--mantine-color-violet-0);
@@ -70,4 +84,17 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.panel {
+    height: 100%;
+    max-height: calc(100vh - 11rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 6rem;
+
+    > div:first-child {
+        max-width: 50rem;
+        margin: 0 auto;
+    }
 }

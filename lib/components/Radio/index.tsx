@@ -3,6 +3,7 @@ import { Radio as MantineRadio, Flex, rem } from "@mantine/core"
 import classes from "@/components/Radio/Radio.module.css"
 import { ErrorMessage } from "@/components/ErrorMessage"
 import { useForwardedRef } from "@/hooks/useForwardedRef"
+import { Label } from "@/components/Label"
 
 interface RadioGroupContext {
     onClick?: (ref: React.RefObject<HTMLInputElement>) => void
@@ -43,6 +44,8 @@ const Group = forwardRef<HTMLDivElement, RadioGroupProps>(({
     horizontal,
     onChange,
     value,
+    label,
+    required,
     ...props
 }, ref) => {
     const onClick = (ref: React.RefObject<HTMLInputElement>) => {
@@ -66,6 +69,7 @@ const Group = forwardRef<HTMLDivElement, RadioGroupProps>(({
             onChange={onChange}
             ref={ref}
             value={value}
+            label={label ? <Label label={String(label)} withAsterisk={required} /> : undefined}
             {...props}
         >
             <RadioGroupContext.Provider value={(clearable && { onClick }) || {}}>

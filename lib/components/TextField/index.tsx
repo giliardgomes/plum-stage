@@ -38,6 +38,8 @@ export interface TextFieldProps extends MantineTextAreaProps {
     minRows?: number
     /** The number of characters threshold  */
     maxLength?: number
+    /** The type of the input field */
+    type?: string
 }
 
 export const TextField = React.forwardRef<HTMLTextAreaElement, TextFieldProps>(({
@@ -50,7 +52,7 @@ export const TextField = React.forwardRef<HTMLTextAreaElement, TextFieldProps>((
     withAsterisk,
     ...props
 }, ref) => {
-    const labelElement = typeof label === 'string' 
+    const labelElement = typeof label === "string"
         ? <Label label={label} withAsterisk={withAsterisk} />
         : label
 
@@ -73,7 +75,7 @@ export const TextField = React.forwardRef<HTMLTextAreaElement, TextFieldProps>((
             error={error && <ErrorMessage error={error} />}
             {...props}
             ref={ref}
-            rightSection={rightSection}
+            // rightSection={rightSection}
             component={multiline ? undefined : "input"}
             label={labelElement}
         />

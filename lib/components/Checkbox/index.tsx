@@ -2,7 +2,9 @@ import { forwardRef } from "react"
 import { Checkbox as MantineCheckbox, type CheckboxProps as MantineCheckboxProps } from "@mantine/core"
 
 import { ErrorMessage } from "@/components/ErrorMessage"
+import { Label } from "@/components/Label"
 import { Group } from "./CheckboxGroup"
+import { CheckFarFAIcon } from "@/components/Icons" // Import the check icon from Plum's icon library
 
 import classes from "./Checkbox.module.css"
 
@@ -15,6 +17,7 @@ export const Item = forwardRef<HTMLInputElement, CheckboxProps>((
     {
         error,
         mod,
+        label,
         ...rest
     },
     ref,
@@ -34,6 +37,8 @@ export const Item = forwardRef<HTMLInputElement, CheckboxProps>((
                 }}
                 mod={{ error: hasError }}
                 ref={ref}
+                label={<Label label={String(label)} />}
+                icon={CheckFarFAIcon}
             />
 
             {error && <ErrorMessage error={error} />}

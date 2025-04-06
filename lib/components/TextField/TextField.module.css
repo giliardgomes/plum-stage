@@ -23,10 +23,12 @@
         background: var(--mantine-color-white);
         height: 2.5rem;
         font-size: 0.875rem;
-        transition: 
-            background-color 0.3s ease-in-out, 
-            border-color 0.3s ease-in-out, 
+        transition:
+            background-color 0.3s ease-in-out,
+            border-color 0.3s ease-in-out,
             box-shadow 0.3s ease-in-out;
+        border: 1px solid var(--mantine-color-gray-5);
+
         &:hover, &:focus, &:active {
             border: rem(1px) solid var(--mantine-color-violet-5);
         }

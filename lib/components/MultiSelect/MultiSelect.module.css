@@ -1,9 +1,54 @@
+:global {
+    .mantine-PillsInput-root {
+        display: flex;
+        gap: 0.25rem;
+        flex-direction: column;
+    }
+
+    .mantine-PillGroup-group {
+        gap: var(--mantine-spacing-xs);
+    }
+
+    .mantine-PillGroup-group .mantine-Pill-root {
+        transform: translateX(-0.25rem);
+    }
+
+    .mantine-Pill-label {
+        line-height: 1rem;
+        font-size: 0.875rem;
+        height: auto;
+    }
+
+    .mantine-Pill-remove {
+        padding: 0;
+    }
+
+    .mantine-Combobox-dropdown {
+        box-shadow: var(--mantine-shadow-sm);
+        border: 1px solid var(--mantine-color-gray-2);
+        border-radius: .25rem;
+
+        .mantine-Combobox-options {
+            gap: 0.125rem;
+        }
+
+        .mantine-Group-root {
+            gap: 0;
+        }
+    }
+}
+
 .pillsInput {
     display: flex;
     justify-content: space-between;
     width: 100%;
-
+    border: 1px solid var(--mantine-color-gray-5);
     line-height: normal;
+    min-height: 2.5rem;
+    transition:
+        background-color 0.3s ease-in-out,
+        border-color 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out;
 
     &[data-expanded] + * > svg {
         transform: rotate(180deg);
@@ -33,11 +78,22 @@
 
 .pill {
     background-color: var(--mantine-color-gray-1);
-
-    line-height: normal;
+    font-size: 0.875rem;
+    height: 1.5rem;
+    line-height: 1rem;
     color: var(--mantine-color-gray-7);
+    display: flex;
+    align-items: center;
 }
 
+:global(.mantine-CloseButton-root) {
+    width: 1.5em;
+    height: 1.5rem;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    margin-right: 0.25rem;
+    transform: translateY(-0.0125rem);
+}
 
 .options {
     display: flex;
@@ -45,19 +101,36 @@
     gap: 2px;
 }
 
+.checkboxWrapper {
+    :global(.mantine-Checkbox-root) {
+        margin: 0;
+    }
+
+    :global(.mantine-Checkbox-body) {
+        gap: 0;
+    }
+
+    :global(.mantine-Checkbox-label) {
+        display: none;
+    }
+}
+
 .option {
     padding: 0.75rem;
-
     color: var(--mantine-color-gray-7);
-    line-height: normal;
+    line-height: 1rem;
+    transition: background-color 0.3s ease-in-out;
 
     &[data-combobox-selected] {
-        background-color: var(--mantine-color-violet-1);
-        color: var(--mantine-color-violet-7);
+        background-color: var(--mantine-color-gray-1);
     }
 
     &[data-combobox-active] {
         background-color: var(--mantine-color-violet-1);
         color: var(--mantine-color-violet-8);
+    }
+
+    :global(.mantine-Group-root) {
+        margin: 0;
     }
 }

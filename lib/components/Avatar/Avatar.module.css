@@ -1,0 +1,9 @@
+.root {
+    background-color: var(--mantine-color-gray-1);
+    border: none;
+    color: var(--mantine-color-gray-7);
+}
+
+.placeholder {
+    color: var(--mantine-color-gray-7);
+}

@@ -12,6 +12,7 @@ import { useUncontrolled } from "@mantine/hooks"
 
 import { ErrorMessage } from "@/components/ErrorMessage"
 import { ComboboxChevron } from "@/icons/ComboboxChevron"
+import { Label } from "@/components/Label"
 
 import classes from "@/components/Select/Select.module.css"
 
@@ -48,6 +49,9 @@ export interface SelectProps {
 
     /** Called when value changes */
     onChange?: (value: string | null, option: ComboboxItem) => void
+
+    /** Marks the field as required */
+    required?: boolean
 }
 
 export const Select = forwardRef<HTMLButtonElement, SelectProps>(
@@ -63,6 +67,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
             placeholder,
             onChange,
             value,
+            required,
             ...rest
         }: SelectProps,
         ref: React.ForwardedRef<HTMLButtonElement>,
@@ -130,7 +135,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                         pointer
                         rightSection={<ComboboxChevron size="xs" error={error} />}
                         rightSectionPointerEvents="none"
-                        label={label}
+                        label={<Label label={label} withAsterisk={required} />}
                         description={description}
                         descriptionProps={{ c: "gray.8" }}
                         error={error && <ErrorMessage error={error} />}

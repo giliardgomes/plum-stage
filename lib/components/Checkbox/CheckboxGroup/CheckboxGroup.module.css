@@ -1,3 +1,15 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    div[role='group'] {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -8,20 +20,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem;
-
-    /* Compensate for the padding on the checkbox root*/
-    div[role='group'] {
-        margin: -1.5px;
-    }
 
     &[data-orientation='horizontal'] > div[role='group'] {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-
-        /* Compensate for the padding on the checkbox root (1.5px * 2)*/
-        gap: calc(1.5rem - 3px);
     }
 }
 

@@ -18,7 +18,7 @@ export interface LabelProps extends React.PropsWithChildren {
     withAsterisk?: boolean
 }
 
-export const Label: FC<LabelProps> = ({ children, className = '', label, rightSection, withAsterisk }: LabelProps & { className?: string }) => {
+export const Label: FC<LabelProps> = ({ children, className = "", label, rightSection, withAsterisk }: LabelProps & { className?: string }) => {
     return (
         <Group className={classes.group}>
             <Text className={`${classes.label} ${className}`}>{children || label}</Text>

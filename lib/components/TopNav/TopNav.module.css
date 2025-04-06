@@ -1,0 +1,156 @@
+.root {
+    height: auto;
+    padding: 0.5rem 0;
+    padding: 0.5rem 1rem 0.5rem 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+
+    :global(.mantine-Avatar-root) {
+        cursor: pointer;
+    }
+}
+
+.logo {
+    height: 32px;
+    width: auto;
+}
+
+.notificationBadge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    padding: 0 4px;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    background-color: var(--mantine-color-red-6);
+    color: var(--mantine-color-white);
+}
+
+.center {
+    max-width: 580px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.leftSide, .rightSide {
+    display: flex;
+    align-items: center;
+    flex: 1;
+
+    a {
+        display: flex;
+    }
+
+    :global(.mantine-InputWrapper-root) {
+        gap: 0;
+        min-width: 8rem;
+    }
+}
+
+.root .leftSide {
+    justify-content: flex-start;
+}
+
+.root .rightSide {
+    justify-content: flex-end;
+}
+
+.root .center {
+    :global(.mantine-Input-wrapper) {
+        width: 100%;
+    }
+}
+
+.leftSide {
+    width: auto;
+
+    :global(.mantine-Popover-dropdown) {
+        width: 100%;
+        min-width: 10rem;
+        left: 68px!important;
+    }
+
+    :global(.mantine-InputBase-wrapper) {
+        width: auto;
+    }
+
+    :global(.mantine-InputBase-input) {
+        background: transparent;
+        border-color: transparent;
+        border-radius: 2rem;
+        border: none;
+        box-shadow: none;
+        padding: 0.5rem 1rem;
+        padding-right: 2.25rem;
+        width: auto;
+        transition: all 200ms;
+        color: var(--mantine-color-gray-7);
+
+        &:hover {
+            background: var(--mantine-color-gray-2);
+            border: none;
+        }
+
+        &:focus {
+            background: var(--mantine-color-gray-2);
+            box-shadow: none;
+            border: none;
+        }
+
+        &::before {
+            content: '\f0ac';
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            font-family: "Font Awesome 6 Pro";
+            margin-right: 0.5rem;
+            font-weight: 400;
+        }
+    }
+
+    div[data-position="right"] {
+        position: absolute;
+        right: 1rem;
+        width: auto;
+        height: auto;
+    }
+}
+
+.rightSide {
+    width: auto;
+
+    :global(.mantine-Popover-dropdown) {
+        width: 100%;
+        min-width: 10rem;
+        left: 68px!important;
+    }
+}
+
+.userMenu {
+    padding: 0.125rem .5rem 0.75rem 1.5rem;
+    width: calc(100% + 1.5rem);
+    border-bottom: 1px solid var(--mantine-color-gray-2);
+    position: relative;
+    left: -1rem;
+
+    span:first-child {
+        font-weight: 500;
+        color: var(--mantine-color-gray-9);
+        font-size: var(--mantine-font-size-ms);
+    }
+
+    span:last-child {
+        color: var(--mantine-color-gray-7);
+        font-size: var(--mantine-font-size-xs);
+    }
+}
+
+.userDropdown {
+    min-width: 15rem;
+}

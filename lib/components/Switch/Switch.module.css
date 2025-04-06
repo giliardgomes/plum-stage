@@ -9,6 +9,7 @@
     /* Base Switch Custom Properties */
     --switch-height: rem(24px);
     --switch-width: rem(40px);
+    --switch-min-width: rem(40px);
     --switch-radius: rem(32px);
     --switch-padding: rem(0);
 
@@ -86,6 +87,8 @@
 .track {
     height: 1.5rem;
     width: 2.5rem;
+    min-width: 2.5rem;
+    max-width: 2.5rem;
     border: none;
     border-radius: 2rem;
     cursor: pointer;

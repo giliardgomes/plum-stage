@@ -1,23 +1,28 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem;
     align-items: flex-start;
-
-    & > :nth-child(2) {
-        /* Compensate for the padding on the checkbox root */
-        margin-inline-start: 1.5px;
-    }
 }
 
 .root {
     --checkbox-size: 1rem;
-    padding: 1.5px;
+    padding: 0;
     border-radius: 0.25rem;
-    border: 1px solid transparent;
+    border: none;
 
     &:focus-within {
         border-color: var(--mantine-color-violet-6);
+    }
+
+    label p {
+        font-weight: 400;
+    }
+
+    .mantine-CheckboxGroup-root {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
     }
 }
 
@@ -28,6 +33,17 @@
 .input {
     border: 1.6px solid var(--mantine-color-gray-6);
     border-radius: 0.125rem;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background-color: var(--mantine-color-white);
+
+    &:checked {
+        background-color: var(--mantine-color-violet-7);
+    }
+
+    & + svg {
+        width: 12px!important;
+        height: 12px!important;
+    }
 
     &:hover:not(:disabled) {
         &:checked, &[data-indeterminate="true"] {

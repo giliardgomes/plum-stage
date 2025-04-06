@@ -124,11 +124,13 @@ export const plumTheme: MantineThemeOverride = createTheme({
         fontWeight: "500",
     },
     spacing: {
+        xxs: "0.25rem",
         xs: "0.5rem",
         sm: "0.75rem",
         md: "1rem",
         lg: "1.25rem",
         xl: "1.5rem",
+        xxl: "2rem",
     },
     fontFamily: "Roboto, Arial, sans-serif",
     fontSizes: {
@@ -136,7 +138,7 @@ export const plumTheme: MantineThemeOverride = createTheme({
         sm: "0.875rem",
         md: "1rem",
         lg: "1.125rem",
-        xl: "1.375rem",
+        xl: "1.25rem",
     },
     activeClassName: "",
     defaultRadius: "0.25rem",

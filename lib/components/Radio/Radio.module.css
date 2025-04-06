@@ -1,7 +1,18 @@
-.radioGroupRoot {
-    display: flex;
-    flex-direction: column;
-    gap: rem(8px);
+:root {
+    --mantine-cursor-type: pointer;
+}
+
+:global {
+    .mantine-RadioGroup-root {
+        display: flex;
+        flex-direction: column;
+        gap: rem(8px);
+    }
+
+    .mantine-Radio-root {
+        cursor: pointer;
+        width: fit-content;
+    }
 }
 
 .radioGroupLabel {
@@ -10,7 +21,7 @@
 }
 
 .radio {
-    border-color: var(--mantine-color-gray-5);
+    border-color: var(--mantine-color-gray-6);
     border-width: rem(1.6px);
     width: rem(16px);
     height: rem(16px);

@@ -4,6 +4,10 @@
     font-size: var(--mantine-font-size-sm);
 }
 
+:global(.mantine-Textarea-required) {
+    margin-left: .25rem;
+}
+
 .group {
     display: inline-flex;
     align-items: center;

@@ -1,6 +1,5 @@
 import { useMemo } from "react"
 import {
-    Checkbox,
     CloseButton,
     Combobox,
     Flex,
@@ -17,6 +16,8 @@ import { useUncontrolled } from "@mantine/hooks"
 
 import { ErrorMessage } from "@/components/ErrorMessage"
 import { ComboboxChevron } from "@/icons/ComboboxChevron"
+import { Checkbox } from "@/components/Checkbox" // Import Plum's Checkbox component
+import { Label } from "@/components/Label"
 
 import classes from "@/components/MultiSelect/MultiSelect.module.css"
 
@@ -117,8 +118,12 @@ export const MultiSelect = (
             disabled={item.disabled}
         >
             <Group gap="sm">
-                <Checkbox.Indicator checked={_value.includes(item.value)} aria-hidden tabIndex={-1} style={{ pointerEvents: "none" }} />
-                <span>{item.label}</span>
+                <Checkbox
+                    checked={_value.includes(item.value)}
+                    label={item.label}
+                    disabled={item.disabled}
+                    readOnly
+                />
             </Group>
         </Combobox.Option>
     ))
@@ -134,13 +139,11 @@ export const MultiSelect = (
                     rightSection={<ComboboxChevron size="xs" error={error} />}
                     rightSectionPointerEvents="none"
                     classNames={{ input: classes.pillsInput }}
-                    label={label}
+                    label={<Label label={label} />}
                     description={description}
                     descriptionProps={{ c: "gray.8" }}
                     error={error && <ErrorMessage error={error} />}
-                    // Render either the error or the description
                     inputWrapperOrder={["label", "input", error ? "error" : "description"]}
-                    // Spread additional props like data-* attributes
                     {...rest}
                 >
                     <Pill.Group role="group" aria-label="Selected options">
