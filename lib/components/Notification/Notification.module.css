@@ -71,7 +71,58 @@
     padding: 0.5rem 1rem;
 }
 
-.notificationStack {
+.notificationsStack {
     background: red;
     padding: 1rem;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 999;
+}
+
+.notificationsContainer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+    padding: var(--mantine-spacing-xl);
+    pointer-events: none;
+}
+
+.notificationsStack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mantine-spacing-xs);
+    max-width: 400px;
+    width: 100%;
+    pointer-events: auto;
+
+    /* Make notifications clickable */
+    & > * {
+        pointer-events: auto;
+    }
+}
+
+/* Add this to your existing global styles */
+:global(body) {
+    .notificationsStack {
+        background: transparent;
+        padding: 0;
+    }
+
+    /* Animation for notifications */
+    .notificationsStack > div {
+        animation: slideIn 0.3s ease-out;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }

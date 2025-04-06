@@ -38,11 +38,11 @@ import { MultiSelect } from "../lib/components/MultiSelect"
 import { Radio } from "../lib/components/Radio"
 import { Avatar } from "../lib/components/Avatar"
 import { TopNav } from "../lib/components/TopNav"
-import { PageNavigation } from "@/components/PageNavigation"
+import { PageNavigation } from "../lib/components/PageNavigation"
 import { Sidebar } from "../lib/components/Sidebar"
-import { ActionBar } from "./components/ActionBar"
+import { ActionBar } from "../lib/components/ActionBar"
 import { Tooltip } from "../lib/components/Tooltip"
-
+import React from "react"
 export function LandingPage() {
     const [currentTab, setCurrentTab] = useState("profile")
     const [show2FASetup, setShow2FASetup] = useState(false)
@@ -59,18 +59,19 @@ export function LandingPage() {
     const [actionCenterAccess, setActionCenterAccess] = useState(true)
     const [actionCenterSettings, setActionCenterSettings] = useState(true)
     const [teamPermissionVisible, setTeamPermissionVisible] = useState(true)
-    const [showNotification, setShowNotification] = useState(false)
+    const [showSuccessNotification, setShowSuccessNotification] = useState(false)
+    const [showWarningNotification, setShowWarningNotification] = useState(false)
 
     const handleSave = () => {
         console.log("Saving changes...")
-        setShowNotification(true)
-        // Auto hide after seconds
-        setTimeout(() => setShowNotification(false), 10000)
+        setShowSuccessNotification(true)
+        // setTimeout(() => setShowSuccessNotification(false), 3000)
     }
 
     const handleCancel = () => {
         console.log("Canceling changes...")
-        // setShowCancelNotification(false)
+        setShowWarningNotification(true)
+        // setTimeout(() => setShowWarningNotification(false), 3000)
     }
 
     return (
@@ -506,7 +507,7 @@ export function LandingPage() {
                                         <Stack gap="md">
                                             {/* 2FA Section */}
                                             <Stack gap="md">
-                                                <Group justify="space-between" align="center" className={classes.inlineCard}>
+                                                <Group wrap="wrap" justify="space-between" align="center" className={classes.inlineCard}>
                                                     <Stack gap="xxs">
                                                         <Text fw={500} size="md">Two-factor authentication</Text>
                                                         <Text size="sm" c="gray.7">
@@ -520,52 +521,53 @@ export function LandingPage() {
                                                         }}
                                                         defaultChecked={false}
                                                     />
-                                                </Group>
+                                                    <Transition mounted={show2FASetup} transition="fade" duration={400} timingFunction="ease">
+                                                        {(styles) => (
+                                                            <Stack gap="md" style={styles} w="100%">
+                                                                <Alert variant="info" w="100%">
+                                                                    Scan this QR code with your authenticator app (like Google Authenticator or Authy)
+                                                                </Alert>
 
-                                                <Transition mounted={show2FASetup} transition="fade" duration={400} timingFunction="ease">
-                                                    {(styles) => (
-                                                        <Stack gap="md" style={styles}>
-                                                            <Alert variant="info" w="100%">
-                                                                Scan this QR code with your authenticator app (like Google Authenticator or Authy)
-                                                            </Alert>
+                                                                <Grid>
+                                                                    <Grid.Col span={6}>
+                                                                        <Stack gap="md" align="center">
+                                                                            <Box w={200} h={200} bg="gray.2">
+                                                                                <img width={200} src="https://repository-images.githubusercontent.com/467626658/5307bcae-f9b9-42b0-87eb-9da34d00b4e1" alt="QR Code" />
+                                                                            </Box>
 
-                                                            <Grid>
-                                                                <Grid.Col span={6}>
-                                                                    <Stack gap="md" align="center">
-                                                                        <Box w={200} h={200} bg="gray.2">
-                                                                            <img width={200} src="https://repository-images.githubusercontent.com/467626658/5307bcae-f9b9-42b0-87eb-9da34d00b4e1" alt="QR Code" />
-                                                                        </Box>
-
-                                                                        <Text size="sm" c="gray.7">
-                                                                            Can't scan the QR code? Use this code instead:
-                                                                        </Text>
-                                                                        <Text fw={500} style={{ fontFamily: "monospace" }}>
-                                                                            ABCD-EFGH-IJKL-MNOP
-                                                                        </Text>
-                                                                    </Stack>
-                                                                </Grid.Col>
-
-                                                                <Grid.Col span={6} style={{ display: "flex", alignItems: "center" }}>
-                                                                    <Box bg="gray.0" p="xl" style={{ width: "100%", borderRadius: "8px" }}>
-                                                                        <Stack gap="md">
-                                                                            <Text fw={500} size="lg">
-                                                                                Verify your setup
-                                                                            </Text>
-                                                                            <TextField
-                                                                                label="Enter verification code"
-                                                                                required
-                                                                                maxLength={6}
-                                                                            />
-                                                                            <Button variant="primary" onClick={() => console.log("Verify 2FA setup")}>
-                                                                                Verify
-                                                                            </Button>
+                                                                            <Stack gap="xxs" align="center">
+                                                                                <Text size="sm" c="gray.7">
+                                                                                    Can't scan the QR code? Use this code instead:
+                                                                                </Text>
+                                                                                <Text fw={500} style={{ fontFamily: "monospace" }}>
+                                                                                    ABCD-EFGH-IJKL-MNOP
+                                                                                </Text>
+                                                                            </Stack>
                                                                         </Stack>
-                                                                    </Box>
-                                                                </Grid.Col>
-                                                            </Grid>
-                                                        </Stack>
-                                                    )}
-                                                </Transition>
+                                                                    </Grid.Col>
+
+                                                                    <Grid.Col span={6} style={{ display: "flex", alignItems: "center" }}>
+                                                                        <Box bg="gray.0" p="xl" style={{ width: "100%", borderRadius: "8px" }}>
+                                                                            <Stack gap="md">
+                                                                                <Text fw={500} size="lg">
+                                                                                    Verify your setup
+                                                                                </Text>
+                                                                                <TextField
+                                                                                    label="Enter verification code"
+                                                                                    required
+                                                                                    maxLength={6}
+                                                                                />
+                                                                                <Button variant="primary" onClick={() => console.log("Verify 2FA setup")}>
+                                                                                    Verify
+                                                                                </Button>
+                                                                            </Stack>
+                                                                        </Box>
+                                                                    </Grid.Col>
+                                                                </Grid>
+                                                            </Stack>
+                                                        )}
+                                                    </Transition>
+                                                </Group>
                                             </Stack>
 
                                             <Divider my="xs" />
@@ -684,24 +686,12 @@ export function LandingPage() {
                                         </Flex>
                                     </Tabs.Panel>
                                 </Tabs>
-                                <ActionBar
-                                    visible={true}
-                                    onSave={handleSave}
-                                    onCancel={handleCancel}
-                                />
                             </Stack>
                         </Paper>
                     </Stack>
                 </Container>
+                <ActionBar onSave={handleSave} onCancel={handleCancel} visible={true} />
             </Flex>
-            <div>
-                <Notification
-                    message="Changes saved successfully"
-                    variant="success"
-                    visible={showNotification}
-                    onClose={() => setShowNotification(false)}
-                />
-            </div>
         </MantineProvider>
     )
 }

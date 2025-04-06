@@ -1,6 +1,6 @@
 import React from "react"
 import clsx from "clsx"
-import { Group, Stack, Transition } from "@mantine/core"
+import { Group, Transition } from "@mantine/core"
 import { CheckCircleFarFAIcon, TriangleExclamationFarFAIcon, CircleExclamationFarFAIcon, XMarkFarFAIcon } from "@/components/Icons"
 import { Button } from "@/components/Button"
 
@@ -73,45 +73,43 @@ export const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
     }
 
     const content = (
-        <Stack gap="xs" className="notificationStack">
-            <div
-                className={clsx(classes.notification, classes[variant], className)}
-                ref={ref}
-                role="alert"
-                {...props}
-            >
-                <div className={classes.content}>
-                    <Group gap="xs" align="center" wrap="nowrap">
-                        <div className={classes.icon} style={{ color }}>
-                            {icon}
-                        </div>
-                        <div className={classes.message}>{message}</div>
-                    </Group>
-                </div>
-                <div className={classes.actions}>
-                    {actionLabel && onAction && (
-                        <Button
-                            variant="tertiary"
-                            size="sm"
-                            onClick={onAction}
-                            className={classes.notificationActionBtn}
-                        >
-                            {actionLabel}
-                        </Button>
-                    )}
-                    {withCloseButton && (
-                        <Button
-                            variant="tertiary"
-                            size="sm"
-                            onClick={onClose}
-                            aria-label="Close notification"
-                            className={classes.closeButton}
-                            leftSection={<XMarkFarFAIcon size={16} />}
-                        />
-                    )}
-                </div>
+        <div
+            className={clsx(classes.notification, classes[variant], className)}
+            ref={ref}
+            role="alert"
+            {...props}
+        >
+            <div className={classes.content}>
+                <Group gap="xs" align="center" wrap="nowrap">
+                    <div className={classes.icon} style={{ color }}>
+                        {icon}
+                    </div>
+                    <div className={classes.message}>{message}</div>
+                </Group>
             </div>
-        </Stack>
+            <div className={classes.actions}>
+                {actionLabel && onAction && (
+                    <Button
+                        variant="tertiary"
+                        size="sm"
+                        onClick={onAction}
+                        className={classes.notificationActionBtn}
+                    >
+                        {actionLabel}
+                    </Button>
+                )}
+                {withCloseButton && (
+                    <Button
+                        variant="tertiary"
+                        size="sm"
+                        onClick={onClose}
+                        aria-label="Close notification"
+                        className={classes.closeButton}
+                        leftSection={<XMarkFarFAIcon size={16} />}
+                    />
+                )}
+            </div>
+        </div>
     )
 
     return (
