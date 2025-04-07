@@ -26,6 +26,11 @@
     &:focus {
         box-shadow: 0 0 0 0.125rem var(--mantine-color-violet-3);
     }
+
+    &::placeholder {
+        color: var(--mantine-color-gray-7);
+        opacity: 0.5;
+    }
 }
 
 .leftSectionParent div[data-position="left"] {

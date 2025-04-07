@@ -545,3 +545,40 @@ export const CheckCircleFarFAIcon = React.forwardRef<SVGSVGElement, FAIconProps>
         />
     </svg>
 ))
+
+export const FileAltFarFAIcon = React.forwardRef<SVGSVGElement, FAIconProps>(({ ariaHidden = "true", color, filled = false, size = 16, style, ...others }, ref) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 384 512"
+        aria-hidden={ariaHidden}
+        color={color}
+        ref={ref}
+        role="img"
+        style={{ width: rem(size), height: rem(size), ...style }}
+        {...others}
+    >
+        {/* <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--> */}
+        <path
+            fill="currentColor"
+            d="M320 464c8.8 0 16-7.2 16-16l0-288-80 0c-17.7 0-32-14.3-32-32l0-80L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16l256 0zM0 64C0 28.7 28.7 0 64 0L229.5 0c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3L384 448c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 64z"
+        />
+    </svg>
+))
+
+export const ArrowFromBottomFarFAIcon = React.forwardRef<SVGSVGElement, FAIconProps>(({ ariaHidden = "true", color, filled = false, size = 16, style, ...others }, ref) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 16 16"
+        aria-hidden={ariaHidden}
+        color={color}
+        ref={ref}
+        role="img"
+        style={{ width: rem(size), height: rem(size), ...style }}
+        {...others}
+    >
+        <path
+            fill="currentColor"
+            d="M2.6011 5.42559L7.88652 0.125886C8.05437 -0.0419619 8.32578 -0.0419619 8.49363 0.125886L13.779 5.42559C13.9469 5.59344 13.9469 5.86485 13.779 6.0327L13.0791 6.73266C12.9077 6.90408 12.6327 6.90051 12.4684 6.72552L9.11859 3.25785V12.1431C9.11859 12.3788 8.92575 12.5716 8.69004 12.5716H7.6901C7.4544 12.5716 7.26155 12.3788 7.26155 12.1431V3.25785L3.91531 6.72552C3.74746 6.89694 3.47248 6.90051 3.30463 6.73266L2.60467 6.0327C2.43325 5.86485 2.43325 5.59344 2.6011 5.42559ZM14.6183 14.143H1.76186C1.52616 14.143 1.33331 14.3358 1.33331 14.5715V15.5715C1.33331 15.8072 1.52616 16 1.76186 16H14.6183C14.854 16 15.0468 15.8072 15.0468 15.5715V14.5715C15.0468 14.3358 14.854 14.143 14.6183 14.143Z"
+        />
+    </svg>
+))

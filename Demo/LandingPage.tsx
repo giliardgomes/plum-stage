@@ -1,16 +1,17 @@
 import classes from "./LandingPage.module.css"
 import { Container, Stack, Paper, Title, Flex, Grid, Text, Group, Divider, Box, Transition } from "@mantine/core"
-import { MantineProvider } from "@mantine/core"
+import { Label, PlumProvider } from "../lib/main"
 import { useState } from "react"
 import { Notification } from "../lib/components/Notification"
+import { Checkbox } from "../lib/components/Checkbox"
 
-// Import Mantine core styles
+// Import Mantine core styles first
 import "@mantine/core/styles.css"
 
 // Import Plum theme
 import { plumTheme, plumVariables } from "../src/theme"
 
-// Import Plum component styles
+// Import Plum component styles AFTER Mantine core styles
 import "../lib/components/Button/Button.module.css"
 import "../lib/components/Switch/Switch.module.css"
 import "../lib/components/TextField/TextField.module.css"
@@ -20,6 +21,10 @@ import "../lib/components/Tabs/Tabs.module.css"
 import "../lib/components/Tile/Tile.module.css"
 import "../lib/components/Label/Label.module.css"
 import "../lib/components/Avatar/Avatar.module.css"
+import "../lib/components/Notification/Notification.module.css"
+import "../lib/components/SelectableTag/SelectableTag.module.css"
+import "../lib/components/SegmentedControl/SegmentedControl.module.css"
+import "../lib/components/Table/Table.module.css"
 
 // Import Plum components
 import { Button } from "../lib/components/Button"
@@ -32,6 +37,8 @@ import {
     CogFarFAIcon,
     CircleInfoFarFAIcon,
     EnvelopeFarFAIcon,
+    FileAltFarFAIcon,
+    CommentFarFAIcon,
 } from "../lib/components/Icons"
 import { Select } from "../lib/components/Select"
 import { MultiSelect } from "../lib/components/MultiSelect"
@@ -43,6 +50,11 @@ import { Sidebar } from "../lib/components/Sidebar"
 import { ActionBar } from "../lib/components/ActionBar"
 import { Tooltip } from "../lib/components/Tooltip"
 import React from "react"
+import { SelectableTag } from "../lib/components/SelectableTag"
+import { SegmentedControl } from "../lib/components/SegmentedControl"
+import { FileDropzone } from "../lib/components/FileDropzone"
+import { Table } from "../lib/components/Table"
+
 export function LandingPage() {
     const [currentTab, setCurrentTab] = useState("profile")
     const [show2FASetup, setShow2FASetup] = useState(false)
@@ -61,6 +73,15 @@ export function LandingPage() {
     const [teamPermissionVisible, setTeamPermissionVisible] = useState(true)
     const [showSuccessNotification, setShowSuccessNotification] = useState(false)
     const [showWarningNotification, setShowWarningNotification] = useState(false)
+    const [selectedProducts, setSelectedProducts] = useState<string[]>(["figma"])
+    const [firstName, setFirstName] = useState("Joshua")
+    const [lastName, setLastName] = useState("Johnson")
+    const [email, setEmail] = useState("joshua.johnson@company.org")
+    const [phone, setPhone] = useState("(555) 123-4567")
+    const [jobTitle, setJobTitle] = useState("Senior Software Engineer")
+    const [department, setDepartment] = useState("product")
+    const [skills, setSkills] = useState<string[]>(["js", "ts", "react"])
+    const [selectedHelpOption, setSelectedHelpOption] = useState("live")
 
     const handleSave = () => {
         console.log("Saving changes...")
@@ -69,13 +90,11 @@ export function LandingPage() {
     }
 
     const handleCancel = () => {
-        console.log("Canceling changes...")
         setShowWarningNotification(true)
-        // setTimeout(() => setShowWarningNotification(false), 3000)
     }
 
     return (
-        <MantineProvider theme={plumTheme} cssVariablesResolver={plumVariables}>
+        <PlumProvider theme={plumTheme} cssVariablesResolver={plumVariables}>
             <TopNav
                 logoUrl="/path-to-your-logo.svg"
                 organizations={[
@@ -110,11 +129,12 @@ export function LandingPage() {
                                         <Tabs.Tab value="profile">Profile</Tabs.Tab>
                                         <Tabs.Tab value="permissions">Permissions</Tabs.Tab>
                                         <Tabs.Tab value="security">Security</Tabs.Tab>
+                                        <Tabs.Tab value="custom-fields">Custom fields</Tabs.Tab>
                                         <Tabs.Tab value="help">Help</Tabs.Tab>
                                     </Tabs.List>
 
                                     <Tabs.Panel value="profile" pr="0" pl="0" pt="xl" ml="auto" mr="auto">
-                                        <Stack gap="md">
+                                        <Stack gap="xl" mb="xl">
                                             <Grid>
                                                 <Grid.Col>
                                                     <Stack gap="md" display="flex" align="center" justify="space-between" mb="xl">
@@ -138,13 +158,15 @@ export function LandingPage() {
                                                 <Grid.Col span={6}>
                                                     <TextField
                                                         label="First name"
-                                                        value="Joshua"
+                                                        value={firstName}
+                                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFirstName(event.target.value)}
                                                     />
                                                 </Grid.Col>
                                                 <Grid.Col span={6}>
                                                     <TextField
                                                         label="Last name"
-                                                        value="Johnson"
+                                                        value={lastName}
+                                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setLastName(event.target.value)}
                                                     />
                                                 </Grid.Col>
                                             </Grid>
@@ -152,8 +174,9 @@ export function LandingPage() {
                                                 <Grid.Col span={6}>
                                                     <TextField
                                                         label="Email address"
-                                                        value="joshua.johnson@company.org"
-                                                        type="Email"
+                                                        value={email}
+                                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEmail(event.target.value)}
+                                                        type="email"
                                                         rightSection={<i className="fa-sharp fa-regular fa-envelope" />}
                                                         required
                                                     />
@@ -161,7 +184,8 @@ export function LandingPage() {
                                                 <Grid.Col span={6}>
                                                     <TextField
                                                         label="Phone number"
-                                                        value="(555) 123-4567"
+                                                        value={phone}
+                                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPhone(event.target.value)}
                                                         type="tel"
                                                     />
                                                 </Grid.Col>
@@ -170,14 +194,15 @@ export function LandingPage() {
                                                 <Grid.Col span={6}>
                                                     <TextField
                                                         label="Job title"
-                                                        value="Senior Software Engineer"
+                                                        value={jobTitle}
+                                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setJobTitle(event.target.value)}
                                                     />
                                                 </Grid.Col>
                                                 <Grid.Col span={6}>
                                                     <Select
                                                         label="Department"
-                                                        placeholder="Select your department"
-                                                        value="product"
+                                                        value={department}
+                                                        onChange={(value) => setDepartment(value as string)}
                                                         data={[
                                                             { label: "Engineering", value: "engineering" },
                                                             { label: "Product", value: "product" },
@@ -191,7 +216,8 @@ export function LandingPage() {
                                             <MultiSelect
                                                 label="Skills"
                                                 placeholder="Select your skills"
-                                                value={["js", "ts", "react"]}
+                                                value={skills}
+                                                onChange={(value) => setSkills(value || [])}
                                                 data={[
                                                     { label: "JavaScript", value: "js" },
                                                     { label: "TypeScript", value: "ts" },
@@ -202,16 +228,46 @@ export function LandingPage() {
                                                 ]}
                                             />
                                             <Radio.Group
-                                                label="Work location"
+                                                label="Location"
                                                 defaultValue="remote"
+                                                horizontal
                                                 onChange={(value) => console.log(value)}
                                             >
                                                 <Radio label="Remote" value="remote" />
                                                 <Radio label="Hybrid" value="hybrid" />
                                                 <Radio label="Office" value="office" />
                                             </Radio.Group>
+
+                                            <Checkbox.Group
+                                                label="Products"
+                                                orientation="horizontal"
+                                                value={selectedProducts}
+                                                onChange={setSelectedProducts}
+                                            >
+                                                <Checkbox value="vscode" label="VS Code" />
+                                                <Checkbox value="github" label="GitHub" />
+                                                <Checkbox value="jira" label="Jira" />
+                                                <Checkbox value="slack" label="Slack" />
+                                                <Checkbox value="figma" label="Figma" defaultChecked />
+                                            </Checkbox.Group>
+
+                                            <Stack gap="xs">
+                                                <Text component="label" size="sm" fw={500} c="gray.7">
+                                                    Available days
+                                                </Text>
+                                                <Flex gap="xs" wrap="wrap">
+                                                    <SelectableTag size="sm" value="mon">Mon</SelectableTag>
+                                                    <SelectableTag size="sm" value="tue">Tue</SelectableTag>
+                                                    <SelectableTag size="sm" value="wed">Wed</SelectableTag>
+                                                    <SelectableTag size="sm" value="thu">Thu</SelectableTag>
+                                                    <SelectableTag size="sm" value="fri">Fri</SelectableTag>
+                                                    <SelectableTag size="sm" value="sat">Sat</SelectableTag>
+                                                    <SelectableTag size="sm" value="sun">Sun</SelectableTag>
+                                                </Flex>
+                                            </Stack>
+
                                             <Switch
-                                                label="Make profile public"
+                                                label="Public profile"
                                                 defaultChecked
                                                 onChange={(event) => console.log(event)}
                                             />
@@ -504,9 +560,9 @@ export function LandingPage() {
                                     </Tabs.Panel>
 
                                     <Tabs.Panel value="security" pr="0" pl="0" pt="xl" ml="auto" mr="auto">
-                                        <Stack gap="md">
+                                        <Stack gap="xl">
                                             {/* 2FA Section */}
-                                            <Stack gap="md">
+                                            <Stack gap="xl">
                                                 <Group wrap="wrap" justify="space-between" align="center" className={classes.inlineCard}>
                                                     <Stack gap="xxs">
                                                         <Text fw={500} size="md">Two-factor authentication</Text>
@@ -523,7 +579,7 @@ export function LandingPage() {
                                                     />
                                                     <Transition mounted={show2FASetup} transition="fade" duration={400} timingFunction="ease">
                                                         {(styles) => (
-                                                            <Stack gap="md" style={styles} w="100%">
+                                                            <Stack gap="xl" style={styles} w="100%">
                                                                 <Alert variant="info" w="100%">
                                                                     Scan this QR code with your authenticator app (like Google Authenticator or Authy)
                                                                 </Alert>
@@ -548,7 +604,7 @@ export function LandingPage() {
 
                                                                     <Grid.Col span={6} style={{ display: "flex", alignItems: "center" }}>
                                                                         <Box bg="gray.0" p="xl" style={{ width: "100%", borderRadius: "8px" }}>
-                                                                            <Stack gap="md">
+                                                                            <Stack gap="xl">
                                                                                 <Text fw={500} size="lg">
                                                                                     Verify your setup
                                                                                 </Text>
@@ -573,7 +629,7 @@ export function LandingPage() {
                                             <Divider my="xs" />
 
                                             {/* Password Section */}
-                                            <Stack gap="md">
+                                            <Stack gap="xl">
                                                 <Stack gap="xxs" mb="md">
                                                     <Text fw={500} size="md">Password</Text>
                                                     <Text c="gray.7" size="sm">Changing your password is a simple way to enhance account security</Text>
@@ -609,7 +665,7 @@ export function LandingPage() {
                                             <Divider my="xs" />
 
                                             {/* Recovery Options */}
-                                            <Stack gap="md">
+                                            <Stack gap="xl">
                                                 <Text fw={500} size="md">Recovery options</Text>
 
                                                 <TextField
@@ -629,7 +685,7 @@ export function LandingPage() {
                                             <Divider my="xs" />
 
                                             {/* Session Management */}
-                                            <Stack gap="md">
+                                            <Stack gap="xl">
                                                 <Group justify="space-between" align="center" className={classes.inlineCard}>
                                                     <Stack gap="xs">
                                                         <Text fw={500} size="md">Active sessions</Text>
@@ -646,52 +702,286 @@ export function LandingPage() {
                                     </Tabs.Panel>
 
                                     <Tabs.Panel value="help" pr="0" pl="0" pt="xl" ml="auto" mr="auto">
-                                        <Flex wrap="wrap" align-content="baseline" justify="center" align="flex-start" gap="md" p="xxl" className={classes.supportTiles}>
-                                            <Tile
-                                                icon={<CircleInfoFarFAIcon />}
-                                                variant="secondary"
-                                                onClick={() => console.log("Documentation clicked")}
-                                                size="lg"
-                                                w="100%"
-                                            >
-                                                Documentation
-                                            </Tile>
-                                            <Tile
-                                                icon={<CircleInfoFarFAIcon />}
-                                                variant="secondary"
-                                                onClick={() => console.log("Live chat clicked")}
-                                                size="lg"
-                                                w="100%"
-                                            >
-                                                Live chat
-                                            </Tile>
-                                            <Tile
-                                                icon={<CogFarFAIcon />}
-                                                variant="secondary"
-                                                onClick={() => console.log("Email support clicked")}
-                                                size="lg"
-                                                w="100%"
-                                            >
-                                                Email support
-                                            </Tile>
-                                            <Tile
-                                                icon={<CircleInfoFarFAIcon />}
-                                                variant="secondary"
-                                                onClick={() => console.log("FAQs clicked")}
-                                                size="lg"
-                                                w="100%"
-                                            >
-                                                FAQs
-                                            </Tile>
-                                        </Flex>
+                                        <Stack gap="xl">
+                                            <SegmentedControl
+                                                defaultValue="live"
+                                                size="md"
+                                                data={[
+                                                    { label: "Live support", value: "live" },
+                                                    { label: "Fill a ticket", value: "ticket" },
+                                                    { label: "Call CSM", value: "csm" },
+                                                ]}
+                                                onChange={(value) => {
+                                                    setSelectedHelpOption(value)
+                                                    console.log("Selected:", value)
+                                                }}
+                                            />
+
+                                            {/* Live Support Content */}
+                                            {selectedHelpOption === "live" && (
+                                                <Flex wrap="wrap" align-content="baseline" justify="center" align="flex-start" gap="md" p="xxl" className={classes.supportTiles}>
+                                                    <Tile
+                                                        icon={<FileAltFarFAIcon />}
+                                                        variant="secondary"
+                                                        onClick={() => console.log("Documentation clicked")}
+                                                        size="lg"
+                                                        w="100%"
+                                                    >
+                                                        Documentation
+                                                    </Tile>
+                                                    <Tile
+                                                        icon={<CommentFarFAIcon />}
+                                                        variant="secondary"
+                                                        onClick={() => console.log("Live chat clicked")}
+                                                        size="lg"
+                                                        w="100%"
+                                                    >
+                                                        Live chat
+                                                    </Tile>
+                                                    <Tile
+                                                        icon={<EnvelopeFarFAIcon />}
+                                                        variant="secondary"
+                                                        onClick={() => console.log("Email support clicked")}
+                                                        size="lg"
+                                                        w="100%"
+                                                    >
+                                                        Email support
+                                                    </Tile>
+                                                    <Tile
+                                                        icon={<CircleInfoFarFAIcon />}
+                                                        variant="secondary"
+                                                        onClick={() => console.log("FAQs clicked")}
+                                                        size="lg"
+                                                        w="100%"
+                                                    >
+                                                        FAQs
+                                                    </Tile>
+                                                </Flex>
+                                            )}
+
+                                            {/* Ticket Form */}
+                                            {selectedHelpOption === "ticket" && (
+                                                <Box p="xl" w="32rem" m="auto" className={classes.inlineCard}>
+                                                    <Stack gap="xl">
+                                                        <Select
+                                                            label="Issue type"
+                                                            required
+                                                            data={[
+                                                                { label: "Technical issue", value: "technical" },
+                                                                { label: "Account access", value: "access" },
+                                                                { label: "Billing", value: "billing" },
+                                                                { label: "Feature request", value: "feature" },
+                                                                { label: "Other", value: "other" },
+                                                            ]}
+                                                        />
+
+                                                        <TextField
+                                                            label="Subject"
+                                                            required
+                                                        />
+
+                                                        <TextField
+                                                            label="Description"
+                                                            required
+                                                            multiline
+                                                            minRows={6}
+                                                        />
+
+                                                        <Select
+                                                            label="Priority"
+                                                            required
+                                                            data={[
+                                                                { label: "Low", value: "low" },
+                                                                { label: "Medium", value: "medium" },
+                                                                { label: "High", value: "high" },
+                                                                { label: "Critical", value: "critical" },
+                                                            ]}
+                                                        />
+
+                                                        <Stack gap="xxs">
+                                                            <Label label="Attachments" />
+                                                            <FileDropzone
+                                                                onDrop={(files: File[]) => console.log("accepted files", files)}
+                                                                maxSize={5 * 1024 ** 2}
+                                                                accept={{
+                                                                    "image/*": [], // All images
+                                                                    "application/pdf": [], // PDF files
+                                                                    "application/msword": [], // DOC files
+                                                                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [], // DOCX files
+                                                                }}
+                                                            />
+                                                        </Stack>
+
+                                                        <Group justify="center">
+                                                            <Button
+                                                                flex={1}
+                                                                size="md"
+                                                                variant="primary"
+                                                                onClick={() => console.log("Submit ticket")}
+                                                            >
+                                                                Submit ticket
+                                                            </Button>
+                                                        </Group>
+                                                    </Stack>
+                                                </Box>
+                                            )}
+
+                                            {/* CSM Contact Placeholder */}
+                                            {selectedHelpOption === "csm" && (
+                                                <Box display={selectedHelpOption === "csm" ? "block" : "none"}>
+                                                    <Text c="gray.7" ta="center">CSM contact information will be displayed here</Text>
+                                                </Box>
+                                            )}
+                                        </Stack>
+                                    </Tabs.Panel>
+
+                                    <Tabs.Panel value="custom-fields" pr="0" pl="0" pt="xl" ml="auto" mr="auto">
+                                        <Stack gap="xl" w="100%" maw="100%" px="xl">
+                                            <Group justify="space-between">
+                                                <Text fw={500} size="md" c="gray.9">Custom fields</Text>
+                                                <Button
+                                                    variant="primary"
+                                                    leftSection={<i className="fa-regular fa-plus" />}
+                                                    onClick={() => console.log("Add custom field")}
+                                                >
+                                                    Add field
+                                                </Button>
+                                            </Group>
+
+                                            <Table>
+                                                <Table.Thead>
+                                                    <Table.Tr>
+                                                        <Table.Th>Field name</Table.Th>
+                                                        <Table.Th>Type</Table.Th>
+                                                        <Table.Th>Required</Table.Th>
+                                                        <Table.Th>Visibility</Table.Th>
+                                                        <Table.Th>Actions</Table.Th>
+                                                    </Table.Tr>
+                                                </Table.Thead>
+                                                <Table.Tbody>
+                                                    <Table.Tr>
+                                                        <Table.Td>Department</Table.Td>
+                                                        <Table.Td>Select</Table.Td>
+                                                        <Table.Td>Yes</Table.Td>
+                                                        <Table.Td>All users</Table.Td>
+                                                        <Table.Td>
+                                                            <Group gap="xs">
+                                                                <Button
+                                                                    variant="tertiary"
+                                                                    size="sm"
+                                                                    leftSection={<i className="fa-regular fa-pen-to-square" />}
+                                                                >
+                                                                    Edit
+                                                                </Button>
+                                                                <Button
+                                                                    variant="tertiary"
+                                                                    size="sm"
+                                                                    danger
+                                                                    leftSection={<i className="fa-regular fa-trash" />}
+                                                                >
+                                                                    Delete
+                                                                </Button>
+                                                            </Group>
+                                                        </Table.Td>
+                                                    </Table.Tr>
+                                                    <Table.Tr>
+                                                        <Table.Td>Employee ID</Table.Td>
+                                                        <Table.Td>Text</Table.Td>
+                                                        <Table.Td>Yes</Table.Td>
+                                                        <Table.Td>Admins only</Table.Td>
+                                                        <Table.Td>
+                                                            <Group gap="xs">
+                                                                <Button
+                                                                    variant="tertiary"
+                                                                    size="sm"
+                                                                    leftSection={<i className="fa-regular fa-pen-to-square" />}
+                                                                >
+                                                                    Edit
+                                                                </Button>
+                                                                <Button
+                                                                    variant="tertiary"
+                                                                    size="sm"
+                                                                    danger
+                                                                    leftSection={<i className="fa-regular fa-trash" />}
+                                                                >
+                                                                    Delete
+                                                                </Button>
+                                                            </Group>
+                                                        </Table.Td>
+                                                    </Table.Tr>
+                                                    <Table.Tr>
+                                                        <Table.Td>Start date</Table.Td>
+                                                        <Table.Td>Date</Table.Td>
+                                                        <Table.Td>No</Table.Td>
+                                                        <Table.Td>All users</Table.Td>
+                                                        <Table.Td>
+                                                            <Group gap="xs">
+                                                                <Button
+                                                                    variant="tertiary"
+                                                                    size="sm"
+                                                                    leftSection={<i className="fa-regular fa-pen-to-square" />}
+                                                                >
+                                                                    Edit
+                                                                </Button>
+                                                                <Button
+                                                                    variant="tertiary"
+                                                                    size="sm"
+                                                                    danger
+                                                                    leftSection={<i className="fa-regular fa-trash" />}
+                                                                >
+                                                                    Delete
+                                                                </Button>
+                                                            </Group>
+                                                        </Table.Td>
+                                                    </Table.Tr>
+                                                    <Table.Tr>
+                                                        <Table.Td>Skills</Table.Td>
+                                                        <Table.Td>Multi-select</Table.Td>
+                                                        <Table.Td>No</Table.Td>
+                                                        <Table.Td>All users</Table.Td>
+                                                        <Table.Td>
+                                                            <Group gap="xs">
+                                                                <Button
+                                                                    variant="tertiary"
+                                                                    size="sm"
+                                                                    leftSection={<i className="fa-regular fa-pen-to-square" />}
+                                                                >
+                                                                    Edit
+                                                                </Button>
+                                                                <Button
+                                                                    variant="tertiary"
+                                                                    size="sm"
+                                                                    danger
+                                                                    leftSection={<i className="fa-regular fa-trash" />}
+                                                                >
+                                                                    Delete
+                                                                </Button>
+                                                            </Group>
+                                                        </Table.Td>
+                                                    </Table.Tr>
+                                                </Table.Tbody>
+                                            </Table>
+                                        </Stack>
                                     </Tabs.Panel>
                                 </Tabs>
                             </Stack>
                         </Paper>
                     </Stack>
                 </Container>
-                <ActionBar onSave={handleSave} onCancel={handleCancel} visible={true} />
+                <Notification
+                    message="Changes saved successfully"
+                    variant="success"
+                    visible={showSuccessNotification}
+                    onClose={() => setShowSuccessNotification(false)}
+                />
+                <Notification
+                    message="Changes discarded"
+                    variant="warning"
+                    visible={showWarningNotification}
+                    onClose={() => setShowWarningNotification(false)}
+                />
+                <ActionBar onSave={handleSave} onCancel={handleCancel} visible={currentTab !== "help"} />
             </Flex>
-        </MantineProvider>
+        </PlumProvider>
     )
 }

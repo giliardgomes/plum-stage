@@ -1,9 +1,8 @@
 import { forwardRef } from "react"
 import { Checkbox as MantineCheckbox } from "@mantine/core"
 import { useUncontrolled } from "@mantine/hooks"
-
 import { ErrorMessage } from "@/components/ErrorMessage"
-
+import { Label } from "@/components/Label"
 import classes from "./CheckboxGroup.module.css"
 
 export interface CheckboxGroupProps {
@@ -54,7 +53,7 @@ export const Group = forwardRef<HTMLDivElement, CheckboxGroupProps>((
     return (
         <div className={classes.container}>
             <MantineCheckbox.Group
-                label={label}
+                label={typeof label === "string" ? <Label label={label} /> : label}
                 value={_value}
                 onChange={handleChange}
                 ref={ref}

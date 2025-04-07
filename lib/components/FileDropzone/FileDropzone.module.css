@@ -1,0 +1,58 @@
+.root {
+    width: 100%;
+    border: 1px dashed var(--mantine-color-gray-5);
+    border-radius: var(--mantine-radius-xs);
+    background-color: var(--mantine-color-gray-0);
+    transition: border-color 250ms ease, background-color 250ms ease;
+    cursor: pointer;
+
+    &:hover {
+        border: 1px dashed var(--mantine-color-violet-5);
+        background: var(--mantine-color-violet-1);
+    }
+
+    :global(.mantine-Group-root) {
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        min-height: auto;
+        gap: 1.5rem;
+        padding: 2rem;
+
+        :global(.mantine-Flex-root) {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--mantine-color-violet-1);
+            transition: background-color 250ms ease, color 250ms ease;
+
+            svg {
+                color: var(--mantine-color-violet-5);
+                width: 1rem;
+                height: 1rem;
+            }
+        }
+
+        &:hover {
+            :global(.mantine-Flex-root) {
+                background: var(--mantine-color-violet-2);
+
+                svg {
+                    color: var(--mantine-color-violet-9);
+                }
+            }
+        }
+    }
+}
+
+.root[data-accept] {
+    border-color: var(--mantine-color-green-6);
+}
+
+.root[data-reject] {
+    border-color: var(--mantine-color-red-6);
+}

@@ -109,7 +109,7 @@
     border-radius: 100%;
     background-color: white;
     border: none;
-    transition: transform .25s ease, .25s ease;
+    transition: all .25s ease;
 }
 
 .input:focus + .track .thumb {

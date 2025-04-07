@@ -1,0 +1,98 @@
+:root {
+    :global(.mantine-Chip-root) {
+        label {
+            gap: 0.25rem;
+        }
+    }
+
+    :global(.mantine-Chip-iconWrapper) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            height: inherit!important;
+            width: inherit!important;
+        }
+    }
+
+    [data-size="sm"] > label {
+        padding: 0.25rem 0.9375rem;
+        height: 1.5rem;
+
+        :global(.mantine-Chip-iconWrapper) {
+            width: 0.875rem;
+            height: 0.875rem;
+        }
+    }
+
+    [data-size="sm"] > label[data-checked="true"] {
+        padding: 0.25rem 0.4375rem 0.25rem 0.3125rem;
+    }
+
+    [data-size="md"] > label {
+        padding: 0.25rem 1.1875rem;
+        height: 1.75rem;
+
+        :global(.mantine-Chip-iconWrapper) {
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+
+    [data-size="md"] > label[data-checked="true"] {
+        padding: 0.25rem 0.625rem 0.25rem 0.5rem;
+    }
+
+    [data-size="lg"] > label {
+        padding: 0.25rem 1.4375rem;
+        height: 2rem;
+
+        :global(.mantine-Chip-iconWrapper) {
+            width: 1.125rem;
+            height: 1.125rem;
+        }
+    }
+
+    [data-size="lg"] > label[data-checked="true"] {
+        padding: 0.25rem 0.8125rem 0.25rem 0.6875rem;
+    }
+
+    :global(.mantine-Chip-root) {
+        display: flex;
+
+        [data-disabled] {
+            filter: grayscale(100%);
+        }
+
+        label:not([data-disabled]) {
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        label:not([data-disabled]) {
+            background-color: var(--mantine-color-white);
+            border: 1px solid var(--mantine-color-gray-5);
+            color: var(--mantine-color-gray-8);
+
+            &:hover {
+                background-color: var(--mantine-color-gray-1);
+                border-color: var(--mantine-color-gray-2);
+            }
+
+            &:focus {
+                box-shadow: 0px 0px 0px 2px var(--mantine-color-violet-6);
+            }
+        }
+
+        label:not([data-disabled]):where([data-checked]) {
+            background-color: var(--mantine-color-violet-1);
+            border: 1px solid var(--mantine-color-violet-1);
+            color: var(--mantine-color-violet-8);
+
+            &:hover {
+                background-color: var(--mantine-color-violet-2);
+                border-color: var(--mantine-color-violet-2);
+            }
+        }
+    }
+}

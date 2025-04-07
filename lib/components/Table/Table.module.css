@@ -1,0 +1,41 @@
+.root {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: var(--mantine-font-family);
+}
+
+.th {
+    text-align: left;
+    padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
+    font-weight: 600;
+    font-size: var(--mantine-font-size-sm);
+    color: var(--mantine-color-gray-9);
+    background-color: var(--mantine-color-gray-0);
+    border-bottom: rem(1px) solid var(--mantine-color-gray-3);
+}
+
+.td {
+    padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
+    font-size: var(--mantine-font-size-sm);
+    color: var(--mantine-color-gray-7);
+    border-bottom: rem(1px) solid var(--mantine-color-gray-2);
+}
+
+.tr {
+    border-bottom: rem(1px) solid var(--mantine-color-gray-2);
+}
+
+.tr:last-of-type .td {
+    border-bottom: none;
+}
+
+.tr:hover {
+    background-color: var(--mantine-color-gray-0);
+}
+
+.caption {
+    color: var(--mantine-color-gray-6);
+    font-size: var(--mantine-font-size-sm);
+    margin-top: var(--mantine-spacing-xs);
+}
