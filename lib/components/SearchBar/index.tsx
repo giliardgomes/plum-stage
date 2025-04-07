@@ -16,6 +16,8 @@ export interface SearchBarProps {
     onFavorite?: () => void
     /** Initial value for the search input */
     defaultValue?: string
+    /** Callback function when input is clicked */
+    onClick?: () => void
 }
 
 export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
@@ -23,6 +25,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
     onChange,
     onFavorite,
     defaultValue = "",
+    onClick,
     ...rest
 }, ref) => {
     const [value, setValue] = useState(defaultValue)
@@ -43,6 +46,10 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
         onChange?.("")
     }
 
+    const handleClick = () => {
+        onClick?.()
+    }
+
     return (
         <Input
             ref={ref}
@@ -54,6 +61,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
             placeholder={placeholder}
             value={value}
             onChange={(event) => handleChange(event.currentTarget.value)}
+            onClick={handleClick}
             leftSection={(
                 <div className={classes.leftSection}>
                     <SearchFarFAIcon />

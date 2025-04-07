@@ -9,10 +9,12 @@
     line-height: var(--plum-line-height-paragraph-md);
     padding: rem(24px);
     text-align: center;
+    background: var(--mantine-color-white);
+    border: none;
 }
 
 .content {
     border-radius: rem(16px);
-    border: rem(1px) solid var(--mantine-color-gray-2);
-    box-shadow: 0px rem(4px) rem(12px) rem(-4px) rgba(0, 0, 0, 0.20);
+    border: none;
+    box-shadow: var(--mantine-shadow-xl);
 }

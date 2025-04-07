@@ -1,5 +1,8 @@
 {
-    "cSpell.words": ["Mantine"],
+    "cSpell.words": [
+        "Mantine",
+        "Popdown"
+    ],
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit"
     },

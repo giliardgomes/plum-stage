@@ -6,7 +6,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 5;
+    z-index: 9;
 
     :global(.mantine-Avatar-root) {
         cursor: pointer;
@@ -153,4 +153,13 @@
 
 .userDropdown {
     min-width: 15rem;
+}
+
+.officialTile {
+    width: 100%;
+    cursor: default;
+}
+
+.officialActions {
+    margin-left: auto;
 }

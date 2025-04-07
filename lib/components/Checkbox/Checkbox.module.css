@@ -24,6 +24,11 @@
         flex-direction: column;
         gap: 0.75rem;
     }
+
+    &:focus-within {
+        outline: 1px solid var(--mantine-color-violet-6);
+        outline-offset: 2px;
+    }
 }
 
 .body {

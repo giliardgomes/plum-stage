@@ -1,0 +1,93 @@
+.root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paginationButton {
+    font-weight: 400;
+    font-size: var(--mantine-font-size-sm);
+    min-width: 2.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    color: var(--mantine-color-gray-7);
+    background: transparent;
+    border: none;
+    border-radius: var(--mantine-radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+        color: var(--mantine-color-violet-8);
+        background: var(--mantine-color-violet-1);
+        border-color: var(--mantine-color-violet-2);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 2px var(--mantine-color-violet-2);
+    }
+
+    &:disabled {
+        color: var(--mantine-color-gray-1);
+        background: transparent;
+        cursor: not-allowed;
+    }
+
+    &[data-active="true"] {
+        color: var(--mantine-color-violet-8);
+        background: var(--mantine-color-violet-1);
+    }
+}
+
+.dots {
+    color: var(--mantine-color-gray-6);
+    letter-spacing: 2px;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--mantine-font-size-xs);
+
+    &:hover {
+        background: transparent;
+    }
+}
+
+.navButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    min-width: 2.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: var(--mantine-radius-xl);
+    background: transparent;
+    color: var(--mantine-color-gray-7);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+        color: var(--mantine-color-violet-8);
+        background: var(--mantine-color-violet-1);
+        border-color: var(--mantine-color-violet-2);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.navButton[disabled] {
+    opacity: 0.2;
+    cursor: not-allowed;
+}

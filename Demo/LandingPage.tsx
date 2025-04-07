@@ -25,6 +25,8 @@ import "../lib/components/Notification/Notification.module.css"
 import "../lib/components/SelectableTag/SelectableTag.module.css"
 import "../lib/components/SegmentedControl/SegmentedControl.module.css"
 import "../lib/components/Table/Table.module.css"
+import "../lib/components/Link/Link.module.css"
+import "../lib/components/Pagination/Pagination.module.css"
 
 // Import Plum components
 import { Button } from "../lib/components/Button"
@@ -53,7 +55,10 @@ import React from "react"
 import { SelectableTag } from "../lib/components/SelectableTag"
 import { SegmentedControl } from "../lib/components/SegmentedControl"
 import { FileDropzone } from "../lib/components/FileDropzone"
-import { Table } from "../lib/components/Table"
+import { Table, TableActions } from "../lib/components/Table"
+import { Link } from "../lib/components/Link"
+import { Pagination } from "../lib/components/Pagination"
+import { Modal } from "../lib/components/Modal"
 
 export function LandingPage() {
     const [currentTab, setCurrentTab] = useState("profile")
@@ -82,6 +87,28 @@ export function LandingPage() {
     const [department, setDepartment] = useState("product")
     const [skills, setSkills] = useState<string[]>(["js", "ts", "react"])
     const [selectedHelpOption, setSelectedHelpOption] = useState("live")
+    const [opened, setOpened] = useState(false)
+    const [switchAccountModalOpened, setSwitchAccountModalOpened] = useState(false)
+    const availableAccounts = [
+        {
+            name: "Joshua Johnson",
+            email: "joshua.johnson@company.org",
+            avatar: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-1.png",
+            current: true,
+        },
+        {
+            name: "Sarah Chen",
+            email: "sarah.chen@personal.com",
+            avatar: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-7.png",
+            current: false,
+        },
+        {
+            name: "Adam Smith",
+            email: "adam.smith@client.com",
+            avatar: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-3.png",
+            current: false,
+        },
+    ]
 
     const handleSave = () => {
         console.log("Saving changes...")
@@ -92,6 +119,377 @@ export function LandingPage() {
     const handleCancel = () => {
         setShowWarningNotification(true)
     }
+
+    function handleEditField(id: string): void {
+        throw new Error("Function not implemented.")
+    }
+
+    const customFieldsData = [
+        {
+            fieldName: "Department",
+            type: "Select",
+            required: "Yes",
+            visibility: "All users",
+            id: "department",
+        },
+        {
+            fieldName: "Employee ID",
+            type: "Text",
+            required: "Yes",
+            visibility: "Admins only",
+            id: "employee-id",
+        },
+        {
+            fieldName: "Start date",
+            type: "Date",
+            required: "No",
+            visibility: "All users",
+            id: "start-date",
+        },
+        {
+            fieldName: "Skills",
+            type: "Multi-select",
+            required: "No",
+            visibility: "All users",
+            id: "skills",
+        },
+        {
+            fieldName: "Manager",
+            type: "Select",
+            required: "Yes",
+            visibility: "Team leads",
+            id: "manager",
+        },
+        {
+            fieldName: "Office location",
+            type: "Select",
+            required: "Yes",
+            visibility: "All users",
+            id: "office-location",
+        },
+        {
+            fieldName: "Project code",
+            type: "Text",
+            required: "Yes",
+            visibility: "Project managers",
+            id: "project-code",
+        },
+        {
+            fieldName: "Certification",
+            type: "Multi-select",
+            required: "No",
+            visibility: "HR only",
+            id: "certification",
+        },
+        {
+            fieldName: "Emergency contact",
+            type: "Text",
+            required: "Yes",
+            visibility: "HR only",
+            id: "emergency-contact",
+        },
+        {
+            fieldName: "Work schedule",
+            type: "Select",
+            required: "Yes",
+            visibility: "Team leads",
+            id: "work-schedule",
+        },
+        {
+            fieldName: "Training completed",
+            type: "Multi-select",
+            required: "No",
+            visibility: "HR only",
+            id: "training",
+        },
+        {
+            fieldName: "Performance review date",
+            type: "Date",
+            required: "Yes",
+            visibility: "Managers",
+            id: "review-date",
+        },
+        {
+            fieldName: "Equipment ID",
+            type: "Text",
+            required: "Yes",
+            visibility: "IT admin",
+            id: "equipment-id",
+        },
+        {
+            fieldName: "Languages",
+            type: "Multi-select",
+            required: "No",
+            visibility: "All users",
+            id: "languages",
+        },
+        {
+            fieldName: "Contract type",
+            type: "Select",
+            required: "Yes",
+            visibility: "HR only",
+            id: "contract-type",
+        },
+        {
+            fieldName: "Benefits package",
+            type: "Select",
+            required: "Yes",
+            visibility: "HR only",
+            id: "benefits",
+        },
+        {
+            fieldName: "Parking spot",
+            type: "Text",
+            required: "No",
+            visibility: "All users",
+            id: "parking",
+        },
+        {
+            fieldName: "Security clearance",
+            type: "Select",
+            required: "Yes",
+            visibility: "Security team",
+            id: "security-clearance",
+        },
+        {
+            fieldName: "Vacation days",
+            type: "Text",
+            required: "Yes",
+            visibility: "Team leads",
+            id: "vacation-days",
+        },
+        {
+            fieldName: "Team name",
+            type: "Select",
+            required: "Yes",
+            visibility: "All users",
+            id: "team-name",
+        },
+        {
+            fieldName: "Project assignments",
+            type: "Multi-select",
+            required: "Yes",
+            visibility: "Project managers",
+            id: "projects",
+        },
+        {
+            fieldName: "Probation end date",
+            type: "Date",
+            required: "Yes",
+            visibility: "HR only",
+            id: "probation-end",
+        },
+        {
+            fieldName: "Cost center",
+            type: "Text",
+            required: "Yes",
+            visibility: "Finance team",
+            id: "cost-center",
+        },
+        {
+            fieldName: "Remote work status",
+            type: "Select",
+            required: "Yes",
+            visibility: "All users",
+            id: "remote-status",
+        },
+        {
+            fieldName: "Performance goals",
+            type: "Multi-select",
+            required: "Yes",
+            visibility: "Managers",
+            id: "goals",
+        },
+        {
+            fieldName: "Dietary restrictions",
+            type: "Multi-select",
+            required: "No",
+            visibility: "Event planners",
+            id: "dietary",
+        },
+        {
+            fieldName: "Building access",
+            type: "Multi-select",
+            required: "Yes",
+            visibility: "Security team",
+            id: "building-access",
+        },
+        {
+            fieldName: "Mentor",
+            type: "Select",
+            required: "No",
+            visibility: "Team leads",
+            id: "mentor",
+        },
+        {
+            fieldName: "Previous employer",
+            type: "Text",
+            required: "No",
+            visibility: "HR only",
+            id: "prev-employer",
+        },
+        {
+            fieldName: "Visa status",
+            type: "Select",
+            required: "Yes",
+            visibility: "HR only",
+            id: "visa-status",
+        },
+        {
+            fieldName: "Department",
+            type: "Select",
+            required: "Yes",
+            visibility: "All users",
+            id: "department",
+        },
+        {
+            fieldName: "Employee ID",
+            type: "Text",
+            required: "Yes",
+            visibility: "Admins only",
+            id: "employee-id",
+        },
+        {
+            fieldName: "Start date",
+            type: "Date",
+            required: "No",
+            visibility: "All users",
+            id: "start-date",
+        },
+        {
+            fieldName: "Skills",
+            type: "Multi-select",
+            required: "No",
+            visibility: "All users",
+            id: "skills",
+        },
+        {
+            fieldName: "Manager",
+            type: "Select",
+            required: "Yes",
+            visibility: "Team leads",
+            id: "manager",
+        },
+        {
+            fieldName: "Office location",
+            type: "Select",
+            required: "Yes",
+            visibility: "All users",
+            id: "office-location",
+        },
+        {
+            fieldName: "Project code",
+            type: "Text",
+            required: "Yes",
+            visibility: "Project managers",
+            id: "project-code",
+        },
+        {
+            fieldName: "Certification",
+            type: "Multi-select",
+            required: "No",
+            visibility: "HR only",
+            id: "certification",
+        },
+        {
+            fieldName: "Emergency contact",
+            type: "Text",
+            required: "Yes",
+            visibility: "HR only",
+            id: "emergency-contact",
+        },
+        {
+            fieldName: "Work schedule",
+            type: "Select",
+            required: "Yes",
+            visibility: "Team leads",
+            id: "work-schedule",
+        },
+        {
+            fieldName: "Training completed",
+            type: "Multi-select",
+            required: "No",
+            visibility: "HR only",
+            id: "training",
+        },
+        {
+            fieldName: "Performance review date",
+            type: "Date",
+            required: "Yes",
+            visibility: "Managers",
+            id: "review-date",
+        },
+        {
+            fieldName: "Equipment ID",
+            type: "Text",
+            required: "Yes",
+            visibility: "IT admin",
+            id: "equipment-id",
+        },
+        {
+            fieldName: "Languages",
+            type: "Multi-select",
+            required: "No",
+            visibility: "All users",
+            id: "languages",
+        },
+        {
+            fieldName: "Contract type",
+            type: "Select",
+            required: "Yes",
+            visibility: "HR only",
+            id: "contract-type",
+        },
+        {
+            fieldName: "Benefits package",
+            type: "Select",
+            required: "Yes",
+            visibility: "HR only",
+            id: "benefits",
+        },
+        {
+            fieldName: "Parking spot",
+            type: "Text",
+            required: "No",
+            visibility: "All users",
+            id: "parking",
+        },
+        {
+            fieldName: "Security clearance",
+            type: "Select",
+            required: "Yes",
+            visibility: "Security team",
+            id: "security-clearance",
+        },
+        {
+            fieldName: "Vacation days",
+            type: "Text",
+            required: "Yes",
+            visibility: "Team leads",
+            id: "vacation-days",
+        },
+        {
+            fieldName: "Team name",
+            type: "Select",
+            required: "Yes",
+            visibility: "All users",
+            id: "team-name",
+        },
+        {
+            fieldName: "Project assignments",
+            type: "Multi-select",
+            required: "Yes",
+            visibility: "Project managers",
+            id: "projects",
+        },
+        {
+            fieldName: "Probation end date",
+            type: "Date",
+            required: "Yes",
+            visibility: "HR only",
+            id: "probation-end",
+        },
+    ]
 
     return (
         <PlumProvider theme={plumTheme} cssVariablesResolver={plumVariables}>
@@ -125,7 +523,7 @@ export function LandingPage() {
                             />
                             <Stack gap="xl" className={classes.tabs} h="100%">
                                 <Tabs value={currentTab} onChange={(value) => setCurrentTab(value as string)}>
-                                    <Tabs.List pl="xxl" pt="0" w="100%">
+                                    <Tabs.List pl="xl" pt="0" w="100%">
                                         <Tabs.Tab value="profile">Profile</Tabs.Tab>
                                         <Tabs.Tab value="permissions">Permissions</Tabs.Tab>
                                         <Tabs.Tab value="security">Security</Tabs.Tab>
@@ -134,24 +532,35 @@ export function LandingPage() {
                                     </Tabs.List>
 
                                     <Tabs.Panel value="profile" pr="0" pl="0" pt="xl" ml="auto" mr="auto">
-                                        <Stack gap="xl" mb="xl">
+                                        <Stack gap="xl" mb="0">
                                             <Grid>
                                                 <Grid.Col>
-                                                    <Stack gap="md" display="flex" align="center" justify="space-between" mb="xl">
-                                                        <Avatar
-                                                            size="xl"
-                                                            src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-1.png"
-                                                            alt="Profile picture"
-                                                        />
-                                                        <Stack gap="0" align="center">
+                                                    <Flex gap="md" display="flex" align="center" justify="space-between">
+                                                        <Stack gap="0" align="start">
                                                             <Title size="lg" c="gray.9">
                                                                 Joshua Johnson
                                                             </Title>
                                                             <Text size="sm" c="gray.7">
                                                                 joshua.johnson@company.org
                                                             </Text>
+                                                            <Link
+                                                                mt="sm"
+                                                                variant="standalone"
+                                                                href="#"
+                                                                onClick={(e) => {
+                                                                    e.preventDefault()
+                                                                    setSwitchAccountModalOpened(true)
+                                                                }}
+                                                            >
+                                                                Switch account
+                                                            </Link>
                                                         </Stack>
-                                                    </Stack>
+                                                        <Avatar
+                                                            size="xl"
+                                                            src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-1.png"
+                                                            alt="Profile picture"
+                                                        />
+                                                    </Flex>
                                                 </Grid.Col>
                                             </Grid>
                                             <Grid gutter="md">
@@ -256,13 +665,13 @@ export function LandingPage() {
                                                     Available days
                                                 </Text>
                                                 <Flex gap="xs" wrap="wrap">
-                                                    <SelectableTag size="sm" value="mon">Mon</SelectableTag>
-                                                    <SelectableTag size="sm" value="tue">Tue</SelectableTag>
-                                                    <SelectableTag size="sm" value="wed">Wed</SelectableTag>
-                                                    <SelectableTag size="sm" value="thu">Thu</SelectableTag>
-                                                    <SelectableTag size="sm" value="fri">Fri</SelectableTag>
-                                                    <SelectableTag size="sm" value="sat">Sat</SelectableTag>
-                                                    <SelectableTag size="sm" value="sun">Sun</SelectableTag>
+                                                    <SelectableTag size="md" value="mon">Mon</SelectableTag>
+                                                    <SelectableTag size="md" value="tue">Tue</SelectableTag>
+                                                    <SelectableTag size="md" value="wed">Wed</SelectableTag>
+                                                    <SelectableTag size="md" value="thu">Thu</SelectableTag>
+                                                    <SelectableTag size="md" value="fri">Fri</SelectableTag>
+                                                    <SelectableTag size="md" value="sat">Sat</SelectableTag>
+                                                    <SelectableTag size="md" value="sun">Sun</SelectableTag>
                                                 </Flex>
                                             </Stack>
 
@@ -709,7 +1118,7 @@ export function LandingPage() {
                                                 data={[
                                                     { label: "Live support", value: "live" },
                                                     { label: "Fill a ticket", value: "ticket" },
-                                                    { label: "Call CSM", value: "csm" },
+                                                    { label: "Community", value: "community" },
                                                 ]}
                                                 onChange={(value) => {
                                                     setSelectedHelpOption(value)
@@ -826,19 +1235,181 @@ export function LandingPage() {
                                                 </Box>
                                             )}
 
-                                            {/* CSM Contact Placeholder */}
-                                            {selectedHelpOption === "csm" && (
-                                                <Box display={selectedHelpOption === "csm" ? "block" : "none"}>
-                                                    <Text c="gray.7" ta="center">CSM contact information will be displayed here</Text>
+                                            {/* Community Contact Placeholder */}
+                                            {selectedHelpOption === "community" && (
+                                                <Box display={selectedHelpOption === "community" ? "block" : "none"}>
+                                                    {/* Community Forum Content */}
+                                                    {selectedHelpOption === "community" && (
+                                                        <Stack gap="xl" w="100%" maw="100%" px="xl">
+                                                            <Group justify="space-between" mb="md">
+                                                                <Stack gap="xs">
+                                                                    <Text fw={500} size="lg" c="gray.9">Community Forum</Text>
+                                                                    <Text size="sm" c="gray.7">Connect with other users and share experiences</Text>
+                                                                </Stack>
+                                                                <Group>
+                                                                    <Button
+                                                                        variant="secondary"
+                                                                        leftSection={<i className="fa-regular fa-filter" />}
+                                                                        onClick={() => console.log("Filter threads")}
+                                                                    >
+                                                                        Filter
+                                                                    </Button>
+                                                                    <Button
+                                                                        variant="primary"
+                                                                        leftSection={<i className="fa-regular fa-plus" />}
+                                                                        onClick={() => console.log("New thread")}
+                                                                    >
+                                                                        New thread
+                                                                    </Button>
+                                                                </Group>
+                                                            </Group>
+
+                                                            <Stack gap="md">
+                                                                {/* Thread Item */}
+                                                                {[
+                                                                    {
+                                                                        id: 1,
+                                                                        title: "Best practices for managing custom fields",
+                                                                        content: "Hi everyone! I'm looking for advice on organizing custom fields effectively. Currently managing about 50 fields and it's becoming challenging to maintain...",
+                                                                        author: {
+                                                                            name: "Sarah Chen",
+                                                                            avatar: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-7.png",
+                                                                            role: "Product Manager",
+                                                                        },
+                                                                        replies: 12,
+                                                                        views: 234,
+                                                                        tags: ["custom-fields", "organization", "best-practices"],
+                                                                        isSticky: true,
+                                                                    },
+                                                                    {
+                                                                        id: 2,
+                                                                        title: "Tips for optimizing large data exports",
+                                                                        content: "We're dealing with exports of over 100k records and experiencing some performance issues. Has anyone found effective ways to handle this scale? Here's what we've tried so far...",
+                                                                        author: {
+                                                                            name: "Marcus Rodriguez",
+                                                                            avatar: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-4.png",
+                                                                            role: "Technical Lead",
+                                                                        },
+                                                                        replies: 8,
+                                                                        views: 156,
+                                                                        tags: ["performance", "data-export", "optimization"],
+                                                                    },
+                                                                ].map((thread) => (
+                                                                    <Paper key={thread.id} withBorder p="md" radius="md">
+                                                                        <Stack gap="md">
+                                                                            <Group justify="space-between" align="flex-start">
+                                                                                <Group gap="md">
+                                                                                    <Avatar
+                                                                                        src={thread.author.avatar}
+                                                                                        alt={thread.author.name}
+                                                                                        size="md"
+                                                                                    />
+                                                                                    <Stack gap={4}>
+                                                                                        <Group gap="xs">
+                                                                                            <Text fw={500} size="sm" c="gray.9">{thread.author.name}</Text>
+                                                                                            <Text size="xs" c="gray.7">
+                                                                                                •
+                                                                                                {thread.author.role}
+                                                                                            </Text>
+                                                                                        </Group>
+                                                                                        <Text size="xs" c="gray.7">Posted 2 days ago</Text>
+                                                                                    </Stack>
+                                                                                </Group>
+                                                                                <Group gap="xs">
+                                                                                    <Button
+                                                                                        variant="tertiary"
+                                                                                        p={8}
+                                                                                        onClick={() => console.log("Share thread")}
+                                                                                    >
+                                                                                        <i className="fa-regular fa-share" />
+                                                                                    </Button>
+                                                                                    <Button
+                                                                                        variant="tertiary"
+                                                                                        p={8}
+                                                                                        onClick={() => console.log("Bookmark thread")}
+                                                                                    >
+                                                                                        <i className="fa-regular fa-bookmark" />
+                                                                                    </Button>
+                                                                                    <Button
+                                                                                        variant="tertiary"
+                                                                                        p={8}
+                                                                                        onClick={() => console.log("More options")}
+                                                                                    >
+                                                                                        <i className="fa-regular fa-ellipsis" />
+                                                                                    </Button>
+                                                                                </Group>
+                                                                            </Group>
+
+                                                                            <Stack gap="xs">
+                                                                                <Group gap="xs" align="center">
+                                                                                    {thread.isSticky && (
+                                                                                        <i className="fa-regular fa-thumbtack" style={{ color: "var(--mantine-color-gray-6)" }} />
+                                                                                    )}
+                                                                                    <Text fw={500} size="md" c="gray.9">{thread.title}</Text>
+                                                                                </Group>
+                                                                                <Text size="sm" c="gray.7" lineClamp={2}>
+                                                                                    {thread.content}
+                                                                                </Text>
+                                                                            </Stack>
+
+                                                                            <Group justify="space-between" align="center">
+                                                                                <Group gap="xs">
+                                                                                    {thread.tags.map((tag) => (
+                                                                                        <Button
+                                                                                            key={tag}
+                                                                                            variant="tertiary"
+                                                                                            size="sm"
+                                                                                            onClick={() => console.log(`Filter by ${tag}`)}
+                                                                                        >
+                                                                                            {tag}
+                                                                                        </Button>
+                                                                                    ))}
+                                                                                </Group>
+                                                                                <Group gap="md">
+                                                                                    <Group gap="xs">
+                                                                                        <i className="fa-regular fa-message" style={{ color: "var(--mantine-color-gray-6)" }} />
+                                                                                        <Text size="sm" c="gray.7">
+                                                                                            {thread.replies}
+                                                                                            {" "}
+                                                                                            replies
+                                                                                        </Text>
+                                                                                    </Group>
+                                                                                    <Group gap="xs">
+                                                                                        <i className="fa-regular fa-eye" style={{ color: "var(--mantine-color-gray-6)" }} />
+                                                                                        <Text size="sm" c="gray.7">
+                                                                                            {thread.views}
+                                                                                            {" "}
+                                                                                            views
+                                                                                        </Text>
+                                                                                    </Group>
+                                                                                </Group>
+                                                                            </Group>
+                                                                        </Stack>
+                                                                    </Paper>
+                                                                ))}
+                                                            </Stack>
+                                                            <Group justify="center" mt="xl">
+                                                                <Pagination
+                                                                    total={5}
+                                                                    value={1}
+                                                                    onChange={(page) => console.log("Page changed:", page)}
+                                                                />
+                                                            </Group>
+                                                        </Stack>
+                                                    )}
                                                 </Box>
                                             )}
                                         </Stack>
                                     </Tabs.Panel>
 
-                                    <Tabs.Panel value="custom-fields" pr="0" pl="0" pt="xl" ml="auto" mr="auto">
+                                    <Tabs.Panel value="custom-fields" pr="0" pl="0" pt="xl" ml="auto" mr="auto" style={{ paddingBottom: "0" }}>
                                         <Stack gap="xl" w="100%" maw="100%" px="xl">
                                             <Group justify="space-between">
-                                                <Text fw={500} size="md" c="gray.9">Custom fields</Text>
+                                                <Text fw={500} size="md" c="gray.9">
+                                                    {customFieldsData.length}
+                                                    {" "}
+                                                    custom fields
+                                                </Text>
                                                 <Button
                                                     variant="primary"
                                                     leftSection={<i className="fa-regular fa-plus" />}
@@ -848,119 +1419,25 @@ export function LandingPage() {
                                                 </Button>
                                             </Group>
 
-                                            <Table>
-                                                <Table.Thead>
-                                                    <Table.Tr>
-                                                        <Table.Th>Field name</Table.Th>
-                                                        <Table.Th>Type</Table.Th>
-                                                        <Table.Th>Required</Table.Th>
-                                                        <Table.Th>Visibility</Table.Th>
-                                                        <Table.Th>Actions</Table.Th>
-                                                    </Table.Tr>
-                                                </Table.Thead>
-                                                <Table.Tbody>
-                                                    <Table.Tr>
-                                                        <Table.Td>Department</Table.Td>
-                                                        <Table.Td>Select</Table.Td>
-                                                        <Table.Td>Yes</Table.Td>
-                                                        <Table.Td>All users</Table.Td>
-                                                        <Table.Td>
-                                                            <Group gap="xs">
-                                                                <Button
-                                                                    variant="tertiary"
-                                                                    size="sm"
-                                                                    leftSection={<i className="fa-regular fa-pen-to-square" />}
-                                                                >
-                                                                    Edit
-                                                                </Button>
-                                                                <Button
-                                                                    variant="tertiary"
-                                                                    size="sm"
-                                                                    danger
-                                                                    leftSection={<i className="fa-regular fa-trash" />}
-                                                                >
-                                                                    Delete
-                                                                </Button>
-                                                            </Group>
-                                                        </Table.Td>
-                                                    </Table.Tr>
-                                                    <Table.Tr>
-                                                        <Table.Td>Employee ID</Table.Td>
-                                                        <Table.Td>Text</Table.Td>
-                                                        <Table.Td>Yes</Table.Td>
-                                                        <Table.Td>Admins only</Table.Td>
-                                                        <Table.Td>
-                                                            <Group gap="xs">
-                                                                <Button
-                                                                    variant="tertiary"
-                                                                    size="sm"
-                                                                    leftSection={<i className="fa-regular fa-pen-to-square" />}
-                                                                >
-                                                                    Edit
-                                                                </Button>
-                                                                <Button
-                                                                    variant="tertiary"
-                                                                    size="sm"
-                                                                    danger
-                                                                    leftSection={<i className="fa-regular fa-trash" />}
-                                                                >
-                                                                    Delete
-                                                                </Button>
-                                                            </Group>
-                                                        </Table.Td>
-                                                    </Table.Tr>
-                                                    <Table.Tr>
-                                                        <Table.Td>Start date</Table.Td>
-                                                        <Table.Td>Date</Table.Td>
-                                                        <Table.Td>No</Table.Td>
-                                                        <Table.Td>All users</Table.Td>
-                                                        <Table.Td>
-                                                            <Group gap="xs">
-                                                                <Button
-                                                                    variant="tertiary"
-                                                                    size="sm"
-                                                                    leftSection={<i className="fa-regular fa-pen-to-square" />}
-                                                                >
-                                                                    Edit
-                                                                </Button>
-                                                                <Button
-                                                                    variant="tertiary"
-                                                                    size="sm"
-                                                                    danger
-                                                                    leftSection={<i className="fa-regular fa-trash" />}
-                                                                >
-                                                                    Delete
-                                                                </Button>
-                                                            </Group>
-                                                        </Table.Td>
-                                                    </Table.Tr>
-                                                    <Table.Tr>
-                                                        <Table.Td>Skills</Table.Td>
-                                                        <Table.Td>Multi-select</Table.Td>
-                                                        <Table.Td>No</Table.Td>
-                                                        <Table.Td>All users</Table.Td>
-                                                        <Table.Td>
-                                                            <Group gap="xs">
-                                                                <Button
-                                                                    variant="tertiary"
-                                                                    size="sm"
-                                                                    leftSection={<i className="fa-regular fa-pen-to-square" />}
-                                                                >
-                                                                    Edit
-                                                                </Button>
-                                                                <Button
-                                                                    variant="tertiary"
-                                                                    size="sm"
-                                                                    danger
-                                                                    leftSection={<i className="fa-regular fa-trash" />}
-                                                                >
-                                                                    Delete
-                                                                </Button>
-                                                            </Group>
-                                                        </Table.Td>
-                                                    </Table.Tr>
-                                                </Table.Tbody>
-                                            </Table>
+                                            <Table
+                                                data={customFieldsData}
+                                                columns={[
+                                                    { key: "fieldName", header: "Field name" },
+                                                    { key: "type", header: "Type" },
+                                                    { key: "required", header: "Required" },
+                                                    { key: "visibility", header: "Visibility" },
+                                                    {
+                                                        key: "actions",
+                                                        header: "Actions",
+                                                        render: (row) => (
+                                                            <TableActions
+                                                                onEdit={() => handleEditField(row.id)}
+                                                                onDelete={() => handleEditField(row.id)}
+                                                            />
+                                                        ),
+                                                    },
+                                                ]}
+                                            />
                                         </Stack>
                                     </Tabs.Panel>
                                 </Tabs>
@@ -980,8 +1457,84 @@ export function LandingPage() {
                     visible={showWarningNotification}
                     onClose={() => setShowWarningNotification(false)}
                 />
-                <ActionBar onSave={handleSave} onCancel={handleCancel} visible={currentTab !== "help"} />
+                <ActionBar onSave={handleSave} onCancel={handleCancel} visible={currentTab !== "help" && currentTab !== "custom-fields"} />
             </Flex>
+            <Modal
+                opened={switchAccountModalOpened}
+                onClose={() => setSwitchAccountModalOpened(false)}
+                size="360px"
+            >
+                <Stack gap="xl" w="100%">
+                    <Group justify="space-between" align="center">
+                        <Title order={3} size="md" c="gray.9">Switch account</Title>
+                        <Button
+                            variant="tertiary"
+                            onClick={() => setSwitchAccountModalOpened(false)}
+                            p={8}
+                        >
+                            <i className="fa-regular fa-xmark" />
+                        </Button>
+                    </Group>
+                    <Stack gap="xxs" mb="xl" align="start">
+                        <Text fw={500} size="xs" p={0} style={{ paddingInline: "0", letterSpacing: "0.075rem", textTransform: "uppercase" }} px="xs">Current</Text>
+                        {availableAccounts
+                            .filter((account) => account.current)
+                            .map((account, index) => (
+                                <Group
+                                    key={index}
+                                    justify="space-between"
+                                    p="xs"
+                                    className={classes.accountRow}
+                                    data-disabled={account.current}
+                                >
+                                    <Group gap="md">
+                                        <Avatar
+                                            src={account.avatar}
+                                            alt={account.name}
+                                            size="md"
+                                        />
+                                        <Stack gap={0} align="start">
+                                            <Text fw={500} size="sm" c="gray.9">{account.name}</Text>
+                                            <Text size="sm" c="gray.7">{account.email}</Text>
+                                        </Stack>
+                                    </Group>
+                                    <i className={`fa-regular fa-check ${classes.accountRowIcon}`} />
+                                </Group>
+                            ))}
+
+                        <Divider></Divider>
+
+                        <Text fw={500} size="xs" p={0} style={{ paddingInline: "0", letterSpacing: "0.075rem", textTransform: "uppercase" }} px="xs">Available</Text>
+                        {availableAccounts
+                            .filter((account) => !account.current)
+                            .map((account, index) => (
+                                <Group
+                                    key={index}
+                                    onClick={() => {
+                                        console.log(`Switching to account: ${account.email}`)
+                                        setSwitchAccountModalOpened(false)
+                                    }}
+                                    justify="space-between"
+                                    p="xs"
+                                    className={classes.accountRow}
+                                >
+                                    <Group gap="md">
+                                        <Avatar
+                                            src={account.avatar}
+                                            alt={account.name}
+                                            size="md"
+                                        />
+                                        <Stack gap={0} align="start">
+                                            <Text fw={500} size="sm" c="gray.9">{account.name}</Text>
+                                            <Text size="sm" c="gray.7">{account.email}</Text>
+                                        </Stack>
+                                    </Group>
+                                    <i className="fa-regular fa-arrow-right" />
+                                </Group>
+                            ))}
+                    </Stack>
+                </Stack>
+            </Modal>
         </PlumProvider>
     )
 }

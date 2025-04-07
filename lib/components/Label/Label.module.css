@@ -2,6 +2,7 @@
     color: var(--mantine-color-red-5);
     display: inline;
     font-size: var(--mantine-font-size-sm);
+    line-height: 1rem;
 }
 
 :global(.mantine-Textarea-required) {

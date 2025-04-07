@@ -582,3 +582,68 @@ export const ArrowFromBottomFarFAIcon = React.forwardRef<SVGSVGElement, FAIconPr
         />
     </svg>
 ))
+
+export const ChevronLeftFAIcon = React.forwardRef<SVGSVGElement, FAIconProps>(({ ariaHidden = "true", color, filled = false, size = 16, style, ...others }, ref) => (
+    <svg
+        // Provided by FontAwesome SVG
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+        // Plum properties
+        aria-hidden={ariaHidden}
+        color={color}
+        ref={ref}
+        role="img"
+        style={{ width: rem(size), height: rem(size), ...style }}
+        {...others}
+    >
+        {/* <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--> */}
+        <path
+            fill="currentColor"
+            d={filled
+                ? "M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
+                : "M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"}
+        />
+    </svg>
+))
+
+export const ChevronRightFAIcon = React.forwardRef<SVGSVGElement, FAIconProps>(({ ariaHidden = "true", color, filled = false, size = 16, style, ...others }, ref) => (
+    <svg
+        // Provided by FontAwesome SVG
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+        // Plum properties
+        aria-hidden={ariaHidden}
+        color={color}
+        ref={ref}
+        role="img"
+        style={{ width: rem(size), height: rem(size), ...style }}
+        {...others}
+    >
+        {/* <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--> */}
+        <path
+            fill="currentColor"
+            d={filled
+                ? "M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+                : "M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"}
+        />
+    </svg>
+))
+
+export const ArrowRightFarFAIcon = React.forwardRef<SVGSVGElement, FAIconProps>(({ ariaHidden = "true", color, filled = false, size = 16, style, ...others }, ref) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 448 512"
+        aria-hidden={ariaHidden}
+        color={color}
+        ref={ref}
+        role="img"
+        style={{ width: rem(size), height: rem(size), ...style }}
+        {...others}
+    >
+        {/* <!--!Font Awesome Pro 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2025 Fonticons, Inc.--> */}
+        <path
+            fill="currentColor"
+            d="M440.6 273.4c4.7-4.5 7.4-10.8 7.4-17.4s-2.7-12.8-7.4-17.4l-176-168c-9.6-9.2-24.8-8.8-33.9 .8s-8.8 24.8 .8 33.9L364.1 232 24 232c-13.3 0-24 10.7-24 24s10.7 24 24 24l340.1 0L231.4 406.6c-9.6 9.2-9.9 24.3-.8 33.9s24.3 9.9 33.9 .8l176-168z"
+        />
+    </svg>
+))

@@ -1,4 +1,6 @@
 declare const classes: {
+    accountRowIcon: any
+    accountRow: string | undefined
     main: string | undefined
     title: string | undefined
     readonly container: string
