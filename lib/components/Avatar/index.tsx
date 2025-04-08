@@ -1,6 +1,6 @@
 import { forwardRef } from "react"
 import { Avatar as MantineAvatar, AvatarProps as MantineAvatarProps } from "@mantine/core"
-import { UserFarFAIcon } from "@/components/Icons"
+import { UserLargeFarFAIcon } from "@/components/Icons"
 
 import classes from "./Avatar.module.css"
 
@@ -27,7 +27,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(({
             size="md"
             {...rest}
         >
-            {children || <UserFarFAIcon />}
+            {children || <UserLargeFarFAIcon />}
         </MantineAvatar>
     )
 })

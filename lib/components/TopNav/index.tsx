@@ -4,7 +4,7 @@ import { Avatar } from "@/components/Avatar"
 import { SearchPopdown } from "@/components/SearchPopdown"
 import {
     BellFarFAIcon,
-    PlusFarFAIcon,
+    CircleQuestionFarFAIcon,
     StarFarFAIcon,
     UserFarFAIcon,
     XMarkFarFAIcon,
@@ -15,6 +15,7 @@ import { Menu } from "@/components/Menu"
 import { Tabs } from "@/components/Tabs"
 import { Tile } from "@/components/Tile"
 import { Badge } from "@/components/Badge"
+import BadgeClasses from "@/components/Badge/Badge.module.css"
 import { useState } from "react"
 import { SearchBar } from "@/components/SearchBar"
 
@@ -121,30 +122,58 @@ export const TopNav = ({
                             />
                         )}
                     >
-                        <Flex w="100%" align="center" gap="md" direction="column">
-                            <Stack gap="md" px="0" ml="auto" mr="auto" pt="5rem" w="100%" align="center">
-                                <Text w="100%" px="10rem" fw={500} size="xl" c="gray.9">Search</Text>
+                        <Flex
+                            align="center"
+                            gap="md"
+                            direction="column"
+                            w="100%"
+                            className={`${classes.searchContent} ${opened ? classes.searchContentVisible : ""}`}
+                        >
+                            <Stack gap="md" px="0" ml="auto" mr="auto" pt="5rem" align="center" w="100%">
+                                <Flex w="100%" maw="50rem" ml="auto" mr="auto" justify="space-between" align="center">
+                                    <Text fw={500} size="xl" c="gray.9">Search</Text>
+                                    <Button
+                                        variant="secondary"
+                                        size="lg"
+                                        onClick={() => setOpened(false)}
+                                        aria-label="Close search"
+                                    >
+                                        <XMarkFarFAIcon />
+                                    </Button>
+                                </Flex>
                                 <Tabs defaultValue="recent" w="100%">
-                                    <Tabs.List px="10rem" maw="100%">
+                                    <Tabs.List maw="50rem" ml="auto" mr="auto">
                                         <Tabs.Tab value="recent">Recent</Tabs.Tab>
                                         <Tabs.Tab value="favorites">Favorites</Tabs.Tab>
                                         <Tabs.Tab value="datasets">Datasets</Tabs.Tab>
                                     </Tabs.List>
 
-                                    <Tabs.Panel value="recent">
-                                        <Stack gap="md" p="md" maw="100%" px="10rem">
-                                            <Stack gap="xs">
-                                                <Flex gap="md" align="center" p="xs" className={classes.officialRow}>
-                                                    <Avatar
-                                                        src="https://www.congress.gov/img/member/s000033.jpg"
-                                                        alt="Bernie Sanders"
-                                                        size="lg"
-                                                    />
+                                    <Tabs.Panel value="recent" w="100%" maw="50rem" ml="auto" mr="auto">
+                                        <Stack gap="md" pt="1rem" w="100%" maw="100%">
+                                            <Stack gap="xxs">
+                                                <Flex gap="md" align="center" className={classes.officialRow} w="100%">
+                                                    <Box pos="relative">
+                                                        <Avatar
+                                                            src="https://www.congress.gov/img/member/s000033.jpg"
+                                                            alt="Bernie Sanders"
+                                                            size="lg"
+                                                        />
+                                                        <Badge
+                                                            variant="dot-only"
+                                                            styles={(theme) => ({
+                                                                root: {
+                                                                    backgroundColor: theme.colors.democratic[3],
+                                                                    color: theme.colors.democratic[8],
+                                                                },
+                                                            })}
+                                                            className={BadgeClasses.partyBadge}
+                                                            aria-label="Democrat"
+                                                        >
+                                                            D
+                                                        </Badge>
+                                                    </Box>
                                                     <Stack gap={0}>
-                                                        <Flex align="center" gap="xs">
-                                                            <Text fw={500} c="gray.9" size="md">Bernie Sanders</Text>
-                                                            <Badge variant="filled" color="blue" size="xs">Democrat</Badge>
-                                                        </Flex>
+                                                        <Text fw={500} c="gray.9" size="md">Bernie Sanders</Text>
                                                         <Text c="gray.7" size="sm">Senator, Vermont</Text>
                                                     </Stack>
                                                     <Group gap="xs" className={classes.officialActions}>
@@ -157,17 +186,29 @@ export const TopNav = ({
                                                     </Group>
                                                 </Flex>
 
-                                                <Flex gap="md" align="center" p="xs" className={classes.officialRow}>
-                                                    <Avatar
-                                                        src="https://www.congress.gov/img/member/y000064.jpg"
-                                                        alt="Todd Young"
-                                                        size="lg"
-                                                    />
+                                                <Flex gap="md" align="center" className={classes.officialRow}>
+                                                    <Box pos="relative">
+                                                        <Avatar
+                                                            src="https://www.congress.gov/img/member/y000064.jpg"
+                                                            alt="Todd Young"
+                                                            size="lg"
+                                                        />
+                                                        <Badge
+                                                            variant="dot-only"
+                                                            styles={(theme) => ({
+                                                                root: {
+                                                                    backgroundColor: theme.colors.republican[3],
+                                                                    color: theme.colors.republican[8],
+                                                                },
+                                                            })}
+                                                            className={BadgeClasses.partyBadge}
+                                                            aria-label="Republican"
+                                                        >
+                                                            R
+                                                        </Badge>
+                                                    </Box>
                                                     <Stack gap={0}>
-                                                        <Flex align="center" gap="xs">
-                                                            <Text fw={500} c="gray.9" size="md">Todd Young</Text>
-                                                            <Badge variant="filled" color="red" size="xs">Republican</Badge>
-                                                        </Flex>
+                                                        <Text fw={500} c="gray.9" size="md">Todd Young</Text>
                                                         <Text c="gray.7" size="sm">Senator, Indiana</Text>
                                                     </Stack>
                                                     <Group gap="xs" className={classes.officialActions}>
@@ -180,17 +221,29 @@ export const TopNav = ({
                                                     </Group>
                                                 </Flex>
 
-                                                <Flex gap="md" align="center" p="xs" className={classes.officialRow}>
-                                                    <Avatar
-                                                        src="https://www.congress.gov/img/member/p000197.jpg"
-                                                        alt="Nancy Pelosi"
-                                                        size="lg"
-                                                    />
+                                                <Flex gap="md" align="center" className={classes.officialRow}>
+                                                    <Box pos="relative">
+                                                        <Avatar
+                                                            src="https://www.congress.gov/img/member/p000197.jpg"
+                                                            alt="Nancy Pelosi"
+                                                            size="lg"
+                                                        />
+                                                        <Badge
+                                                            variant="dot-only"
+                                                            styles={(theme) => ({
+                                                                root: {
+                                                                    backgroundColor: theme.colors.democratic[3],
+                                                                    color: theme.colors.democratic[8],
+                                                                },
+                                                            })}
+                                                            className={BadgeClasses.partyBadge}
+                                                            aria-label="Democrat"
+                                                        >
+                                                            D
+                                                        </Badge>
+                                                    </Box>
                                                     <Stack gap={0}>
-                                                        <Flex align="center" gap="xs">
-                                                            <Text fw={500} c="gray.9" size="md">Nancy Pelosi</Text>
-                                                            <Badge variant="filled" color="blue" size="xs">Democrat</Badge>
-                                                        </Flex>
+                                                        <Text fw={500} c="gray.9" size="md">Nancy Pelosi</Text>
                                                         <Text c="gray.7" size="sm">Representative, California</Text>
                                                     </Stack>
                                                     <Group gap="xs" className={classes.officialActions}>
@@ -203,17 +256,29 @@ export const TopNav = ({
                                                     </Group>
                                                 </Flex>
 
-                                                <Flex gap="md" align="center" p="xs" className={classes.officialRow}>
-                                                    <Avatar
-                                                        src="https://www.congress.gov/img/member/s000148.jpg"
-                                                        alt="Chuck Schumer"
-                                                        size="lg"
-                                                    />
+                                                <Flex gap="md" align="center" className={classes.officialRow}>
+                                                    <Box pos="relative">
+                                                        <Avatar
+                                                            src="https://www.congress.gov/img/member/s000148.jpg"
+                                                            alt="Chuck Schumer"
+                                                            size="lg"
+                                                        />
+                                                        <Badge
+                                                            variant="dot-only"
+                                                            styles={(theme) => ({
+                                                                root: {
+                                                                    backgroundColor: theme.colors.democratic[3],
+                                                                    color: theme.colors.democratic[8],
+                                                                },
+                                                            })}
+                                                            className={BadgeClasses.partyBadge}
+                                                            aria-label="Democrat"
+                                                        >
+                                                            D
+                                                        </Badge>
+                                                    </Box>
                                                     <Stack gap={0}>
-                                                        <Flex align="center" gap="xs">
-                                                            <Text fw={500} c="gray.9" size="md">Chuck Schumer</Text>
-                                                            <Badge variant="filled" color="blue" size="xs">Democrat</Badge>
-                                                        </Flex>
+                                                        <Text fw={500} c="gray.9" size="md">Chuck Schumer</Text>
                                                         <Text c="gray.7" size="sm">Senate Majority Leader</Text>
                                                     </Stack>
                                                     <Group gap="xs" className={classes.officialActions}>
@@ -226,17 +291,29 @@ export const TopNav = ({
                                                     </Group>
                                                 </Flex>
 
-                                                <Flex gap="md" align="center" p="xs" className={classes.officialRow}>
-                                                    <Avatar
-                                                        src="https://www.congress.gov/img/member/m000314.jpg"
-                                                        alt="Kevin McCarthy"
-                                                        size="lg"
-                                                    />
+                                                <Flex gap="md" align="center" className={classes.officialRow}>
+                                                    <Box pos="relative">
+                                                        <Avatar
+                                                            src="https://www.congress.gov/img/member/m000314.jpg"
+                                                            alt="Kevin McCarthy"
+                                                            size="lg"
+                                                        />
+                                                        <Badge
+                                                            variant="dot-only"
+                                                            styles={(theme) => ({
+                                                                root: {
+                                                                    backgroundColor: theme.colors.republican[3],
+                                                                    color: theme.colors.republican[8],
+                                                                },
+                                                            })}
+                                                            className={BadgeClasses.partyBadge}
+                                                            aria-label="Republican"
+                                                        >
+                                                            R
+                                                        </Badge>
+                                                    </Box>
                                                     <Stack gap={0}>
-                                                        <Flex align="center" gap="xs">
-                                                            <Text fw={500} c="gray.9" size="md">Kevin McCarthy</Text>
-                                                            <Badge variant="filled" color="red" size="xs">Republican</Badge>
-                                                        </Flex>
+                                                        <Text fw={500} c="gray.9" size="md">Kevin McCarthy</Text>
                                                         <Text c="gray.7" size="sm">House Minority Leader</Text>
                                                     </Stack>
                                                     <Group gap="xs" className={classes.officialActions}>
@@ -249,17 +326,29 @@ export const TopNav = ({
                                                     </Group>
                                                 </Flex>
 
-                                                <Flex gap="md" align="center" p="xs" className={classes.officialRow}>
-                                                    <Avatar
-                                                        src="https://www.congress.gov/img/member/w000187.jpg"
-                                                        alt="Elizabeth Warren"
-                                                        size="lg"
-                                                    />
+                                                <Flex gap="md" align="center" className={classes.officialRow}>
+                                                    <Box pos="relative">
+                                                        <Avatar
+                                                            src="https://www.congress.gov/img/member/w000187.jpg"
+                                                            alt="Elizabeth Warren"
+                                                            size="lg"
+                                                        />
+                                                        <Badge
+                                                            variant="dot-only"
+                                                            styles={(theme) => ({
+                                                                root: {
+                                                                    backgroundColor: theme.colors.democratic[3],
+                                                                    color: theme.colors.democratic[8],
+                                                                },
+                                                            })}
+                                                            className={BadgeClasses.partyBadge}
+                                                            aria-label="Democrat"
+                                                        >
+                                                            D
+                                                        </Badge>
+                                                    </Box>
                                                     <Stack gap={0}>
-                                                        <Flex align="center" gap="xs">
-                                                            <Text fw={500} c="gray.9" size="md">Elizabeth Warren</Text>
-                                                            <Badge variant="filled" color="blue" size="xs">Democrat</Badge>
-                                                        </Flex>
+                                                        <Text fw={500} c="gray.9" size="md">Elizabeth Warren</Text>
                                                         <Text c="gray.7" size="sm">Senator, Massachusetts</Text>
                                                     </Stack>
                                                     <Group gap="xs" className={classes.officialActions}>
@@ -272,17 +361,29 @@ export const TopNav = ({
                                                     </Group>
                                                 </Flex>
 
-                                                <Flex gap="md" align="center" p="xs" className={classes.officialRow}>
-                                                    <Avatar
-                                                        src="https://www.congress.gov/img/member/c001056.jpg"
-                                                        alt="Ted Cruz"
-                                                        size="lg"
-                                                    />
+                                                <Flex gap="md" align="center" className={classes.officialRow}>
+                                                    <Box pos="relative">
+                                                        <Avatar
+                                                            src="https://www.congress.gov/img/member/c001056.jpg"
+                                                            alt="Ted Cruz"
+                                                            size="lg"
+                                                        />
+                                                        <Badge
+                                                            variant="dot-only"
+                                                            styles={(theme) => ({
+                                                                root: {
+                                                                    backgroundColor: theme.colors.republican[3],
+                                                                    color: theme.colors.republican[8],
+                                                                },
+                                                            })}
+                                                            className={BadgeClasses.partyBadge}
+                                                            aria-label="Republican"
+                                                        >
+                                                            R
+                                                        </Badge>
+                                                    </Box>
                                                     <Stack gap={0}>
-                                                        <Flex align="center" gap="xs">
-                                                            <Text fw={500} c="gray.9" size="md">Ted Cruz</Text>
-                                                            <Badge variant="filled" color="red" size="xs">Republican</Badge>
-                                                        </Flex>
+                                                        <Text fw={500} c="gray.9" size="md">Ted Cruz</Text>
                                                         <Text c="gray.7" size="sm">Senator, Texas</Text>
                                                     </Stack>
                                                     <Group gap="xs" className={classes.officialActions}>
@@ -295,17 +396,29 @@ export const TopNav = ({
                                                     </Group>
                                                 </Flex>
 
-                                                <Flex gap="md" align="center" p="xs" className={classes.officialRow}>
-                                                    <Avatar
-                                                        src="https://www.congress.gov/img/member/o000172.jpg"
-                                                        alt="Alexandria Ocasio-Cortez"
-                                                        size="lg"
-                                                    />
+                                                <Flex gap="md" align="center" className={classes.officialRow}>
+                                                    <Box pos="relative">
+                                                        <Avatar
+                                                            src="https://www.congress.gov/img/member/o000172.jpg"
+                                                            alt="Alexandria Ocasio-Cortez"
+                                                            size="lg"
+                                                        />
+                                                        <Badge
+                                                            variant="dot-only"
+                                                            styles={(theme) => ({
+                                                                root: {
+                                                                    backgroundColor: theme.colors.democratic[3],
+                                                                    color: theme.colors.democratic[8],
+                                                                },
+                                                            })}
+                                                            className={BadgeClasses.partyBadge}
+                                                            aria-label="Democrat"
+                                                        >
+                                                            D
+                                                        </Badge>
+                                                    </Box>
                                                     <Stack gap={0}>
-                                                        <Flex align="center" gap="xs">
-                                                            <Text fw={500} c="gray.9" size="md">Alexandria Ocasio-Cortez</Text>
-                                                            <Badge variant="filled" color="blue" size="xs">Democrat</Badge>
-                                                        </Flex>
+                                                        <Text fw={500} c="gray.9" size="md">Alexandria Ocasio-Cortez</Text>
                                                         <Text c="gray.7" size="sm">Representative, New York</Text>
                                                     </Stack>
                                                     <Group gap="xs" className={classes.officialActions}>
@@ -321,97 +434,133 @@ export const TopNav = ({
                                         </Stack>
                                     </Tabs.Panel>
 
-                                    <Tabs.Panel value="favorites">
-                                        <Stack gap="md" p="md" maw="100%" px="10rem">
-                                            <Stack gap="xs">
-                                                <Flex gap="md" align="center" p="xs" className={classes.officialRow}>
-                                                    <Avatar
-                                                        src="https://www.congress.gov/img/member/s000033.jpg"
-                                                        alt="Bernie Sanders"
-                                                        size="lg"
-                                                    />
+                                    <Tabs.Panel value="favorites" w="100%" maw="50rem" ml="auto" mr="auto">
+                                        <Stack gap="md" pt="1rem" w="100%" maw="100%">
+                                            <Stack gap="xxs">
+                                                <Flex gap="md" align="center" className={classes.officialRow}>
+                                                    <Box pos="relative">
+                                                        <Avatar
+                                                            src="https://www.congress.gov/img/member/s000033.jpg"
+                                                            alt="Bernie Sanders"
+                                                            size="lg"
+                                                        />
+                                                        <Badge
+                                                            variant="dot-only"
+                                                            styles={(theme) => ({
+                                                                root: {
+                                                                    backgroundColor: theme.colors.democratic[3],
+                                                                    color: theme.colors.democratic[8],
+                                                                },
+                                                            })}
+                                                            className={BadgeClasses.partyBadge}
+                                                            aria-label="Democrat"
+                                                        >
+                                                            D
+                                                        </Badge>
+                                                    </Box>
                                                     <Stack gap={0}>
-                                                        <Flex align="center" gap="xs">
-                                                            <Text fw={500} c="gray.9" size="md">Bernie Sanders</Text>
-                                                            <Badge variant="filled" color="blue" size="xs">Democrat</Badge>
-                                                        </Flex>
+                                                        <Text fw={500} c="gray.9" size="md">Bernie Sanders</Text>
                                                         <Text c="gray.7" size="sm">Senator, Vermont</Text>
                                                     </Stack>
                                                     <Group gap="xs" className={classes.officialActions}>
                                                         <Button variant="tertiary" size="sm" aria-label="Remove from favorites">
                                                             <StarFarFAIcon filled />
                                                         </Button>
-                                                        <Button variant="tertiary" size="sm" aria-label="Remove">
-                                                            <XMarkFarFAIcon />
-                                                        </Button>
                                                     </Group>
                                                 </Flex>
 
-                                                <Flex gap="md" align="center" p="xs" className={classes.officialRow}>
-                                                    <Avatar
-                                                        src="https://www.congress.gov/img/member/o000172.jpg"
-                                                        alt="Alexandria Ocasio-Cortez"
-                                                        size="lg"
-                                                    />
+                                                <Flex gap="md" align="center" className={classes.officialRow}>
+                                                    <Box pos="relative">
+                                                        <Avatar
+                                                            src="https://www.congress.gov/img/member/o000172.jpg"
+                                                            alt="Alexandria Ocasio-Cortez"
+                                                            size="lg"
+                                                        />
+                                                        <Badge
+                                                            variant="dot-only"
+                                                            styles={(theme) => ({
+                                                                root: {
+                                                                    backgroundColor: theme.colors.democratic[3],
+                                                                    color: theme.colors.democratic[8],
+                                                                },
+                                                            })}
+                                                            className={BadgeClasses.partyBadge}
+                                                            aria-label="Democrat"
+                                                        >
+                                                            D
+                                                        </Badge>
+                                                    </Box>
                                                     <Stack gap={0}>
-                                                        <Flex align="center" gap="xs">
-                                                            <Text fw={500} c="gray.9" size="md">Alexandria Ocasio-Cortez</Text>
-                                                            <Badge variant="filled" color="blue" size="xs">Democrat</Badge>
-                                                        </Flex>
+                                                        <Text fw={500} c="gray.9" size="md">Alexandria Ocasio-Cortez</Text>
                                                         <Text c="gray.7" size="sm">Representative, New York</Text>
                                                     </Stack>
                                                     <Group gap="xs" className={classes.officialActions}>
                                                         <Button variant="tertiary" size="sm" aria-label="Remove from favorites">
                                                             <StarFarFAIcon filled />
                                                         </Button>
-                                                        <Button variant="tertiary" size="sm" aria-label="Remove">
-                                                            <XMarkFarFAIcon />
-                                                        </Button>
                                                     </Group>
                                                 </Flex>
 
-                                                <Flex gap="md" align="center" p="xs" className={classes.officialRow}>
-                                                    <Avatar
-                                                        src="https://www.congress.gov/img/member/y000064.jpg"
-                                                        alt="Todd Young"
-                                                        size="lg"
-                                                    />
+                                                <Flex gap="md" align="center" className={classes.officialRow}>
+                                                    <Box pos="relative">
+                                                        <Avatar
+                                                            src="https://www.congress.gov/img/member/y000064.jpg"
+                                                            alt="Todd Young"
+                                                            size="lg"
+                                                        />
+                                                        <Badge
+                                                            variant="dot-only"
+                                                            styles={(theme) => ({
+                                                                root: {
+                                                                    backgroundColor: theme.colors.republican[3],
+                                                                    color: theme.colors.republican[8],
+                                                                },
+                                                            })}
+                                                            className={BadgeClasses.partyBadge}
+                                                            aria-label="Republican"
+                                                        >
+                                                            R
+                                                        </Badge>
+                                                    </Box>
                                                     <Stack gap={0}>
-                                                        <Flex align="center" gap="xs">
-                                                            <Text fw={500} c="gray.9" size="md">Todd Young</Text>
-                                                            <Badge variant="filled" color="red" size="xs">Republican</Badge>
-                                                        </Flex>
+                                                        <Text fw={500} c="gray.9" size="md">Todd Young</Text>
                                                         <Text c="gray.7" size="sm">Senator, Indiana</Text>
                                                     </Stack>
                                                     <Group gap="xs" className={classes.officialActions}>
                                                         <Button variant="tertiary" size="sm" aria-label="Remove from favorites">
                                                             <StarFarFAIcon filled />
                                                         </Button>
-                                                        <Button variant="tertiary" size="sm" aria-label="Remove">
-                                                            <XMarkFarFAIcon />
-                                                        </Button>
                                                     </Group>
                                                 </Flex>
 
-                                                <Flex gap="md" align="center" p="xs" className={classes.officialRow}>
-                                                    <Avatar
-                                                        src="https://www.congress.gov/img/member/w000187.jpg"
-                                                        alt="Elizabeth Warren"
-                                                        size="lg"
-                                                    />
+                                                <Flex gap="md" align="center" className={classes.officialRow}>
+                                                    <Box pos="relative">
+                                                        <Avatar
+                                                            src="https://www.congress.gov/img/member/w000187.jpg"
+                                                            alt="Elizabeth Warren"
+                                                            size="lg"
+                                                        />
+                                                        <Badge
+                                                            variant="dot-only"
+                                                            styles={(theme) => ({
+                                                                root: {
+                                                                    backgroundColor: theme.colors.democratic[3],
+                                                                    color: theme.colors.democratic[8],
+                                                                },
+                                                            })}
+                                                            className={BadgeClasses.partyBadge}
+                                                            aria-label="Democrat"
+                                                        >
+                                                            D
+                                                        </Badge>
+                                                    </Box>
                                                     <Stack gap={0}>
-                                                        <Flex align="center" gap="xs">
-                                                            <Text fw={500} c="gray.9" size="md">Elizabeth Warren</Text>
-                                                            <Badge variant="filled" color="blue" size="xs">Democrat</Badge>
-                                                        </Flex>
+                                                        <Text fw={500} c="gray.9" size="md">Elizabeth Warren</Text>
                                                         <Text c="gray.7" size="sm">Senator, Massachusetts</Text>
                                                     </Stack>
                                                     <Group gap="xs" className={classes.officialActions}>
                                                         <Button variant="tertiary" size="sm" aria-label="Remove from favorites">
                                                             <StarFarFAIcon filled />
-                                                        </Button>
-                                                        <Button variant="tertiary" size="sm" aria-label="Remove">
-                                                            <XMarkFarFAIcon />
                                                         </Button>
                                                     </Group>
                                                 </Flex>
@@ -427,8 +576,8 @@ export const TopNav = ({
                                         </Stack>
                                     </Tabs.Panel>
 
-                                    <Tabs.Panel value="datasets">
-                                        <Stack gap="md" p="md" maw="100%" px="10rem" align="center" styles={{ root: { flexDirection: "row", flexWrap: "wrap" } }}>
+                                    <Tabs.Panel value="datasets" w="100%" maw="50rem" ml="auto" mr="auto" styles={{ panel: { overflow: "visible" } }}>
+                                        <Stack gap="md" pt="1rem" w="100%" maw="100%" align="center" styles={{ root: { flexDirection: "row", flexWrap: "wrap" } }}>
                                             <Tile
                                                 variant="secondary"
                                                 size="md"
@@ -530,7 +679,7 @@ export const TopNav = ({
                                     size="md"
                                     aria-label="Help"
                                 >
-                                    <UserFarFAIcon />
+                                    <CircleQuestionFarFAIcon />
                                 </Button>
                             </Menu.Target>
                             <Menu.Dropdown>

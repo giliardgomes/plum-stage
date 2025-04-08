@@ -44,17 +44,6 @@ export const SearchPopdown = forwardRef<HTMLDivElement, SearchPopdownProps>(({
                 {target}
             </div>
             <div className={`${classes.dropdown} ${opened ? classes.dropdownOpen : ""}`}>
-                <Flex justify="flex-end" mb="md">
-                    <Button
-                        variant="tertiary"
-                        size="lg"
-                        onClick={() => onOpenChange(false)}
-                        aria-label="Close search"
-                        className={classes.closeButton}
-                    >
-                        <XMarkFarFAIcon />
-                    </Button>
-                </Flex>
                 <Stack>
                     {children}
                 </Stack>

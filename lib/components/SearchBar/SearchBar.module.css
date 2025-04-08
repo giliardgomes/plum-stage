@@ -25,7 +25,8 @@
     }
 
     &:focus {
-        box-shadow: 0 0 0 0.125rem var(--mantine-color-violet-3);
+        box-shadow: 0 0 0 0.125rem var(--mantine-color-violet-5);
+        background: var(--mantine-color-white);
     }
 
     &::placeholder {
@@ -53,6 +54,8 @@
 
 .leftSection {
     display: flex;
+    color: var(--mantine-color-gray-6);
+    transition: color 0.3s ease-in-out;
 }
 
 .rightSection {

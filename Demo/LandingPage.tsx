@@ -60,6 +60,15 @@ import { Link } from "../lib/components/Link"
 import { Pagination } from "../lib/components/Pagination"
 import { Modal } from "../lib/components/Modal"
 
+function TableErrorFallback({ error, resetErrorBoundary }) {
+    return (
+        <div>
+            <Text c="gray.7">There was an error loading the table. Please try again.</Text>
+            <Button variant="secondary" onClick={resetErrorBoundary}>Retry</Button>
+        </div>
+    )
+}
+
 export function LandingPage() {
     const [currentTab, setCurrentTab] = useState("profile")
     const [show2FASetup, setShow2FASetup] = useState(false)
@@ -488,6 +497,20 @@ export function LandingPage() {
             required: "Yes",
             visibility: "HR only",
             id: "probation-end",
+        },
+        {
+            fieldName: "Vacation days",
+            type: "Text",
+            required: "Yes",
+            visibility: "Team leads",
+            id: "vacation-days",
+        },
+        {
+            fieldName: "Team name",
+            type: "Select",
+            required: "Yes",
+            visibility: "All users",
+            id: "team-name",
         },
     ]
 
@@ -1410,25 +1433,110 @@ export function LandingPage() {
                                                     {" "}
                                                     custom fields
                                                 </Text>
-                                                <Button
-                                                    variant="primary"
-                                                    leftSection={<i className="fa-regular fa-plus" />}
-                                                    onClick={() => console.log("Add custom field")}
-                                                >
-                                                    Add field
-                                                </Button>
+                                                <Group gap="xs">
+                                                    <Button
+                                                        variant="tertiary"
+                                                        aria-label="Download"
+                                                    >
+                                                        <i className="fa-regular fa-arrow-to-bottom" />
+                                                    </Button>
+                                                    <Button
+                                                        variant="tertiary"
+                                                        aria-label="Save list"
+                                                    >
+                                                        <i className="fa-regular fa-bookmark" />
+                                                    </Button>
+                                                    <Button
+                                                        variant="tertiary"
+                                                        aria-label="Create alert"
+                                                    >
+                                                        <i className="fa-regular fa-bell" />
+                                                    </Button>
+                                                    <Button
+                                                        ml="xs"
+                                                        variant="primary"
+                                                        leftSection={<i className="fa-regular fa-plus" />}
+                                                        onClick={() => console.log("Add custom field")}
+                                                    >
+                                                        Add field
+                                                    </Button>
+                                                </Group>
                                             </Group>
 
                                             <Table
                                                 data={customFieldsData}
+                                                itemsPerPage={11}
                                                 columns={[
-                                                    { key: "fieldName", header: "Field name" },
-                                                    { key: "type", header: "Type" },
-                                                    { key: "required", header: "Required" },
-                                                    { key: "visibility", header: "Visibility" },
+                                                    {
+                                                        key: "fieldName",
+                                                        header: "Field name",
+                                                        width: "30%",
+                                                    },
+                                                    {
+                                                        key: "type",
+                                                        header: "Type",
+                                                        width: "15%",
+                                                    },
+                                                    {
+                                                        key: "required",
+                                                        header: "Required",
+                                                        width: "15%",
+                                                        render: () => {
+                                                            const [selectedValue, setSelectedValue] = useState("Yes")
+
+                                                            return (
+                                                                <Select
+                                                                    label=""
+                                                                    value={selectedValue}
+                                                                    data={[
+                                                                        { label: "Yes", value: "Yes" },
+                                                                        { label: "No", value: "No" },
+                                                                    ]}
+                                                                    onChange={(value) => {
+                                                                        setSelectedValue(value || "Yes")
+                                                                        console.log(`Changed required status to ${value}`)
+                                                                    }}
+                                                                    aria-label="Set required status"
+                                                                />
+                                                            )
+                                                        },
+                                                    },
+                                                    {
+                                                        key: "visibility",
+                                                        header: "Visibility",
+                                                        width: "20%",
+                                                        render: () => {
+                                                            const [selectedValue, setSelectedValue] = useState("All users")
+
+                                                            return (
+                                                                <Select
+                                                                    label=""
+                                                                    value={selectedValue}
+                                                                    data={[
+                                                                        { label: "All users", value: "All users" },
+                                                                        { label: "Admins only", value: "Admins only" },
+                                                                        { label: "Team leads", value: "Team leads" },
+                                                                        { label: "Project managers", value: "Project managers" },
+                                                                        { label: "HR only", value: "HR only" },
+                                                                        { label: "IT admin", value: "IT admin" },
+                                                                        { label: "Security team", value: "Security team" },
+                                                                        { label: "Finance team", value: "Finance team" },
+                                                                        { label: "Managers", value: "Managers" },
+                                                                        { label: "Event planners", value: "Event planners" },
+                                                                    ]}
+                                                                    onChange={(value) => {
+                                                                        setSelectedValue(value || "All users")
+                                                                        console.log(`Changed visibility to ${value}`)
+                                                                    }}
+                                                                    aria-label="Set visibility"
+                                                                />
+                                                            )
+                                                        },
+                                                    },
                                                     {
                                                         key: "actions",
                                                         header: "Actions",
+                                                        width: "20%",
                                                         render: (row) => (
                                                             <TableActions
                                                                 onEdit={() => handleEditField(row.id)}

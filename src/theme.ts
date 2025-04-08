@@ -20,7 +20,6 @@ const quorumViolet: MantineColorsTuple = [
 ]
 
 export const plumTheme: MantineThemeOverride = createTheme({
-    /** Put your mantine theme override here */
     colors: {
         violet: [
             "#FBFAFE",
@@ -119,6 +118,30 @@ export const plumTheme: MantineThemeOverride = createTheme({
             "#343A40",
             "#212529",
         ],
+        republican: [
+            "#FFF5F5",
+            "#FFE0E0",
+            "#FFC5C5",
+            "#FFA8A8",
+            "#FF8787",
+            "#E0201E", // Main color
+            "#C71F1C",
+            "#AD1D1B",
+            "#941B19",
+            "#7A1917",
+        ] as MantineColorsTuple,
+        democratic: [
+            "#F5F8FF",
+            "#E0EAFF",
+            "#C5D9FF",
+            "#A8C5FF",
+            "#87AEFF",
+            "#0044CC", // Main color
+            "#003DB8",
+            "#0036A3",
+            "#002E8F",
+            "#00277A",
+        ] as MantineColorsTuple,
     },
     headings: {
         fontWeight: "500",
@@ -146,17 +169,10 @@ export const plumTheme: MantineThemeOverride = createTheme({
 })
 
 export const plumVariables: CSSVariablesResolver = (theme) => ({
-
     variables: {
-        // TYPOGRAPHY - see https://plum.quorum.us/4a128e208/p/642274-typography/b/114c78
-
-        // TYPOGRAPHY - HEADINGS
         "--plum-font-size-heading-xs": rem("18px"),
         "--plum-line-height-heading-xs": rem("24px"),
         "--plum-letter-spacing-heading-xs": rem("0.3px"),
-
-        // TYPOGRAPHY - PARAGRAPH
-
         "--plum-font-size-paragraph-md": rem("14px"),
         "--plum-line-height-paragraph-md": rem("20px"),
         "--plum-letter-spacing-paragraph-md": rem("0.3px"),
@@ -164,6 +180,5 @@ export const plumVariables: CSSVariablesResolver = (theme) => ({
     light: {
         "--mantine-color-error": theme.colors.red[7],
     },
-    dark: {
-    },
+    dark: {},
 })

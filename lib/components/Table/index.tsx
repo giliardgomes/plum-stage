@@ -45,7 +45,7 @@ const EnhancedTable = <T extends Record<string, any>>({
     const currentData = data.slice(startIndex, endIndex)
 
     return (
-        <Stack gap="md">
+        <Stack gap="sm">
             <MantineTable classNames={classes} {...rest}>
                 <MantineTable.Thead>
                     <MantineTable.Tr>

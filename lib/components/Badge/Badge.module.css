@@ -34,7 +34,26 @@
     margin-right: var(--mantine-spacing-xs);
 }
 
+.root[data-variant="dot-only"] {
+    width: 1rem;
+    height: 1rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 1;
+    justify-content: center;
+    box-shadow: 0 0 0 2px var(--mantine-color-white);
+}
+
 .root[data-variant="gradient"] {
     background-image: var(--badge-gradient);
     color: var(--mantine-color-white);
+}
+
+.partyBadge {
+    position: absolute;
+    bottom: 2px;
+    right: -2px;
 }

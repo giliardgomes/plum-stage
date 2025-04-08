@@ -1,12 +1,13 @@
 import { forwardRef } from "react"
 import { Badge as MantineBadge, BadgeProps as MantineBadgeProps } from "@mantine/core"
+import { clsx } from "clsx"
 import classes from "./Badge.module.css"
 
 export interface BadgeProps extends Omit<MantineBadgeProps, "variant"> {
     /** Set a static selector for engagement tracking with third party tools (ie: Pendo) */
     "data-plum-id"?: string
     /** The variant of the badge */
-    variant?: "filled" | "light" | "outline" | "dot" | "gradient"
+    variant?: "filled" | "light" | "outline" | "dot" | "dot-only" | "gradient"
     /** The size of the badge */
     size?: "xs" | "sm" | "md" | "lg"
     /** Whether the badge is full width */
@@ -31,8 +32,7 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(({
             size={size}
             fullWidth={fullWidth}
             color={color}
-            className={className}
-            classNames={classes}
+            className={clsx(classes.root, className)}
             {...rest}
         >
             {children}
