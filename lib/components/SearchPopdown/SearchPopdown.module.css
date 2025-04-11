@@ -8,12 +8,18 @@
     position: fixed;
     left: 0px;
     top: 0px;
-    background-color: var(--mantine-color-white);
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: -1;
     border: none;
     transition: height 300ms ease;
     height: 0px;
     overflow: hidden;
+
+    :global(.mantine-Tabs-list), :global(.mantine-Tabs-tab) {
+        background: transparent;
+    }
 }
 
 .dropdownOpen {

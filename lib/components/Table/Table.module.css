@@ -3,14 +3,9 @@
     border-collapse: separate;
     border-spacing: 0;
     font-family: var(--mantine-font-family);
-
-    :global(.mantine-Table-table) {
-        border-radius: 1rem;
-        overflow: hidden;
-    }
 }
 
-table {
+:global(.mantine-Table-table) {
     width: calc(100% + 3rem);
     left: -1.5rem;
     position: relative;

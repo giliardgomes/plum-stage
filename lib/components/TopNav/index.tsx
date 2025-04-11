@@ -5,6 +5,7 @@ import { SearchPopdown } from "@/components/SearchPopdown"
 import {
     BellFarFAIcon,
     CircleQuestionFarFAIcon,
+    CogFarFAIcon,
     StarFarFAIcon,
     UserFarFAIcon,
     XMarkFarFAIcon,
@@ -130,8 +131,18 @@ export const TopNav = ({
                             className={`${classes.searchContent} ${opened ? classes.searchContentVisible : ""}`}
                         >
                             <Stack gap="md" px="0" ml="auto" mr="auto" pt="5rem" align="center" w="100%">
-                                <Flex w="100%" maw="50rem" ml="auto" mr="auto" justify="space-between" align="center">
+                                <Flex w="100%" maw="50rem" ml="auto" mr="auto" align="center">
                                     <Text fw={500} size="xl" c="gray.9">Search</Text>
+                                    <Button
+                                        ml="auto"
+                                        mr="1rem"
+                                        variant="tertiary"
+                                        size="sm"
+                                        onClick={() => setOpened(false)}
+                                        aria-label="Settings"
+                                    >
+                                        <CogFarFAIcon />
+                                    </Button>
                                     <Button
                                         variant="secondary"
                                         size="lg"
@@ -582,6 +593,7 @@ export const TopNav = ({
                                                 variant="secondary"
                                                 size="md"
                                                 icon={<UserFarFAIcon />}
+                                                flex={1}
                                             >
                                                 Officials
                                             </Tile>
@@ -589,6 +601,7 @@ export const TopNav = ({
                                                 variant="secondary"
                                                 size="md"
                                                 icon={<UserFarFAIcon />}
+                                                flex={1}
                                             >
                                                 Bills
                                             </Tile>
@@ -596,6 +609,7 @@ export const TopNav = ({
                                                 variant="secondary"
                                                 size="md"
                                                 icon={<UserFarFAIcon />}
+                                                flex={1}
                                             >
                                                 Documents
                                             </Tile>
@@ -603,6 +617,7 @@ export const TopNav = ({
                                                 variant="secondary"
                                                 size="md"
                                                 icon={<UserFarFAIcon />}
+                                                flex={1}
                                             >
                                                 Staffers
                                             </Tile>
@@ -610,6 +625,7 @@ export const TopNav = ({
                                                 variant="secondary"
                                                 size="md"
                                                 icon={<UserFarFAIcon />}
+                                                flex={1}
                                             >
                                                 Contacts
                                             </Tile>
@@ -617,6 +633,7 @@ export const TopNav = ({
                                                 variant="secondary"
                                                 size="md"
                                                 icon={<UserFarFAIcon />}
+                                                flex={1}
                                             >
                                                 Notes
                                             </Tile>
@@ -624,6 +641,7 @@ export const TopNav = ({
                                                 variant="secondary"
                                                 size="md"
                                                 icon={<UserFarFAIcon />}
+                                                flex={1}
                                             >
                                                 Grassroots
                                             </Tile>
@@ -631,6 +649,7 @@ export const TopNav = ({
                                                 variant="secondary"
                                                 size="md"
                                                 icon={<UserFarFAIcon />}
+                                                flex={1}
                                             >
                                                 Official Events
                                             </Tile>
@@ -638,6 +657,7 @@ export const TopNav = ({
                                                 variant="secondary"
                                                 size="md"
                                                 icon={<UserFarFAIcon />}
+                                                flex={1}
                                             >
                                                 Votes
                                             </Tile>
@@ -645,6 +665,7 @@ export const TopNav = ({
                                                 variant="secondary"
                                                 size="md"
                                                 icon={<UserFarFAIcon />}
+                                                flex={1}
                                             >
                                                 Amendments
                                             </Tile>
@@ -652,6 +673,7 @@ export const TopNav = ({
                                                 variant="secondary"
                                                 size="md"
                                                 icon={<UserFarFAIcon />}
+                                                flex={1}
                                             >
                                                 Regulations
                                             </Tile>
@@ -659,6 +681,7 @@ export const TopNav = ({
                                                 variant="secondary"
                                                 size="md"
                                                 icon={<UserFarFAIcon />}
+                                                flex={1}
                                             >
                                                 Committees
                                             </Tile>

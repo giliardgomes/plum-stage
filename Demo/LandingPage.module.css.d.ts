@@ -1,4 +1,5 @@
 declare const classes: {
+    BulkUploadPaper: string | undefined
     accountRowIcon: any
     accountRow: string | undefined
     main: string | undefined

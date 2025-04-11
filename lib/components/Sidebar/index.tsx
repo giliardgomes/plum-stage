@@ -11,9 +11,11 @@ import {
     FileTextFarFAIcon,
     EnvelopeFarFAIcon,
     ReceiptFarFAIcon,
+    YouTubeFarFAIcon,
 } from "@/components/Icons"
 import classes from "./Sidebar.module.css"
 import { Menu } from "@/components/Menu"
+import { Link } from "react-router-dom"
 
 interface NavItemProps {
     icon: React.ReactNode
@@ -95,6 +97,14 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(({
                         </Menu.Item>
                     </Menu.Dropdown>
                 </Menu>
+                <Link to="/VideoHub" style={{ textDecoration: "none" }}>
+                    <NavItem
+                        icon={<YouTubeFarFAIcon />}
+                        label="Video Hub"
+                        onClick={() => handleClick("video-hub")}
+                        active={activeItem === "video-hub"}
+                    />
+                </Link>
                 <NavItem
                     icon={<HomeFarFAIcon />}
                     label="Home"

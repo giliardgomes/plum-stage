@@ -12,6 +12,7 @@
     border-radius: var(--mantine-radius-xl);
     background: var(--mantine-color-violet-7);
     box-shadow: none;
+
     &[data-dangerous] {
         &:focus-visible {
             outline: 2px solid var(--mantine-color-red-6);
@@ -183,10 +184,42 @@
 }
 
 .inner {
-    background-color: inherit;
     gap: rem(8px);
 }
 
 .label {
     height: 1rem;
+}
+
+button[data-size="sm"] span[data-position="left"], button[data-size="sm"] span[data-position="right"] {
+    width: 0.875rem;
+    height: 0.875rem;
+    font-size: 0.875rem;
+
+    svg {
+        max-height: 0.875rem;
+        max-width: 0.875rem;
+    }
+}
+
+button[data-size="md"] span[data-position="left"], button[data-size="md"] span[data-position="right"] {
+    width: 0.875rem;
+    height: 0.875rem;
+    font-size: 0.875rem;
+
+    svg {
+        max-height: 0.875rem;
+        max-width: 0.875rem;
+    }
+}
+
+button[data-size="lg"] span[data-position="left"], button[data-size="lg"] span[data-position="right"] {
+    width: 1rem;
+    height: 1rem;
+    font-size: 1rem;
+
+    svg {
+        max-height: 1rem;
+        max-width: 1rem;
+    }
 }

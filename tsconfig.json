@@ -28,6 +28,11 @@
             "@test-utils": ["src/test-utils"]
         }
     },
-    "include": ["src", "lib", "storybook"],
+    "include": [
+        "src/types/css.d.ts",
+        "src",
+        "lib",
+        "storybook"
+    ],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

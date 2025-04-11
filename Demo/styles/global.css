@@ -1,0 +1,23 @@
+:root {
+    --color-brand-0: #F5FAFF;
+    --color-brand-1: #E5F1FE;
+    --color-brand-2: #CDE4FD;
+    --color-brand-3: #A5CDFA;
+    --color-brand-4: #7EB9F8;
+    --color-brand-5: #4F96F4;
+    --color-brand-6: #417DD1;
+    --color-brand-7: #3666AE;
+    --color-brand-8: #2D528D;
+    --color-brand-9: #1F3A65;
+    /* ... other color variables ... */
+}
+
+button {
+    border-radius: var(--mantine-radius-md);
+}
+
+button[data-design-variant="accent"] {
+    background-color: var(--color-brand-7);
+    border-color: var(--color-brand-7);
+    /* ... other button styles ... */
+}

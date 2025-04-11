@@ -163,3 +163,30 @@
     color: var(--mantine-color-green-5);
 }
 
+.uploadStep {
+    position: relative;
+    padding: var(--mantine-spacing-xl);
+    border-radius: var(--mantine-radius-md);
+    border: 1px solid var(--mantine-color-gray-3);
+}
+
+.stepNumber {
+    position: absolute;
+    top: var(--mantine-spacing-md);
+    left: var(--mantine-spacing-md);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--mantine-color-violet-1);
+    color: var(--mantine-color-violet-7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 500;
+}
+
+.BulkUploadPaper {
+    border: none;
+    background-color: var(--mantine-color-white);
+}
