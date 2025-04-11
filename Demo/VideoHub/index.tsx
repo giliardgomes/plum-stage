@@ -39,6 +39,11 @@ interface VideoData {
 }
 
 export function VideoHub() {
+    useEffect(() => {
+        document.body.classList.add('video-hub-page')
+        return () => document.body.classList.remove('video-hub-page')
+    }, [])
+
     const [activePage, setPage] = useState(1)
     const [activeFilter, setActiveFilter] = useState("all")
     const [selectedVideo, setSelectedVideo] = useState<VideoData | null>(null)
@@ -257,11 +262,15 @@ export function VideoHub() {
             {/* Header */}
             <Flex justify="space-between" align="center" className={classes.hubHeader}>
                 <Flex align={"center"}>
-                    <img alt="Company Logo" height={32} src="https://www.quorum.us/wp-content/uploads/2020/06/Quorum_full_color_dark-1-640x147.png" className={classes.logo} />
-                    <Text ml={"md"} style={{ borderLeft: "1px solid var(--mantine-color-gray-3)", paddingLeft: "1rem" }} fw={500} size="xl" c="gray.9">Video Hub</Text>
+                    {/* <img alt="Company Logo" src="https://www.quorum.us/wp-content/uploads/2020/06/Quorum_full_color_dark-1-640x147.png" className={classes.logo} /> */}
+                    <Text tt={"uppercase"} fw={800} size="32px" ff={"Helvetica Neue, Helvetica, Arial, sans-serif"} c="#7EB9F8" style={{ letterSpacing: "-0.1em" }}>
+                        <span style={{ color: "#2D528D", pointerEvents: "none" }}>Company</span>
+                        <span style={{ fontStyle: "italic", pointerEvents: "none" }}>Logo</span>
+                    </Text>
+                    <Text ml={"md"} style={{ borderLeft: "1px solid var(--mantine-color-gray-3)", paddingLeft: "1rem" }} fw={500} size="lg" c="gray.9">Video Hub</Text>
                 </Flex>
                 {/* Navigation */}
-                <Group justify="space-between" align="center">
+                <Group justify="space-between" align="center" gap={"lg"}>
                     <Group gap={"xs"}>
                         <Button
                             variant="tertiary"
@@ -278,8 +287,7 @@ export function VideoHub() {
                             Social Media
                         </Button>
                     </Group>
-                </Group>
-                <Button
+                    <Button
                         variant="accent"
                         size="md"
                         leftSection={<PlusFarFAIcon />}
@@ -288,6 +296,7 @@ export function VideoHub() {
                     >
                         Submit your story
                     </Button>
+                </Group>
             </Flex>
             <Container>
                 <Stack gap="xl">
@@ -432,8 +441,8 @@ export function VideoHub() {
                                     </Group>
 
                                     {/* Interaction buttons */}
-                                    <Stack gap="xs" my={"md"} w={"100%"} align="flex-start">
-                                        <Group gap={"xs"} className={classes.interactionButtons} styles={{ root: { width: "calc(100% + 2rem)", marginLeft: "-1rem" } }}>
+                                    <Stack gap="xs" mt={"md"} w={"100%"} align="flex-start">
+                                        <Group px={"md"} gap={"xs"} className={classes.interactionButtons} styles={{ root: { width: "calc(100% + 5rem)", marginLeft: "-2.5rem" } }}>
                                             <Button
                                                 variant="tertiary"
                                                 leftSection={<ThumbsUpFarFAIcon filled={isLiked} />}
@@ -498,9 +507,9 @@ export function VideoHub() {
                                                 </Menu.Dropdown>
                                             </Menu></Box>
                                         </Group>
-                                        <Stack>
+                                        {/* <Stack>
                                             <Text size="xs" c="gray.7">{likeCount} likes</Text>
-                                        </Stack>
+                                        </Stack> */}
                                     </Stack>
                                 </Stack>
                             </Stack>
@@ -513,6 +522,7 @@ export function VideoHub() {
                             total={10}
                             value={activePage}
                             onChange={setPage}
+                            className="pagination"
                         />
                     </Group>
 
@@ -520,9 +530,9 @@ export function VideoHub() {
                     <footer className={classes.footer}>
                         <Grid pb={"xxl"}>
                             <Grid.Col span={4}>
-                                <Stack gap="md">
-                                    <img alt="Company Logo" height={32} src="https://www.quorum.us/wp-content/uploads/2020/06/Quorum_full_color_dark-1-640x147.png" className={classes.logo} />
-                                    <Text c="gray.7">
+                                <Stack gap="md" align="flex-start">
+                                    <img alt="Company Logo" height="24px" src="https://www.quorum.us/wp-content/uploads/2020/06/Quorum_full_color_dark-1-640x147.png" />
+                                    <Text c="gray.7" size="xs">
                                         Your company description goes here. Share your mission and vision with your audience.
                                     </Text>
                                 </Stack>

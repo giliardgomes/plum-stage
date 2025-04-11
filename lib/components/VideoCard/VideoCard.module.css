@@ -3,6 +3,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
+    height: 100%;
 
     &:hover {
         transform: translateY(-2px);
@@ -15,13 +16,12 @@
 }
 
 .videoCardRegular {
-    border-radius: var(--mantine-radius-md);
+    border-radius: var(--mantine-radius-lg);
     background: var(--mantine-color-white);
-    border: 1px solid var(--mantine-color-gray-2);
 }
 
 .videoCardHighlight {
-    border-radius: var(--mantine-radius-md);
+    border-radius: var(--mantine-radius-lg);
     overflow: hidden;
     position: relative;
     box-shadow: var(--mantine-shadow-md);
@@ -45,6 +45,7 @@
 
 .contentRegular {
     padding: var(--mantine-spacing-md);
+    height: 100%;
 }
 
 .contentHighlight {

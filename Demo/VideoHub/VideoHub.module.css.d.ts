@@ -15,6 +15,7 @@ declare const classes: {
     readonly likeButton: string;
     readonly dislikeButton: string;
     readonly closeButton: string;
+    pagination: string;
 };
 
 export default classes;

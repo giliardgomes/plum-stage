@@ -29,6 +29,7 @@
     color: var(--mantine-color-gray-8);
     line-height: normal;
     height: 2.5rem;
+    font-family: inherit;
     transition:
         background-color 0.3s ease-in-out,
         border-color 0.3s ease-in-out,

@@ -17,6 +17,8 @@ export interface PaginationProps {
     siblings?: number
     /** Disable pagination */
     disabled?: boolean
+    /** Custom className */
+    className?: string
 }
 
 export const Pagination = ({
@@ -27,6 +29,7 @@ export const Pagination = ({
     siblings = 1,
     disabled = false,
     "data-plum-id": dataPlumId,
+    className,
 }: PaginationProps) => {
     const getRange = (start: number, end: number) => {
         const length = end - start + 1
@@ -134,7 +137,11 @@ export const Pagination = ({
     }
 
     return (
-        <Group gap="xs" data-plum-id={dataPlumId} className={classes.root}>
+        <Group
+            gap="xs"
+            data-plum-id={dataPlumId}
+            className={`${classes.root} pagination ${className || ''}`}
+        >
             {renderPaginationItems()}
         </Group>
     )
