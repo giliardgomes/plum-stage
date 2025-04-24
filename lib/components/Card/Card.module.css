@@ -1,0 +1,56 @@
+.root {
+    background: var(--mantine-color-white);
+    border-radius: 0.25rem;
+    border: 1px solid var(--mantine-color-gray-3);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    box-shadow: var(--mantine-shadow-sm);
+    max-width: rem(360px);
+    width: 100%;
+    padding: 1.25rem;
+    position: relative;
+
+    &:hover {
+        box-shadow: var(--mantine-shadow-md);
+        border-color: var(--mantine-color-gray-4);
+    }
+
+    button[aria-haspopup="menu"] {
+        position: absolute;
+        right: 0.25rem;
+        top: 0.25rem;
+
+        &[aria-expanded="true"] {
+            background: var(--mantine-color-gray-1);
+        }
+    }
+}
+
+.vertical {
+    max-width: rem(240px);
+}
+
+.icon {
+    min-width: 2.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--mantine-color-violet-1);
+    color: var(--mantine-color-violet-5);
+    border-radius: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        max-width: 1rem;
+        max-height: 1rem;
+    }
+}
+
+.title {
+    font-size: 1rem;
+}
+
+.description {
+    font-size: 0.875rem;
+    line-height: 1.5;
+}

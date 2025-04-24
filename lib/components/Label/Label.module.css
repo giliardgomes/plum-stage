@@ -42,3 +42,10 @@
 :global(.mantine-InputWrapper-label) {
     display: flex;
 }
+
+:global(.mantine-Switch-labelWrapper) {
+    & > p {
+        padding: 0;
+        margin: 0;
+    }
+}

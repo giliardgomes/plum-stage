@@ -1,13 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { TextField, TextFieldProps } from "."
+import { StarFarFAIcon } from "../Icons"
 
 const meta: Meta<typeof TextField> = {
+    title: "Components/TextField",
     component: TextField,
     tags: ["autodocs"],
     parameters: {
         docs: {
             description: {
-                component: "Documentation: https://plum.quorum.us/4a128e208/p/3311f2-text-field",
+                component: (
+                    "<a href='https://www.figma.com/file/mjUSsYy7JxOtylceOQgr3r/Design-System' target='_blank' rel='noopener noreferrer'><i class='fa-brands fa-figma'></i>  Figma</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                    + "<a href='https://plum.quorum.us' target='_blank' rel='noopener noreferrer'><i class='fa-regular fa-folder'></i>  Documentation</a>"
+                ),
             },
         },
     },
@@ -30,9 +35,11 @@ export const Default: Story = {
     ),
 }
 
-export const WithIcon: Story = {
+export const TrailingIcon: Story = {
+    name: "Trailing icon",
+
     args: {
-        leftSection: <i className="fa-sharp fa-regular fa-bullseye"></i>,
+        leftSection: <StarFarFAIcon />,
         label: "Label",
         placeholder: "Placeholder text",
         description: "Description",
@@ -44,41 +51,30 @@ export const WithIcon: Story = {
     ),
 }
 
-export const WithTrailingIcon: Story = {
-    args: {
-        rightSection: <i className="fa-sharp fa-regular fa-bullseye"></i>,
-        label: "Label",
-        placeholder: "Placeholder text",
-        description: "Description",
-    },
-    render: (props: TextFieldProps) => (
-        <TextField
-            {...props}
-        />
-    ),
-}
+export const Error: Story = {
+    name: "Error",
 
-export const WithIconAndTrailingIcon: Story = {
-    args: {
-        leftSection: <i className="fa-sharp fa-regular fa-bullseye"></i>,
-        rightSection: <i className="fa-sharp fa-regular fa-bullseye"></i>,
-        label: "Label",
-        placeholder: "Placeholder text",
-        description: "Description",
-    },
-    render: (props: TextFieldProps) => (
-        <TextField
-            {...props}
-        />
-    ),
-}
-
-export const WithError: Story = {
     args: {
         label: "Label",
         placeholder: "Placeholder text",
         description: "Description",
         error: "There is an error",
+    },
+    render: (props: TextFieldProps) => (
+        <TextField
+            {...props}
+        />
+    ),
+}
+
+export const Disabled: Story = {
+    name: "Disabled",
+
+    args: {
+        label: "Label",
+        placeholder: "Placeholder text",
+        description: "Description",
+        disabled: true,
     },
     render: (props: TextFieldProps) => (
         <TextField

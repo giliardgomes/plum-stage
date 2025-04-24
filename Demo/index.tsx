@@ -14,7 +14,6 @@ import "../lib/components/Button/Button.module.css"
 import "../lib/components/Switch/Switch.module.css"
 import "../lib/components/TextField/TextField.module.css"
 import "../lib/components/Alert/Alert.module.css"
-import "../lib/components/Dialog/Dialog.module.css"
 import "../lib/components/Tabs/Tabs.module.css"
 import "../lib/components/Tile/Tile.module.css"
 import "../lib/components/Label/Label.module.css"
@@ -22,6 +21,7 @@ import "../lib/components/Avatar/Avatar.module.css"
 import "../lib/components/Notification/Notification.module.css"
 import "../lib/components/SelectableTag/SelectableTag.module.css"
 import "../lib/components/SegmentedControl/SegmentedControl.module.css"
+import "../lib/components/DatePicker/DatePicker.module.css"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
@@ -33,5 +33,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                 </Routes>
             </HashRouter>
         </PlumProvider>
-    </React.StrictMode>
+    </React.StrictMode>,
 )

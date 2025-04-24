@@ -8,6 +8,7 @@ import { Tooltip } from "@/components/Tooltip"
 import { CircleInfoFarFAIcon } from "../Icons"
 
 const meta: Meta<typeof Radio.Group> = {
+    title: "Components/Radio",
     args: {
         onChange: fn(),
     },
@@ -18,7 +19,6 @@ const meta: Meta<typeof Radio.Group> = {
 
             const onChange = (value: string | null) => {
                 ctx.args.onChange?.(value)
-                // Check if the component is controlled
                 if (ctx.args.value !== undefined) {
                     setArgs({ value })
                 }
@@ -28,184 +28,266 @@ const meta: Meta<typeof Radio.Group> = {
         },
     ],
     parameters: {
+        layout: "centered",
         docs: {
             description: {
-                component: "Documentation: https://www.figma.com/design/mjUSsYy7JxOtylceOQgr3r/Design-System?node-id=0-42970&p=f&t=4VmqOmWwu8ST4935-0",
+                component: (
+                    "<a href='https://www.figma.com/file/mjUSsYy7JxOtylceOQgr3r/Design-System' target='_blank' rel='noopener noreferrer'><i class='fa-brands fa-figma'></i>  Figma</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                    + "<a href='https://plum.quorum.us' target='_blank' rel='noopener noreferrer'><i class='fa-regular fa-folder'></i>  Documentation</a>"
+                ),
             },
         },
     },
-    // @ts-expect-error Radio isn't allowed as a subcomponent for some reason
-    subcomponents: { Radio },
+    subcomponents: { Radio: Radio as any, Label: Label as any },
     tags: ["autodocs"],
-    argTypes: {
-    },
 }
 
 export default meta
 
 type Story = StoryObj<typeof Radio.Group>
 
-export const Basic: Story = {
+// Basic Examples
+export const BasicVertical: Story = {
+    name: "Basic vertical",
     args: {
-        defaultValue: "A",
-        label: "Favorite Fruit",
-        required: false,
-        error: "",
-        horizontal: false,
-    },
-    render: (props: RadioGroupProps) => (
-        <Radio.Group
-            label={props.label}
-            defaultValue={props.defaultValue}
-            onChange={props.onChange}
-        >
-            <Radio label="Apple" value="A" />
-            <Radio label="Banana" value="B" />
-        </Radio.Group>
-    ),
-}
-
-export const Clearable: Story = {
-    args: {
-        defaultValue: "A",
-        label: "Favorite Fruit",
-        required: false,
-        error: "",
-        horizontal: false,
-        clearable: true,
+        label: "Notification preferences",
     },
     render: (props: RadioGroupProps) => (
         <Radio.Group {...props}>
-            <Radio label="Apple" value="A" />
-            <Radio label="Banana" value="B" />
+            <Radio label="Email" value="email" />
+            <Radio label="SMS" value="sms" />
+            <Radio label="Push notification" value="push" />
         </Radio.Group>
     ),
 }
 
-export const ControlledOptionsClearable: Story = {
+export const BasicHorizontal: Story = {
+    name: "Basic horizontal",
     args: {
-        value: "e",
-        label: "Default Region",
-        clearable: true,
+        label: "View mode",
+        horizontal: true,
     },
     render: (props: RadioGroupProps) => (
         <Radio.Group {...props}>
-            <Radio label="East" value="e" />
-            <Radio label="West" value="w" />
-            <Radio label="North" value="n" />
+            <Radio label="List" value="list" />
+            <Radio label="Grid" value="grid" />
+            <Radio label="Table" value="table" />
         </Radio.Group>
     ),
 }
 
-export const OptionsDisabled: Story = {
+export const WithDefaultValue: Story = {
+    name: "With default value",
     args: {
-        label: "Group with Disabled Option",
+        label: "Preferred contact method",
+        defaultValue: "phone",
     },
     render: (props: RadioGroupProps) => (
-        <Radio.Group
-            label={props.label}
-            defaultValue={props.defaultValue}
-            onChange={props.onChange}
-        >
-            <Radio label="Option 1" value="option1" />
-            <Radio label="Option 2" value="option2" disabled />
-            <Radio label="Option 3" value="option3" />
+        <Radio.Group {...props}>
+            <Radio label="Phone" value="phone" />
+            <Radio label="Email" value="email" />
+            <Radio label="Mail" value="mail" />
         </Radio.Group>
     ),
 }
 
+// States and Variations
 export const WithError: Story = {
+    name: "With error",
     args: {
-        label: "Group with Error",
+        label: "Select a plan",
+        error: "Please select a subscription plan",
     },
     render: (props: RadioGroupProps) => (
-        <Radio.Group
-            defaultValue={props.defaultValue}
-            error="Show an error message"
-            label={props.label}
-            onChange={props.onChange}
-        >
-            <Radio label="Option 1" value="option1" />
-            <Radio label="Option 2" value="option2" />
+        <Radio.Group {...props}>
+            <Radio label="Basic" value="basic" />
+            <Radio label="Pro" value="pro" />
+            <Radio label="Enterprise" value="enterprise" />
         </Radio.Group>
     ),
 }
 
-export const Horizontal: Story = {
+export const Required: Story = {
+    name: "Required",
     args: {
-        defaultValue: "option1",
-        label: "Horizontal Group",
+        label: "Payment method",
+        required: true,
+    },
+    render: (props: RadioGroupProps) => (
+        <Radio.Group {...props}>
+            <Radio label="Credit card" value="credit" />
+            <Radio label="Bank transfer" value="bank" />
+            <Radio label="PayPal" value="paypal" />
+        </Radio.Group>
+    ),
+}
+
+export const WithDisabledOptions: Story = {
+    name: "With disabled options",
+    args: {
+        label: "Subscription tier",
+    },
+    render: (props: RadioGroupProps) => (
+        <Radio.Group {...props}>
+            <Radio label="Free" value="free" />
+            <Radio label="Premium (Coming soon)" value="premium" disabled />
+            <Radio label="Enterprise (Contact sales)" value="enterprise" disabled />
+        </Radio.Group>
+    ),
+}
+
+export const ControlledWithTooltips: Story = {
+    name: "Controlled with tooltips",
+    args: {
+        label: "Data center region",
+        value: "us-east",
+    },
+    render: (props: RadioGroupProps) => (
+        <Radio.Group {...props}>
+            <Radio
+                label={(
+                    <Label
+                        label="US East"
+                        rightSection={(
+                            <Tooltip label="Virginia & Ohio">
+                                <CircleInfoFarFAIcon />
+                            </Tooltip>
+                        )}
+                    />
+                )}
+                value="us-east"
+            />
+            <Radio
+                label={(
+                    <Label
+                        label="US West"
+                        rightSection={(
+                            <Tooltip label="Oregon & California">
+                                <CircleInfoFarFAIcon />
+                            </Tooltip>
+                        )}
+                    />
+                )}
+                value="us-west"
+            />
+            <Radio
+                label={(
+                    <Label
+                        label="EU Central"
+                        rightSection={(
+                            <Tooltip label="Frankfurt & Paris">
+                                <CircleInfoFarFAIcon />
+                            </Tooltip>
+                        )}
+                    />
+                )}
+                value="eu-central"
+            />
+        </Radio.Group>
+    ),
+}
+
+export const GroupWithTooltip: Story = {
+    name: "Group with tooltip",
+    args: {
+        defaultValue: "monthly",
     },
     render: (props: RadioGroupProps) => (
         <Radio.Group
-            defaultValue={props.defaultValue}
-            horizontal
-            label={props.label}
-            onChange={props.onChange}
+            {...props}
+            label={(
+                <Label
+                    label="Billing cycle"
+                    rightSection={(
+                        <Tooltip label="Choose how often you want to be billed">
+                            <CircleInfoFarFAIcon />
+                        </Tooltip>
+                    )}
+                />
+            )}
         >
-            <Radio label="Option 1" value="option1" />
-            <Radio label="Option 2" value="option2" />
+            <Radio label="Monthly" value="monthly" />
+            <Radio label="Quarterly" value="quarterly" />
+            <Radio label="Yearly (Save 20%)" value="yearly" />
         </Radio.Group>
     ),
 }
 
 export const HorizontalWithError: Story = {
+    name: "Horizontal with error",
     args: {
-        defaultValue: "option1",
-        label: "Horizontal With Error",
+        label: "Experience level",
+        horizontal: true,
+        error: "Please select your experience level",
     },
     render: (props: RadioGroupProps) => (
-        <Radio.Group
-            defaultValue={props.defaultValue}
-            error="Show an error message"
-            horizontal
-            label={props.label}
-            onChange={props.onChange}
-        >
-            <Radio label="Option 1" value="option1" />
-            <Radio label="Option 2" value="option2" />
+        <Radio.Group {...props}>
+            <Radio label="Beginner" value="beginner" />
+            <Radio label="Intermediate" value="intermediate" />
+            <Radio label="Advanced" value="advanced" />
         </Radio.Group>
     ),
 }
 
-/**
- * Passing in a custom Element for the label is possible at both the Group and Option levels,
- * including attaching a Tooltip if you want.
- */
-export const WithOwnLabelElements: Story = {
+export const ComplexLayout: Story = {
+    name: "Complex layout",
     args: {
-        defaultValue: "A",
-        label: "Favorite Fruit",
+        label: "Notification settings",
+        required: true,
     },
     render: (props: RadioGroupProps) => (
         <Radio.Group
+            {...props}
             label={(
                 <Label
-                    label={`${props.label}`}
-                    withAsterisk
+                    label="Notification settings"
                     rightSection={(
-                        <Tooltip label="Tomatoes are a Fruit, but you can't choose them.">
-                            <CircleInfoFarFAIcon filled={true} />
+                        <Tooltip label="Choose how you want to receive important updates">
+                            <CircleInfoFarFAIcon />
                         </Tooltip>
                     )}
+                    withAsterisk
                 />
             )}
-            defaultValue={props.defaultValue}
-            onChange={props.onChange}
         >
-            <Radio label={<Label label="Apple" />} value="A" />
             <Radio
                 label={(
                     <Label
-                        label="Banana"
+                        label="Instant notifications"
                         rightSection={(
-                            <Tooltip label="Bananas are techincally a Berry (which is a Fruit).">
-                                <CircleInfoFarFAIcon filled={true} />
+                            <Tooltip label="Receive notifications as soon as they happen">
+                                <CircleInfoFarFAIcon />
                             </Tooltip>
                         )}
                     />
                 )}
-                value="B"
+                value="instant"
+            />
+            <Radio
+                label={(
+                    <Label
+                        label="Daily digest"
+                        rightSection={(
+                            <Tooltip label="Receive a summary of notifications once per day">
+                                <CircleInfoFarFAIcon />
+                            </Tooltip>
+                        )}
+                    />
+                )}
+                value="daily"
+            />
+            <Radio
+                label={(
+                    <Label
+                        label="Weekly summary"
+                        rightSection={(
+                            <Tooltip label="Receive a weekly summary of all notifications">
+                                <CircleInfoFarFAIcon />
+                            </Tooltip>
+                        )}
+                    />
+                )}
+                value="weekly"
             />
         </Radio.Group>
     ),

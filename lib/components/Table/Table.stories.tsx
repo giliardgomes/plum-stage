@@ -2,13 +2,18 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Table } from "./index"
 import { TableActions } from "./TableActions"
 import { Button } from "../Button"
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react"
 
 const meta: Meta<typeof Table> = {
+    title: "Components/Table",
     component: Table,
     parameters: {
         docs: {
             description: {
-                component: "A table component with built-in pagination and action buttons",
+                component: (
+                    "<a href='https://www.figma.com/file/mjUSsYy7JxOtylceOQgr3r/Design-System' target='_blank' rel='noopener noreferrer'><i class='fa-brands fa-figma'></i>  Figma</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                    + "<a href='https://plum.quorum.us' target='_blank' rel='noopener noreferrer'><i class='fa-regular fa-folder'></i>  Documentation</a>"
+                ),
             },
         },
     },
@@ -110,10 +115,10 @@ export const WithCustomRender: Story = {
             {
                 key: "role",
                 header: "Role",
-                render: (row) => (
+                render: (row: { role: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined }) => (
                     <Button
                         variant="tertiary"
-                        size="xs"
+                        size="sm"
                         onClick={() => console.log(`Role clicked: ${row.role}`)}
                     >
                         {row.role}

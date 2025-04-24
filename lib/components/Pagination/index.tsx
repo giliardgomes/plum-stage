@@ -140,7 +140,7 @@ export const Pagination = ({
         <Group
             gap="xs"
             data-plum-id={dataPlumId}
-            className={`${classes.root} pagination ${className || ''}`}
+            className={`${classes.root} pagination ${className || ""}`}
         >
             {renderPaginationItems()}
         </Group>

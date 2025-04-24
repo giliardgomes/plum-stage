@@ -5,6 +5,17 @@
 
     .wrapper {
         margin-bottom: 0;
+
+        textarea {
+            min-height: 5rem;
+            padding: .5rem 0.75rem;
+        }
+    }
+
+    &[data-error="true"] {
+        .input {
+            border-color: var(--mantine-color-red-6);
+        }
     }
 
     .section {
@@ -41,6 +52,7 @@
         &:disabled{
             border: rem(1px) solid var(--mantine-color-gray-2);
             background: var(--mantine-color-gray-0);
+            opacity: 1!important;
         }
         text-overflow: ellipsis;
     }

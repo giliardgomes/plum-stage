@@ -11,6 +11,10 @@
         background: var(--mantine-color-violet-1);
     }
 
+    p {
+        line-height: 150%;
+    }
+
     :global(.mantine-Group-root) {
         flex-direction: column;
         display: flex;
@@ -46,13 +50,19 @@
                 }
             }
         }
+
+        @media(max-width: 768px) {
+            padding: 1.5rem 1rem;
+        }
     }
 }
 
 .root[data-accept] {
-    border-color: var(--mantine-color-green-6);
+    border-color: var(--mantine-color-green-6)!important;
+    background-color: var(--mantine-color-green-1)!important;
 }
 
 .root[data-reject] {
-    border-color: var(--mantine-color-red-6);
+    border-color: var(--mantine-color-red-6)!important;
+    background-color: var(--mantine-color-red-1)!important;
 }

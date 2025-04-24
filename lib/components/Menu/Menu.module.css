@@ -56,7 +56,7 @@
             box-shadow: 0 0 0 rem(2px) var(--mantine-color-violet-4);
         }
         &[data-disabled] {
-            color: var(--mantine-color-red-1);
+            color: var(--mantine-color-red-4);
         }
     }
     transition:

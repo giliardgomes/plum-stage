@@ -1,0 +1,31 @@
+.root {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:global {
+    .mantine-Tooltip-tooltip {
+        background-color: var(--mantine-color-gray-9);
+        color: var(--mantine-color-white);
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        padding: var(--mantine-spacing-xs) var(--mantine-spacing-sm);
+        border-radius: 0.25rem;
+        max-width: 20rem;
+        white-space: normal;
+        word-break: break-word;
+        letter-spacing: 0.01563rem;
+    }
+
+    .mantine-Tooltip-arrow {
+        background-color: var(--mantine-color-gray-9);
+        border: none;
+    }
+
+    /* Ensure tooltip doesn't break layout */
+    .mantine-Tooltip-floating {
+        pointer-events: none;
+        z-index: 1000;
+    }
+}

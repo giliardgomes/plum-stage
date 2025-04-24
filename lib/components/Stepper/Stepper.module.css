@@ -1,0 +1,221 @@
+.root {
+    --step-size: rem(32px);
+    --icon-size: rem(20px);
+    --line-size: rem(2px);
+}
+
+:global(.mantine-Stepper-stepBody) {
+    margin: 0;
+    padding: 0 .25rem;
+}
+
+.content {
+    margin-top: var(--mantine-spacing-xs);
+    margin-bottom: 0;
+}
+
+.steps {
+    gap: 0;
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    max-width: 45rem;
+    margin: 0 auto;
+    position: relative;
+    justify-content: center;
+
+    &[data-orientation='vertical'] {
+        gap: 0;
+        max-width: 7.5rem;
+        width: auto;
+        margin: 0;
+
+        .step {
+            overflow: visible;
+            flex-direction: row;
+            min-height: auto;
+            height: 4rem;
+            width: 7.5rem;
+            display: flex;
+            justify-content: flex-start;
+
+            .stepIcon {
+                box-shadow: 0 0 0 4px var(--mantine-color-white);
+            }
+        }
+    }
+}
+
+.verticalSeparator {
+    z-index: -1;
+    margin: 0;
+    height: 1.5rem;
+    bottom: -1.5rem;
+    left: 50%;
+    position: absolute;
+    top: auto;
+    border-color: var(--mantine-color-gray-3);
+
+    &[data-active] {
+        border-color: var(--mantine-color-gray-6);
+    }
+}
+
+.separator[data-orientation='vertical'] {
+    width: var(--line-size);
+    height: auto;
+    margin: var(--mantine-spacing-xs) 0;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    gap: var(--mantine-spacing-sm);
+    min-width: 5rem;
+    max-width: 7.5rem;
+    width: 100%;
+    z-index: 2;
+    border: none;
+
+    svg {
+        max-width: 0.75rem;
+        max-height: 0.75rem;
+    }
+
+    &[data-error=true] {
+        .stepIcon {
+            background-color: var(--mantine-color-red-1);
+
+            svg {
+                color: var(--mantine-color-red-9);
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        max-width: rem(90px);
+    }
+}
+
+.step[data-progress] {
+    cursor: pointer;
+
+    .stepLabel {
+        font-weight: 500;
+    }
+}
+
+.stepLoader {
+    width: 1rem;
+    height: 1rem;
+    position: relative;
+}
+
+.separator {
+    flex: 1;
+    height: 1px;
+    top: 0px;
+    top: calc(-0.75rem - 1.5px);
+    position: relative;
+    margin: 0 -2rem;
+    max-width: rem(72px);
+    width: 100%;
+    border-color: var(--mantine-color-gray-3);
+    background-color: var(--mantine-color-gray-3);
+}
+
+.separator[data-active] {
+    background-color: var(--mantine-color-gray-6);
+}
+
+.separator[data-completed] {
+    background-color: var(--mantine-color-gray-6);
+}
+
+.stepIcon {
+    box-sizing: border-box;
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    max-width: 2rem;
+    max-height: 2rem;
+    min-width: 2rem;
+    min-height: 2rem;
+    border-radius: var(--step-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--mantine-color-gray-1);
+    border: none;
+    color: var(--mantine-color-gray-8);
+    font-weight: 500;
+    font-size: 0.875rem;
+
+    @media (max-width: 768px) {
+        box-shadow: 0 0 0 4px var(--mantine-color-white);
+    }
+}
+
+.stepIcon[data-progress] {
+    background: var(--mantine-color-violet-1);
+    border-color: var(--mantine-color-violet-1);
+    color: var(--mantine-color-gray-8);
+}
+
+.stepIcon[data-completed] {
+    background-color: var(--mantine-color-green-1);
+    border-color: var(--mantine-color-green-1);
+
+    svg {
+        color: var(--mantine-color-green-9);
+    }
+}
+
+.penIcon {
+    display: none;
+}
+
+.checkIcon {
+    display: block;
+}
+
+.step[data-completed]:hover {
+    cursor: pointer;
+
+    .stepIcon {
+        background-color: var(--mantine-color-green-2);
+        border-color: var(--mantine-color-green-2);
+
+        .penIcon {
+            display: block;
+        }
+
+        .checkIcon {
+            display: none;
+        }
+    }
+}
+
+.stepLabel {
+    margin: 0;
+    color: var(--mantine-color-gray-7);
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1rem; /* 133.333% */
+    letter-spacing: 0.03125rem;
+}
+
+.stepLabel[data-error] {
+    color: var(--mantine-color-red-9);
+}
+
+.stepIcon[data-loading] {
+    background-color: var(--mantine-color-gray-1);
+    border-color: var(--mantine-color-gray-1);
+}

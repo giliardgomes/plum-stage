@@ -1,5 +1,11 @@
 :root {
     --mantine-cursor-type: pointer;
+
+    div[role="radiogroup"] {
+        p {
+            font-weight: 400;
+        }
+    }
 }
 
 :global {

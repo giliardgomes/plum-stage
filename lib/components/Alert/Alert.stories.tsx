@@ -2,15 +2,17 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Alert, AlertProps } from "@/components/Alert"
 import { useState } from "react"
 import { Button } from "../Button"
+import { Stack } from "@mantine/core"
 
 const meta: Meta<typeof Alert> = {
+    title: "Components/Alert",
     component: Alert,
     parameters: {
         docs: {
             description: {
                 component: (
-                    "Documentation: https://plum.quorum.us/4a128e208/p/490d52-alert/b/32e1a2<br>"
-                    + "Figma: https://www.figma.com/design/mjUSsYy7JxOtylceOQgr3r/Design-System?node-id=10677-10611&t=CLzemVINLDxnqA0b-0"
+                    "<a href='https://www.figma.com/file/mjUSsYy7JxOtylceOQgr3r/Design-System' target='_blank' rel='noopener noreferrer'><i class='fa-brands fa-figma'></i>  Figma</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                    + "<a href='https://plum.quorum.us' target='_blank' rel='noopener noreferrer'><i class='fa-regular fa-folder'></i>  Documentation</a>"
                 ),
             },
         },
@@ -26,12 +28,12 @@ type Story = StoryObj<typeof Alert>
 
 export const Default: Story = {
     args: {
-        title: "Alert Title",
+        title: "Alert title",
         variant: "info",
     },
     render: (props: AlertProps) => (
         <Alert {...props}>
-            Alert!
+            This is an alert message with a title
         </Alert>
     ),
 }
@@ -39,25 +41,23 @@ export const Default: Story = {
 /**
  * Providing a function as the action prop will render an Action button; you must also supply an actionLabel.
  */
-export const InlineWarningAlertWithAction: Story = {
+export const ActionButton: Story = {
+    name: "Action button",
+
     args: {
-        title: "Warning Title",
+        title: "Warning title",
         variant: "warning",
         action: () => alert("Action!"),
         actionLabel: "Action",
     },
     render: (props: AlertProps) => (
         <Alert {...props}>
-            <ul>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-            </ul>
+            This is an alert message with an action button
         </Alert>
     ),
 }
 
-export const MultilineWithoutTitle: Story = {
+export const Multiline: Story = {
     args: {
         variant: "warning",
         action: () => alert("Action!"),
@@ -71,11 +71,14 @@ export const MultilineWithoutTitle: Story = {
         props.onClose = () => setShowAlert(false)
         return (
             <Alert {...props}>
-                <ul>
-                    <li>Item 1</li>
-                    <li>Item 2</li>
-                    <li>Item 3</li>
-                </ul>
+                <Stack gap={0}>
+                    This is an example of a multiline alert
+                    <ul>
+                        <li>Item 1</li>
+                        <li>Item 2</li>
+                        <li>Item 3</li>
+                    </ul>
+                </Stack>
             </Alert>
         )
     },
@@ -85,7 +88,9 @@ export const MultilineWithoutTitle: Story = {
  * Dismissible alerts can be closed by the user.
  * An alert is made Dismissible (rather than inline) by providing a function as the onClose prop.
  */
-export const DismissibleErrorAlert: Story = {
+export const CloseButton: Story = {
+    name: "Close button",
+
     args: {
         variant: "error",
     },
@@ -103,7 +108,7 @@ export const DismissibleErrorAlert: Story = {
     },
 }
 
-export const DismissibleErrorAlertWithAction: Story = {
+export const Dismissible: Story = {
     args: {
         action: () => alert("Action!"),
         actionLabel: "Action",
@@ -126,7 +131,7 @@ export const DismissibleErrorAlertWithAction: Story = {
 /**
  * Loading alerts are used to indicate that an action is in progress.
  */
-export const LoadingAlert: Story = {
+export const Loading: Story = {
     args: {
         variant: "loading",
     },

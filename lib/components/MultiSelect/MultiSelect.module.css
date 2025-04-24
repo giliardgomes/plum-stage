@@ -36,6 +36,22 @@
             gap: 0;
         }
     }
+
+    .mantine-Input-wrapper {
+        margin: 0;
+    }
+
+    .mantine-InputWrapper-description {
+        line-height: 1rem;
+        letter-spacing: 0.5px;
+        font-size: 0.75rem;
+    }
+
+    [data-error="true"] {
+        .mantine-PillsInput-input {
+            border-color: var(--mantine-color-red-6);
+        }
+    }
 }
 
 .pillsInput {
@@ -45,6 +61,8 @@
     border: 1px solid var(--mantine-color-gray-5);
     line-height: normal;
     min-height: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    padding-right: 2.5rem;
     transition:
         background-color 0.3s ease-in-out,
         border-color 0.3s ease-in-out,
@@ -68,7 +86,9 @@
     &[data-disabled] {
         cursor: unset;
         color: var(--mantine-color-gray-5);
-        background-color: var(--mantine-color-gray-0);
+        background-color: var(--mantine-color-gray-0)!important;
+        opacity: 1!important;
+        border-color: var(--mantine-color-gray-2);
 
         & + * > svg {
             color: var(--mantine-color-gray-3);

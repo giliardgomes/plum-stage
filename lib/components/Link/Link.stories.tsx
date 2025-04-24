@@ -2,11 +2,15 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Link, LinkProps } from "@/components/Link"
 
 const meta: Meta<typeof Link> = {
+    title: "Components/Link",
     component: Link,
     parameters: {
         docs: {
             description: {
-                component: "Documentation: https://plum.quorum.us/4a128e208/p/link",
+                component: (
+                    "<a href='https://www.figma.com/file/mjUSsYy7JxOtylceOQgr3r/Design-System' target='_blank' rel='noopener noreferrer'><i class='fa-brands fa-figma'></i>  Figma</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                    + "<a href='https://plum.quorum.us' target='_blank' rel='noopener noreferrer'><i class='fa-regular fa-folder'></i>  Documentation</a>"
+                ),
             },
         },
     },

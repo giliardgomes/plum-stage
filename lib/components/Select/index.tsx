@@ -10,7 +10,7 @@ import {
 } from "@mantine/core"
 import { useUncontrolled } from "@mantine/hooks"
 
-import { ErrorMessage } from "@/components/ErrorMessage"
+import { ErrorMessage } from "@/molecules/ErrorMessage"
 import { ComboboxChevron } from "@/icons/ComboboxChevron"
 import { Label } from "@/components/Label"
 

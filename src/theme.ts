@@ -130,7 +130,7 @@ export const plumTheme: MantineThemeOverride = createTheme({
             "#941B19",
             "#7A1917",
         ] as MantineColorsTuple,
-        democratic: [
+        democrat: [
             "#F5F8FF",
             "#E0EAFF",
             "#C5D9FF",

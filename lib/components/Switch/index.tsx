@@ -19,6 +19,8 @@ export interface SwitchProps extends Omit<MantineSwitchProps, "checked" | "defau
     onToggle?: (checked: boolean) => void
     /** Switch variant */
     variant?: SwitchVariant
+    /** Whether to show the asterisk, independent of required state */
+    withAsterisk?: boolean
     /** Set a static selector for engagement tracking with third party tools (ie: Pendo) */
     "data-plum-id"?: string
 }
@@ -33,6 +35,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>((
         onChange,
         label,
         variant = "default",
+        withAsterisk,
         ...rest
     },
     ref,
@@ -47,6 +50,10 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>((
         onChange?.(event)
         onToggle?.(newChecked)
     }
+
+    const labelContent = typeof label === "string"
+        ? <Label label={label} withAsterisk={withAsterisk} />
+        : label
 
     return (
         <MantineSwitch
@@ -66,7 +73,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>((
             ref={ref}
             onLabel={undefined}
             offLabel={undefined}
-            label={label && variant !== "standalone" ? <Label label={String(label)} /> : null}
+            label={variant !== "standalone" ? labelContent : null}
             mod={{ variant }}
         />
     )

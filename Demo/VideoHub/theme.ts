@@ -1,4 +1,4 @@
-import { MantineColorsTuple } from "@mantine/core";
+import { MantineColorsTuple } from "@mantine/core"
 
 export const brandColors: MantineColorsTuple = [
     "#F5FAFF", // 0
@@ -11,4 +11,4 @@ export const brandColors: MantineColorsTuple = [
     "#3666AE", // 7
     "#2D528D", // 8
     "#1F3A65", // 9
-] as const;
+] as const

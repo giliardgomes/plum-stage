@@ -12,12 +12,18 @@ export interface FileDropzoneProps extends Partial<DropzoneProps> {
     accept?: DropzoneProps["accept"]
     /** Maximum file size in bytes */
     maxSize?: number
+    /** Custom description text */
+    description?: string
+    /** Custom title text */
+    title?: string
 }
 
 export function FileDropzone({
     className,
     accept,
     maxSize = 5 * 1024 ** 2, // 5MB default
+    description,
+    title,
     ...props
 }: FileDropzoneProps) {
     return (
@@ -44,13 +50,10 @@ export function FileDropzone({
 
                 <div>
                     <Text size="md" fw={500} c="gray.9" inline>
-                        Drag files here or click to select files
+                        {title || "Drag files here or click to select files"}
                     </Text>
                     <Text size="xs" c="gray.7" mt={7}>
-                        Files should not exceed
-                        {" "}
-                        {Math.round(maxSize / 1024 / 1024)}
-                        MB
+                        {description || `Files should not exceed ${Math.round(maxSize / 1024 / 1024)}MB`}
                     </Text>
                 </div>
             </Group>

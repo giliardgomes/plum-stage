@@ -1,0 +1,138 @@
+.TimePicker {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mantine-spacing-xxs);
+}
+
+.label {
+    color: var(--mantine-color-gray-7);
+    font-weight: 500;
+    line-height: 1rem;
+    letter-spacing: 0.00625rem;
+    padding: 0;
+    height: 1rem;
+}
+
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mantine-spacing-xxs);
+}
+
+.input {
+    font-size: var(--mantine-font-size-sm);
+    border: 1px solid var(--mantine-color-gray-5);
+    border-radius: var(--mantine-radius-sm);
+    padding: 0.5rem 0.75rem;
+    padding-left: rem(38px);
+    transition: border-color 300ms ease, box-shadow 300ms ease;
+    min-width: rem(240px);
+    height: 2.5rem;
+    color: var(--mantine-color-gray-9);
+    position: relative;
+
+    &:hover {
+        border-color: var(--mantine-color-violet-6);
+    }
+
+    &:focus, &:focus-within {
+        border-color: var(--mantine-color-violet-6);
+        box-shadow: 0 0 0 2px var(--mantine-color-violet-3);
+    }
+
+    /* Add styles for the native time picker */
+    &::-webkit-calendar-picker-indicator {
+        background: var(--mantine-color-violet-5);
+        cursor: pointer;
+        position: absolute;
+        border-radius: 1rem;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: .1125rem;
+        height: .1125rem;
+    }
+
+    /*
+    &::-webkit-time-picker {
+        background-color: var(--mantine-color-white);
+        border: 1px solid var(--mantine-color-gray-3);
+        border-radius: var(--mantine-radius-sm);
+        color: var(--mantine-color-gray-9);
+    }
+
+    &::-webkit-datetime-edit {
+        color: var(--mantine-color-gray-9);
+        padding: 0;
+    }
+
+    &::-webkit-datetime-edit-fields-wrapper {
+        padding: 0;
+    }
+
+    &::-webkit-datetime-edit-hour-field,
+    &::-webkit-datetime-edit-minute-field,
+    &::-webkit-datetime-edit-ampm-field {
+        padding: 0 0.25rem;
+    }
+
+    &::-webkit-datetime-edit-text {
+        color: var(--mantine-color-gray-7);
+        padding: 0 0.125rem;
+    }
+
+    /* Firefox specific styles */
+    /* &::-moz-time-picker {
+        background-color: var(--mantine-color-white);
+        border: 1px solid var(--mantine-color-gray-3);
+        border-radius: var(--mantine-radius-sm);
+        color: var(--mantine-color-gray-9);
+    } */
+}
+
+:global(.mantine-TimeInput-section) {
+    top: 0;
+    height: auto;
+    width: auto;
+    left: 0.75rem;
+
+    svg {
+        width: 0.875rem;
+        height: 0.875rem;
+    }
+}
+
+.input[data-error] {
+    border-color: var(--mantine-color-red-6);
+}
+
+.error {
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1rem;
+    letter-spacing: 0.03125rem;
+    color: var(--mantine-color-red-7);
+}
+
+.description {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: var(--mantine-color-gray-7);
+}
+
+.timezoneSelect {
+    min-width: 80px;
+    margin-left: -1px;
+
+    :global(.mantine-Input-input) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
+
+[data-time-variant="timezone"] {
+    :global(.mantine-TimeInput-input) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}

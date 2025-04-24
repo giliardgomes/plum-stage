@@ -4,10 +4,21 @@
         border: 1px solid var(--mantine-color-gray-2);
         border-radius: .25rem;
         transform: translateY(-6px);
+        z-index: 1;
 
         .mantine-Combobox-options {
             gap: 0.125rem;
         }
+    }
+
+    .mantine-Input-wrapper {
+        margin: 0;
+    }
+
+    .mantine-InputWrapper-description {
+        line-height: 1rem;
+        letter-spacing: 0.5px;
+        font-size: 0.75rem;
     }
 }
 
@@ -54,6 +65,8 @@
         cursor: unset;
         color: var(--mantine-color-gray-5);
         background-color: var(--mantine-color-gray-0);
+        border-color: var(--mantine-color-gray-2);
+        opacity: 1!important;
 
         & + * > svg {
             color: var(--mantine-color-gray-3);

@@ -4,12 +4,23 @@ import { useListState } from "@mantine/hooks"
 
 import { Checkbox } from "./index"
 import { Label } from "@/components/Label"
-import { ErrorMessage } from "@/components/ErrorMessage"
+import { ErrorMessage } from "@/molecules/ErrorMessage"
 
 import type { CheckboxGroupProps } from "./CheckboxGroup"
 
 const meta: Meta<typeof Checkbox.Group> = {
+    title: "Components/Checkbox",
     component: Checkbox.Group,
+    parameters: {
+        docs: {
+            description: {
+                component: (
+                    "<a href='https://www.figma.com/file/mjUSsYy7JxOtylceOQgr3r/Design-System' target='_blank' rel='noopener noreferrer'><i class='fa-brands fa-figma'></i>  Figma</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                    + "<a href='https://plum.quorum.us' target='_blank' rel='noopener noreferrer'><i class='fa-regular fa-folder'></i>  Documentation</a>"
+                ),
+            },
+        },
+    },
     tags: ["autodocs"],
     argTypes: {
         label: { control: "text" },
@@ -24,6 +35,8 @@ export default meta
 type CheckboxStory = StoryObj<typeof Checkbox.Group>
 
 export const CheckboxGroup: CheckboxStory = {
+    name: "Group",
+
     args: {
         label: "Interests",
     },
@@ -42,11 +55,13 @@ export const CheckboxGroup: CheckboxStory = {
  * management strategy and design.
  */
 export const NestedCheckbox: CheckboxStory = {
+    name: "Nested",
+
     render: () => {
         const initialValues = [
             { value: "email", label: "Email", checked: false, key: 1 },
-            { value: "text", label: "Text Message", checked: false, key: 2 },
-            { value: "push", label: "Push Notification", checked: false, key: 3 },
+            { value: "text", label: "Text message", checked: false, key: 2 },
+            { value: "push", label: "Push notification", checked: false, key: 3 },
         ]
 
         const [values, handlers] = useListState(initialValues)
@@ -88,4 +103,68 @@ export const NestedCheckbox: CheckboxStory = {
             </Stack>
         )
     },
+}
+
+export const Regular: CheckboxStory = {
+    name: "Vertical",
+
+    render: () => (
+        <Stack gap="0.5rem">
+            <Checkbox value="option1" label="Option 1" />
+            <Checkbox value="option2" label="Option 2" />
+            <Checkbox value="option3" label="Option 3" defaultChecked />
+            <Checkbox value="option4" label="Option 4 (disabled)" disabled />
+            <Checkbox value="option5" label="Option 5 (disabled checked)" disabled defaultChecked />
+        </Stack>
+    ),
+}
+
+export const RegularHorizontal: CheckboxStory = {
+    name: "Horizontal",
+
+    render: () => (
+        <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
+            <Checkbox value="option1" label="Option 1" />
+            <Checkbox value="option2" label="Option 2" />
+            <Checkbox value="option3" label="Option 3" defaultChecked />
+            <Checkbox value="option4" label="Option 4 (disabled)" disabled />
+            <Checkbox value="option5" label="Option 5 (disabled checked)" disabled defaultChecked />
+        </div>
+    ),
+}
+
+export const WithError: CheckboxStory = {
+    name: "With error",
+
+    render: () => (
+        <Stack>
+            <Checkbox.Group
+                label="Select options"
+                error="This field has an error"
+                required
+            >
+                <Checkbox value="option1" label="Option 1" />
+                <Checkbox value="option2" label="Option 2" />
+                <Checkbox value="option3" label="Option 3" />
+            </Checkbox.Group>
+        </Stack>
+    ),
+}
+
+export const HorizontalWithLabel: CheckboxStory = {
+    name: "Horizontal with label",
+
+    render: () => (
+        <Checkbox.Group
+            label="Select your preferred tools"
+            orientation="horizontal"
+            defaultValue={["vscode", "github"]}
+        >
+            <Checkbox value="vscode" label="VS Code" />
+            <Checkbox value="github" label="GitHub" />
+            <Checkbox value="jira" label="Jira" />
+            <Checkbox value="slack" label="Slack" />
+            <Checkbox value="figma" label="Figma" />
+        </Checkbox.Group>
+    ),
 }

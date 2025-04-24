@@ -1,7 +1,7 @@
 import { forwardRef } from "react"
 import { Checkbox as MantineCheckbox } from "@mantine/core"
 import { useUncontrolled } from "@mantine/hooks"
-import { ErrorMessage } from "@/components/ErrorMessage"
+import { ErrorMessage } from "@/molecules/ErrorMessage"
 import { Label } from "@/components/Label"
 import classes from "./CheckboxGroup.module.css"
 

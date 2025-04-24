@@ -1,0 +1,26 @@
+.root {
+    width: 100%;
+    padding: var(--mantine-spacing-xs) var(--mantine-spacing-md) var(--mantine-spacing-xs) var(--mantine-spacing-xs);
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    flex-direction: row;
+    min-width: 32rem;
+}
+
+.actions {
+    margin-bottom: var(--mantine-spacing-xs);
+}
+
+.backButton svg {
+    color: var(--mantine-color-gray-9);
+}
+
+.title {
+    margin: 0;
+    padding: 0;
+}

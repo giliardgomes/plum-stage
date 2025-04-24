@@ -1,0 +1,26 @@
+.root {
+    border-top-color: var(--mantine-color-gray-2);
+}
+
+.label {
+    color: var(--mantine-color-gray-7);
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 400;
+    line-height: var(--mantine-line-height);
+    padding: 0 var(--mantine-spacing-xs);
+    background-color: var(--mantine-color-white);
+}
+
+/* Vertical divider */
+[data-orientation="vertical"] {
+    border-left-color: var(--mantine-color-gray-2);
+}
+
+/* Variants */
+[data-variant="dashed"] {
+    border-style: dashed;
+}
+
+[data-variant="dotted"] {
+    border-style: dotted;
+}

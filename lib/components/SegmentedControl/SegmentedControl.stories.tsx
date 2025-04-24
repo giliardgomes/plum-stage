@@ -6,6 +6,18 @@ import { SegmentedControl } from "./index"
 const meta: Meta<typeof SegmentedControl> = {
     component: SegmentedControl,
     tags: ["autodocs"],
+    title: "Components/SegmentedControl",
+    parameters: {
+        layout: "centered",
+        docs: {
+            description: {
+                component: (
+                    "<a href='https://www.figma.com/file/mjUSsYy7JxOtylceOQgr3r/Design-System' target='_blank' rel='noopener noreferrer'><i class='fa-brands fa-figma'></i>  Figma</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                    + "<a href='https://plum.quorum.us' target='_blank' rel='noopener noreferrer'><i class='fa-regular fa-folder'></i>  Documentation</a>"
+                ),
+            },
+        },
+    },
     args: {
         data: [
             { label: "Option 1", value: "1" },
@@ -24,6 +36,8 @@ export const Basic: Story = {
 }
 
 export const Sizes: Story = {
+    name: "Sizes",
+
     render: (props) => (
         <Stack gap="xl">
             <SegmentedControl {...props} size="sm" />
@@ -34,6 +48,8 @@ export const Sizes: Story = {
 }
 
 export const WithDefaultValue: Story = {
+    name: "Default value",
+
     render: (props) => (
         <SegmentedControl
             {...props}
@@ -43,6 +59,8 @@ export const WithDefaultValue: Story = {
 }
 
 export const FullWidth: Story = {
+    name: "Full width",
+
     render: (props) => (
         <SegmentedControl
             {...props}
@@ -52,6 +70,8 @@ export const FullWidth: Story = {
 }
 
 export const Disabled: Story = {
+    name: "Disabled",
+
     render: (props) => (
         <Stack gap="md">
             <SegmentedControl
@@ -60,7 +80,11 @@ export const Disabled: Story = {
             />
             <SegmentedControl
                 {...props}
-                data={props.data.map((item) => ({ ...item, disabled: true }))}
+                data={props.data.map((item) => (
+                    typeof item === "string"
+                        ? { label: item, value: item, disabled: true }
+                        : { ...item, disabled: true }
+                ))}
             />
         </Stack>
     ),

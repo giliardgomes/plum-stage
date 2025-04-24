@@ -16,8 +16,14 @@ export interface SearchBarProps {
     onFavorite?: () => void
     /** Initial value for the search input */
     defaultValue?: string
+    /** Controlled value for the search input */
+    value?: string
     /** Callback function when input is clicked */
     onClick?: () => void
+    /** Whether the SearchBar is disabled */
+    disabled?: boolean
+    /** Whether to show the standalone variant */
+    variant?: "default" | "standalone"
 }
 
 export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
@@ -25,14 +31,21 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
     onChange,
     onFavorite,
     defaultValue = "",
+    value,
     onClick,
+    variant = "default",
     ...rest
 }, ref) => {
-    const [value, setValue] = useState(defaultValue)
+    const [internalValue, setInternalValue] = useState(defaultValue)
     const [isFavorite, setIsFavorite] = useState(false)
+    const [isExpanded, setIsExpanded] = useState(false)
+
+    const currentValue = value !== undefined ? value : internalValue
 
     const handleChange = (newValue: string) => {
-        setValue(newValue)
+        if (value === undefined) {
+            setInternalValue(newValue)
+        }
         onChange?.(newValue)
     }
 
@@ -42,57 +55,86 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
     }
 
     const handleClear = () => {
-        setValue("")
+        if (value === undefined) {
+            setInternalValue("")
+        }
         onChange?.("")
     }
 
     const handleClick = () => {
+        if (variant === "standalone") {
+            setIsExpanded(true)
+        }
         onClick?.()
     }
 
-    return (
-        <Input
-            ref={ref}
-            classNames={{
-                ...classes,
-                section: classes.section,
-                wrapper: `${classes.leftSectionParent} ${classes.rightSectionParent}`,
-            }}
-            placeholder={placeholder}
-            value={value}
-            onChange={(event) => handleChange(event.currentTarget.value)}
-            onClick={handleClick}
-            leftSection={(
-                <div className={classes.leftSection}>
+    const handleBlur = () => {
+        if (variant === "standalone" && !currentValue) {
+            setIsExpanded(false)
+        }
+    }
+
+    if (variant === "standalone" && !isExpanded) {
+        return (
+            <div className={classes.standalone}>
+                <Button
+                    variant="tertiary"
+                    size="sm"
+                    onClick={handleClick}
+                    aria-label="Search"
+                >
                     <SearchFarFAIcon />
-                </div>
-            )}
-            rightSection={(
-                <div className={classes.rightSection}>
-                    {value && (
-                        <Flex align="center" gap="xxs">
-                            <Button
-                                variant="tertiary"
-                                size="sm"
-                                onClick={handleFavorite}
-                                aria-label="Favorite"
-                            >
-                                <StarFarFAIcon filled={isFavorite} />
-                            </Button>
-                            <Button
-                                variant="tertiary"
-                                size="sm"
-                                onClick={handleClear}
-                                aria-label="Clear"
-                            >
-                                <XMarkFarFAIcon />
-                            </Button>
-                        </Flex>
-                    )}
-                </div>
-            )}
-            {...rest}
-        />
+                </Button>
+            </div>
+        )
+    }
+
+    return (
+        <div className={`${classes.wrapper} ${variant === "standalone" ? `${classes.standalone} ${classes.standaloneExpanded}` : ""}`}>
+            <Input
+                ref={ref}
+                classNames={{
+                    ...classes,
+                    section: classes.section,
+                    wrapper: `${classes.leftSectionParent} ${classes.rightSectionParent}`,
+                }}
+                placeholder={placeholder}
+                value={currentValue}
+                onChange={(event) => handleChange(event.currentTarget.value)}
+                onClick={handleClick}
+                onBlur={handleBlur}
+                leftSection={(
+                    <div className={classes.leftSection}>
+                        <SearchFarFAIcon />
+                    </div>
+                )}
+                rightSection={(
+                    <div className={classes.rightSection}>
+                        {currentValue && (
+                            <Flex align="center" gap="xxs">
+                                <Button
+                                    variant="tertiary"
+                                    size="sm"
+                                    onClick={handleFavorite}
+                                    aria-label="Favorite"
+                                >
+                                    <StarFarFAIcon filled={isFavorite} />
+                                </Button>
+                                <Button
+                                    variant="tertiary"
+                                    size="sm"
+                                    onClick={handleClear}
+                                    aria-label="Clear"
+                                >
+                                    <XMarkFarFAIcon />
+                                </Button>
+                            </Flex>
+                        )}
+                    </div>
+                )}
+                {...rest}
+            />
+        </div>
     )
 })
 

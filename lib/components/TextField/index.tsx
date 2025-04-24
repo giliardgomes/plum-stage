@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler } from "react"
 
 import { Textarea as MantineTextArea, TextareaProps as MantineTextAreaProps } from "@mantine/core"
-import { ErrorMessage } from "@/components/ErrorMessage"
+import { ErrorMessage } from "@/molecules/ErrorMessage"
 import { Label } from "@/components/Label"
 
 import classes from "@/components/TextField/TextField.module.css"

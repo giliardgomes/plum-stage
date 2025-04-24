@@ -1,0 +1,58 @@
+
+.item {
+    display: flex;
+    align-items: center;
+    border-radius: var(--mantine-radius-sm);
+    border: 1px solid var(--mantine-color-gray-2);
+    padding: 0.25rem 0.5rem;
+    min-height: 2.5rem;
+    margin-bottom: 0.75rem;
+    background-color: var(--mantine-color-white);
+    position: relative;
+    width: 100%;
+    user-select: none;
+    touch-action: none;
+    font-size: 0.875rem;
+    box-shadow: var(--mantine-shadow-xs);
+    gap: 0;
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
+    flex-direction: row;
+
+    &[data-dragging="true"] {
+        box-shadow: var(--mantine-shadow-md);
+        background-color: var(--mantine-color-gray-1);
+    }
+}
+
+.dragHandle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: none;
+    width: 1.5rem;
+    height: 1.5rem;
+
+    svg {
+        max-width: 0.625rem;
+        max-height: 0.625rem;
+        color: var(--mantine-color-gray-5);
+    }
+}
+
+:global([data-rbd-drag-handle-draggable-id]) {
+    cursor: grab;
+}
+
+:global([data-rbd-drag-handle-draggable-id]:active) {
+    cursor: grabbing;
+}
+
+:global([data-rbd-draggable-context-id]) {
+    user-select: none;
+}
+
+:global(.draggable-portal) {
+    pointer-events: none;
+    position: fixed;
+    z-index: var(--mantine-z-index-modal);
+}

@@ -6,7 +6,7 @@
     gap: var(--mantine-spacing-xxs);
     transition: all 150ms ease;
     cursor: pointer;
-    font-size: var(--mantine-font-size-sm);
+    font-size: 0.875rem;
     line-height: 1rem;
     transition: all 150ms ease;
 
@@ -28,7 +28,7 @@
     }
 
     &:active {
-        color: var(--mantine-color-violet-8);
+        color: var(--mantine-color-violet-9);
     }
 }
 

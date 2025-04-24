@@ -1,0 +1,103 @@
+.root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--mantine-spacing-xxs);
+}
+
+.wrapper {
+    margin: 0;
+
+    input {
+        height: 2.5rem;
+        border: 1px solid var(--mantine-color-gray-5);
+        padding-left: 2.5rem;
+        transition: border-color 300ms ease, box-shadow 300ms ease;
+
+        &:hover {
+            border-color: var(--mantine-color-violet-5);
+        }
+
+        &:focus, &:focus-within {
+            border-color: var(--mantine-color-violet-5);
+            box-shadow: 0 0 0 2px var(--mantine-color-violet-3);
+        }
+    }
+}
+
+.dropdownBody {
+    border: 1px solid var(--mantine-color-gray-3);
+    box-shadow: var(--mantine-shadow-sm);
+}
+
+:global(.mantine-ColorInput-dropdown) {
+    border: 1px solid var(--mantine-color-gray-2);
+    border-radius: .25rem;
+    box-shadow: var(--mantine-shadow-md);
+    transform: translateY(-2px);
+    padding: .25rem;
+}
+
+:global(.mantine-ColorInput-colorPreview) {
+    display: flex;
+    width: 1rem;
+    height: 1rem;
+    min-width: 1rem;
+    min-height: 1rem;
+
+    span {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 2px;
+    }
+}
+
+:global(.mantine-ColorInput-section[data-position="left"]) {
+    width: 1rem;
+    height: 1rem;
+    top: rem(12px);
+    left: rem(12px);
+    position: absolute;
+}
+
+:global(.mantine-ColorInput-root) {
+    max-width: 240px;
+    width: 100%;
+}
+
+:global(.mantine-ColorInput-section[data-position="right"]) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    margin: 0;
+    border: none;
+    top: 0px;
+    bottom: auto;
+
+    button {
+        width: 2rem;
+        height: 2rem;
+        border: none;
+        border-radius: 1rem;
+        background: transparent;
+        transition: all 0.2s ease;
+        color: var(--mantine-color-gray-7);
+        padding: 0;
+
+        &:hover {
+            background: var(--mantine-color-gray-1);
+        }
+    }
+}
+
+:global(.mantine-ColorInput-dropdown[data-expanded="true"]) {
+    pointer-events: all;
+}
+
+.pickerButton {
+    position: relative !important;
+    z-index: 2 !important;
+}

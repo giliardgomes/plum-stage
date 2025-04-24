@@ -4,6 +4,7 @@ import { Label, PlumProvider } from "../lib/main"
 import { useState } from "react"
 import { Notification } from "../lib/components/Notification"
 import { Checkbox } from "../lib/components/Checkbox"
+import { TopNav } from "../lib/molecules/TopNav"
 
 // Import Mantine core styles first
 import "@mantine/core/styles.css"
@@ -16,7 +17,6 @@ import "../lib/components/Button/Button.module.css"
 import "../lib/components/Switch/Switch.module.css"
 import "../lib/components/TextField/TextField.module.css"
 import "../lib/components/Alert/Alert.module.css"
-import "../lib/components/Dialog/Dialog.module.css"
 import "../lib/components/Tabs/Tabs.module.css"
 import "../lib/components/Tile/Tile.module.css"
 import "../lib/components/Label/Label.module.css"
@@ -27,6 +27,7 @@ import "../lib/components/SegmentedControl/SegmentedControl.module.css"
 import "../lib/components/Table/Table.module.css"
 import "../lib/components/Link/Link.module.css"
 import "../lib/components/Pagination/Pagination.module.css"
+import "../lib/components/Modal/Modal.module.css"
 
 // Import Plum components
 import { Button } from "../lib/components/Button"
@@ -41,14 +42,15 @@ import {
     EnvelopeFarFAIcon,
     FileAltFarFAIcon,
     CommentFarFAIcon,
+    ArrowFromBottomFarFAIcon,
+    CheckFarFAIcon,
 } from "../lib/components/Icons"
 import { Select } from "../lib/components/Select"
 import { MultiSelect } from "../lib/components/MultiSelect"
 import { Radio } from "../lib/components/Radio"
 import { Avatar } from "../lib/components/Avatar"
-import { TopNav } from "../lib/components/TopNav"
-import { PageNavigation } from "../lib/components/PageNavigation"
-import { Sidebar } from "../lib/components/Sidebar"
+import { PageNavigation } from "../lib/molecules/PageNavigation"
+import { Sidebar } from "../lib/molecules/Sidebar"
 import { ActionBar } from "../lib/components/ActionBar"
 import { Tooltip } from "../lib/components/Tooltip"
 import React from "react"
@@ -59,7 +61,7 @@ import { Table, TableActions } from "../lib/components/Table"
 import { Link } from "../lib/components/Link"
 import { Pagination } from "../lib/components/Pagination"
 import { Modal } from "../lib/components/Modal"
-import { HeadingActions } from "../lib/components/HeadingActions"
+import { HeadingActions } from "../lib/molecules/HeadingActions"
 
 function TableErrorFallback({ error, resetErrorBoundary }) {
     return (
@@ -544,6 +546,24 @@ export function LandingPage() {
                             <PageNavigation
                                 title="Settings"
                                 onBackClick={() => window.history.back()}
+                                actions={[
+                                    {
+                                        children: <i className="fa-regular fa-arrow-to-bottom" />,
+                                        variant: "tertiary",
+                                        onClick: () => console.log("Cancel clicked"),
+                                    },
+                                    {
+                                        children: "Duplicate",
+                                        variant: "primary",
+                                        onClick: () => console.log("Save clicked"),
+                                    },
+                                    {
+                                        children: "Save",
+                                        variant: "accent",
+                                        leftSection: <CheckFarFAIcon />,
+                                        onClick: () => console.log("Save clicked"),
+                                    },
+                                ]}
                             />
                             <Stack gap="xl" className={classes.tabs} h="100%">
                                 <Tabs value={currentTab} onChange={(value) => setCurrentTab(value as string)}>
@@ -1156,7 +1176,7 @@ export function LandingPage() {
                                                 <Flex wrap="wrap" align-content="baseline" justify="center" align="flex-start" gap="md" p="xxl" className={classes.supportTiles}>
                                                     <Tile
                                                         icon={<FileAltFarFAIcon />}
-                                                        variant="secondary"
+                                                        variant="primary"
                                                         onClick={() => console.log("Documentation clicked")}
                                                         size="lg"
                                                         w="100%"
@@ -1165,7 +1185,7 @@ export function LandingPage() {
                                                     </Tile>
                                                     <Tile
                                                         icon={<CommentFarFAIcon />}
-                                                        variant="secondary"
+                                                        variant="primary"
                                                         onClick={() => console.log("Live chat clicked")}
                                                         size="lg"
                                                         w="100%"
@@ -1174,7 +1194,7 @@ export function LandingPage() {
                                                     </Tile>
                                                     <Tile
                                                         icon={<EnvelopeFarFAIcon />}
-                                                        variant="secondary"
+                                                        variant="primary"
                                                         onClick={() => console.log("Email support clicked")}
                                                         size="lg"
                                                         w="100%"
@@ -1183,7 +1203,7 @@ export function LandingPage() {
                                                     </Tile>
                                                     <Tile
                                                         icon={<CircleInfoFarFAIcon />}
-                                                        variant="secondary"
+                                                        variant="primary"
                                                         onClick={() => console.log("FAQs clicked")}
                                                         size="lg"
                                                         w="100%"
@@ -1427,7 +1447,7 @@ export function LandingPage() {
                                         </Stack>
                                     </Tabs.Panel>
 
-                                    <Tabs.Panel value="custom-fields" pr="0" pl="0" pt="xl" ml="auto" mr="auto" style={{ paddingBottom: "0" }}>
+                                    <Tabs.Panel maw="100%" value="custom-fields" pr="0" pl="0" pt="xl" ml="auto" mr="auto" style={{ paddingBottom: "0" }}>
                                         <Stack gap="xl" w="100%" maw="100%" px="xl">
                                             <Stack gap="xl">
                                                 <HeadingActions
@@ -1541,177 +1561,72 @@ export function LandingPage() {
                                     </Tabs.Panel>
 
                                     <Tabs.Panel value="demo" pr="0" pl="0" pt="xl" ml="auto" mr="auto">
-                                        <Container size="lg">
-                                            <Stack gap="xl">
-                                                <Stack gap={"0"}>
-                                                    <Text fw={500} size="lg">Bulk upload</Text>
-                                                    <Text size="sm" c="gray.7">Import your data in a few simple steps</Text>
-                                                </Stack>
+                                        <Stack gap="xl" maw={480} mx="auto">
+                                            <Select
+                                                label="Type"
+                                                required
+                                                data={[
+                                                    { label: "Technical issue", value: "technical" },
+                                                    { label: "Account access", value: "access" },
+                                                    { label: "Billing", value: "billing" },
+                                                    { label: "Feature request", value: "feature" },
+                                                    { label: "Other", value: "other" },
+                                                ]}
+                                            />
 
-                                                <Paper p="xl" radius="md" withBorder className={classes.BulkUploadPaper}>
-                                                    <Stack gap="xl">
-                                                        {/* Step 1: Upload Type */}
-                                                        <Stack gap="md">
-                                                            <Text fw={500} size="sm" c="gray.7">Select data type</Text>
-                                                            <Flex gap="xs" wrap="wrap">
-                                                                <SelectableTag value="bills">Bills</SelectableTag>
-                                                                <SelectableTag value="contacts">Contacts</SelectableTag>
-                                                                <SelectableTag value="organizations">Organizations</SelectableTag>
-                                                                <SelectableTag value="points">Points</SelectableTag>
-                                                                <SelectableTag value="officials">Officials</SelectableTag>
-                                                                <SelectableTag value="public-orgs">Public Orgs</SelectableTag>
-                                                                <SelectableTag value="staffers">Staffers</SelectableTag>
-                                                                <SelectableTag value="tracking">Tracking</SelectableTag>
-                                                            </Flex>
-                                                        </Stack>
+                                            <TextField
+                                                label="Title"
+                                                required
+                                            />
 
-                                                        {/* Step 2: File Upload */}
-                                                        <Stack gap="md">
-                                                            <Text fw={500} size="sm" c="gray.7">Upload file</Text>
-                                                            <Group>
-                                                                <FileDropzone
-                                                                    onDrop={(files) => console.log('accepted files', files)}
-                                                                    maxSize={5 * 1024 ** 2}
-                                                                    accept={{
-                                                                        'text/csv': ['.csv'],
-                                                                        'application/vnd.ms-excel': ['.xls'],
-                                                                        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx']
-                                                                    }}
-                                                                />
-                                                            </Group>
-                                                            <Group justify="flex-end">
-                                                                <Button
-                                                                    variant="tertiary"
-                                                                    leftSection={<i className="fa-regular fa-download" />}
-                                                                    onClick={() => console.log('Download template')}
-                                                                >
-                                                                    Download template
-                                                                </Button>
-                                                            </Group>
-                                                        </Stack>
+                                            <TextField
+                                                label="Description"
+                                                required
+                                                multiline
+                                                minRows={4}
+                                            />
 
-                                                        {/* Step 3: Field Matching */}
-                                                        <Stack gap="md">
-                                                            <Text fw={500} size="sm" c="gray.7">Match fields</Text>
-                                                            <Paper
-                                                                withBorder
-                                                                p="xl"
-                                                                radius="md"
-                                                            >
-                                                                <Stack gap="md">
-                                                                    <Group justify="space-between">
-                                                                        <Group gap="md">
-                                                                            <i className="fa-regular fa-file-csv" style={{ fontSize: '24px', color: 'var(--mantine-color-gray-7)' }} />
-                                                                            <Stack gap={2}>
-                                                                                <Text fw={500} size="sm">example_data.csv</Text>
-                                                                                <Text size="xs" c="gray.7">2.4 MB • 1,234 rows</Text>
-                                                                            </Stack>
-                                                                        </Group>
-                                                                        <Button
-                                                                            variant="tertiary"
-                                                                            leftSection={<i className="fa-regular fa-xmark" />}
-                                                                            onClick={() => console.log('Remove file')}
-                                                                        >
-                                                                            Remove
-                                                                        </Button>
-                                                                    </Group>
+                                            <Radio.Group
+                                                label="Priority"
+                                                required
+                                                horizontal
+                                                onChange={(value) => console.log("Selected priority:", value)}
+                                            >
+                                                <Radio value="low" label="Low" />
+                                                <Radio value="medium" label="Medium" />
+                                                <Radio value="high" label="High" />
+                                                <Radio value="critical" label="Critical" />
+                                            </Radio.Group>
 
-                                                                    <Divider />
-
-                                                                    <Stack gap="md">
-                                                                        <Group grow align="center" gap="md">
-                                                                            <Select
-                                                                                label="First name"
-                                                                                value="col_a"
-                                                                                data={[
-                                                                                    { label: "Column A", value: "col_a" },
-                                                                                    { label: "Column B", value: "col_b" },
-                                                                                    { label: "Column C", value: "col_c" },
-                                                                                ]}
-                                                                            />
-                                                                            <Select
-                                                                                label="Last name"
-                                                                                value="col_b"
-                                                                                data={[
-                                                                                    { label: "Column A", value: "col_a" },
-                                                                                    { label: "Column B", value: "col_b" },
-                                                                                    { label: "Column C", value: "col_c" },
-                                                                                ]}
-                                                                            />
-                                                                        </Group>
-                                                                        <Group grow align="center" gap="md">
-                                                                            <Select
-                                                                                label="Email"
-                                                                                value="col_c"
-                                                                                data={[
-                                                                                    { label: "Column A", value: "col_a" },
-                                                                                    { label: "Column B", value: "col_b" },
-                                                                                    { label: "Column C", value: "col_c" },
-                                                                                ]}
-                                                                            />
-                                                                            <Select
-                                                                                label="Phone"
-                                                                                value="col_d"
-                                                                                data={[
-                                                                                    { label: "Column D", value: "col_d" },
-                                                                                    { label: "Column E", value: "col_e" },
-                                                                                    { label: "Column F", value: "col_f" },
-                                                                                ]}
-                                                                            />
-                                                                        </Group>
-                                                                        <Group grow align="center" gap="md">
-                                                                            <Select
-                                                                                label="Organization"
-                                                                                value="col_e"
-                                                                                data={[
-                                                                                    { label: "Column D", value: "col_d" },
-                                                                                    { label: "Column E", value: "col_e" },
-                                                                                    { label: "Column F", value: "col_f" },
-                                                                                ]}
-                                                                            />
-                                                                            <Select
-                                                                                label="Title"
-                                                                                value="col_f"
-                                                                                data={[
-                                                                                    { label: "Column D", value: "col_d" },
-                                                                                    { label: "Column E", value: "col_e" },
-                                                                                    { label: "Column F", value: "col_f" },
-                                                                                ]}
-                                                                            />
-                                                                        </Group>
-                                                                    </Stack>
-                                                                </Stack>
-                                                            </Paper>
-                                                        </Stack>
-
-                                                        {/* Step 4: Custom Fields */}
-                                                        <Stack gap="md">
-                                                            <Group justify="space-between" align="center">
-                                                                <Text fw={500} size="sm" c="gray.7">Custom fields</Text>
-                                                                <Button
-                                                                    variant="tertiary"
-                                                                    leftSection={<i className="fa-regular fa-plus" />}
-                                                                    onClick={() => console.log('Manage custom fields')}
-                                                                >
-                                                                    Manage fields
-                                                                </Button>
-                                                            </Group>
-                                                        </Stack>
-
-                                                        {/* Submit Button */}
-                                                        <Group justify="flex-end" pt="md">
-                                                            <Button
-                                                                variant="primary"
-                                                                leftSection={<i className="fa-regular fa-upload" />}
-                                                                onClick={() => console.log('Start upload')}
-                                                            >
-                                                                Start upload
-                                                            </Button>
-                                                        </Group>
-                                                    </Stack>
-                                                </Paper>
+                                            <Stack gap="xxs">
+                                                <Label label="Attachments" />
+                                                <FileDropzone
+                                                    onDrop={(files: File[]) => console.log("accepted files", files)}
+                                                    maxSize={5 * 1024 ** 2}
+                                                    accept={{
+                                                        "image/*": [], // All images
+                                                        "application/pdf": [], // PDF files
+                                                        "application/msword": [], // DOC files
+                                                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [], // DOCX files
+                                                    }}
+                                                />
                                             </Stack>
-                                        </Container>
+
+                                            <Group gap="xs" justify="flex-end">
+                                                <Button
+                                                    variant="secondary"
+                                                    onClick={() => console.log("Cancel")}
+                                                >
+                                                    Cancel
+                                                </Button>
+                                                <Button
+                                                    variant="primary"
+                                                    onClick={() => console.log("Submit ticket")}
+                                                >
+                                                    Submit ticket
+                                                </Button>
+                                            </Group>
+                                        </Stack>
                                     </Tabs.Panel>
                                 </Tabs>
                             </Stack>
@@ -1730,24 +1645,19 @@ export function LandingPage() {
                     visible={showWarningNotification}
                     onClose={() => setShowWarningNotification(false)}
                 />
-                <ActionBar onSave={handleSave} onCancel={handleCancel} visible={currentTab !== "help" && currentTab !== "custom-fields"} />
+                {/* <ActionBar onSave={handleSave} onCancel={handleCancel} visible={currentTab !== "help" && currentTab !== "custom-fields"} /> */}
             </Flex>
             <Modal
                 opened={switchAccountModalOpened}
                 onClose={() => setSwitchAccountModalOpened(false)}
                 size="360px"
+                transition="slide-up"
+                transitionDuration={300}
+                transitionTimingFunction="ease"
+                variant="default"
+                title="Switch account"
             >
                 <Stack gap="xl" w="100%">
-                    <Group justify="space-between" align="center">
-                        <Title order={3} size="md" c="gray.9">Switch account</Title>
-                        <Button
-                            variant="tertiary"
-                            onClick={() => setSwitchAccountModalOpened(false)}
-                            p={8}
-                        >
-                            <i className="fa-regular fa-xmark" />
-                        </Button>
-                    </Group>
                     <Stack gap="xxs" mb="xl" align="start">
                         <Text fw={500} size="xs" p={0} style={{ paddingInline: "0", letterSpacing: "0.075rem", textTransform: "uppercase" }} px="xs">Current</Text>
                         {availableAccounts

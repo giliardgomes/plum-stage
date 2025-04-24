@@ -1,11 +1,9 @@
-import { useState } from "react"
 import type { Meta, StoryObj } from "@storybook/react"
-import { Flex, Stack } from "@mantine/core"
 
-import { Button } from "@/components/Button"
 import { Select, SelectProps } from "./index"
 
 const meta: Meta<typeof Select> = {
+    title: "Components/Select",
     component: Select,
     tags: ["autodocs"],
     argTypes: {
@@ -24,9 +22,23 @@ const meta: Meta<typeof Select> = {
             "Strawberry",
             "Melon",
         ],
-        label: "Favorite Fruit",
+        label: "Favorite fruit",
         placeholder: "Select a fruit",
         onChange: (value, selectedOption) => console.log({ value, selectedOption }),
+    },
+    parameters: {
+        docs: {
+            description: {
+                component: (
+                    "<a href='https://www.figma.com/file/mjUSsYy7JxOtylceOQgr3r/Design-System' target='_blank' rel='noopener noreferrer'><i class='fa-brands fa-figma'></i>  Figma</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                    + "<a href='https://plum.quorum.us' target='_blank' rel='noopener noreferrer'><i class='fa-regular fa-folder'></i>  Documentation</a>"
+                ),
+            },
+            story: {
+                height: "400px",
+                iframeHeight: 400,
+            },
+        },
     },
 }
 
@@ -34,50 +46,59 @@ export default meta
 
 type Story = StoryObj<typeof Select>
 
+const Wrapper = ({ children }: { children: React.ReactNode }) => (
+    <div style={{ maxWidth: "400px", margin: "0 auto" }}>
+        {children}
+    </div>
+)
+
 export const Basic: Story = {
-    render: (props: SelectProps) => <Select {...props} />,
+    name: "Basic",
+    render: (props: SelectProps) => (
+        <Wrapper>
+            <Select {...props} />
+        </Wrapper>
+    ),
 }
 
 export const WithDescription: Story = {
+    name: "With description",
     args: {
         description: "Gift baskets will be made based on your preference",
     },
-    render: (props: SelectProps) => <Select {...props} />,
+    render: (props: SelectProps) => (
+        <Wrapper>
+            <Select {...props} />
+        </Wrapper>
+    ),
 }
 
 export const WithDefaultValue: Story = {
+    name: "Default value",
     args: {
         defaultValue: "Blueberry",
     },
-    render: (props: SelectProps) => <Select {...props} />,
-}
-
-export const WithControlledValue: Story = {
-    args: {
-        value: "Banana",
-    },
-    render: (props: SelectProps) => {
-        const [value, setValue] = useState(props.value)
-        return (
-            <Stack>
-                <Select {...props} value={value} />
-                <Flex gap="md">
-                    <Button onClick={() => setValue("Apple")}>Set Apple</Button>
-                    <Button onClick={() => setValue("Banana")}>Set Banana</Button>
-                </Flex>
-            </Stack>
-        )
-    },
+    render: (props: SelectProps) => (
+        <Wrapper>
+            <Select {...props} />
+        </Wrapper>
+    ),
 }
 
 export const Disabled: Story = {
+    name: "Disabled",
     args: {
         disabled: true,
     },
-    render: (props: SelectProps) => <Select {...props} />,
+    render: (props: SelectProps) => (
+        <Wrapper>
+            <Select {...props} />
+        </Wrapper>
+    ),
 }
 
 export const DisabledItem: Story = {
+    name: "Disabled item",
     args: {
         data: [
             { label: "Apple", value: "Apple" },
@@ -88,13 +109,22 @@ export const DisabledItem: Story = {
             "Melon",
         ],
     },
-    render: (props: SelectProps) => <Select {...props} />,
+    render: (props: SelectProps) => (
+        <Wrapper>
+            <Select {...props} />
+        </Wrapper>
+    ),
 }
 
 export const WithError: Story = {
+    name: "Error",
     args: {
         description: "Select your favorite fruit from the list",
         error: "This field is required",
     },
-    render: (props: SelectProps) => <Select {...props} />,
+    render: (props: SelectProps) => (
+        <Wrapper>
+            <Select {...props} />
+        </Wrapper>
+    ),
 }

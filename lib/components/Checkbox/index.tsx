@@ -1,7 +1,7 @@
 import { forwardRef } from "react"
 import { Checkbox as MantineCheckbox, type CheckboxProps as MantineCheckboxProps } from "@mantine/core"
 
-import { ErrorMessage } from "@/components/ErrorMessage"
+import { ErrorMessage } from "@/molecules/ErrorMessage"
 import { Label } from "@/components/Label"
 import { Group } from "./CheckboxGroup"
 import { CheckFarFAIcon } from "@/components/Icons" // Import the check icon from Plum's icon library

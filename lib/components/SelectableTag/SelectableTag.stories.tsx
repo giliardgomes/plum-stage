@@ -4,10 +4,22 @@ import { Stack } from "@mantine/core"
 import { SelectableTag } from "./index"
 
 const meta: Meta<typeof SelectableTag> = {
+    title: "Components/SelectableTag",
     component: SelectableTag,
     tags: ["autodocs"],
     args: {
         children: "Tag",
+    },
+    parameters: {
+        layout: "centered",
+        docs: {
+            description: {
+                component: (
+                    "<a href='https://www.figma.com/file/mjUSsYy7JxOtylceOQgr3r/Design-System' target='_blank' rel='noopener noreferrer'><i class='fa-brands fa-figma'></i>  Figma</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                    + "<a href='https://plum.quorum.us' target='_blank' rel='noopener noreferrer'><i class='fa-regular fa-folder'></i>  Documentation</a>"
+                ),
+            },
+        },
     },
 }
 

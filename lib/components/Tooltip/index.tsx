@@ -1,4 +1,7 @@
 import React, { ReactNode } from "react"
+
+import classes from "./Tooltip.module.css"
+
 import {
     Tooltip as MantineTooltip,
     TooltipProps as MantineTooltipProps,
@@ -30,6 +33,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps> (({
             position={position}
             ref={ref}
             withArrow
+            classNames={classes}
             {...rest}
         >
             {children}

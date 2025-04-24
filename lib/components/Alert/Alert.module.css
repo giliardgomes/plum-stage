@@ -15,9 +15,22 @@
     align-self: flex-start;
 }
 
+.title {
+    font-size: 0.875rem;
+}
+
 .message {
     overflow: visible;
     line-height: rem(20px);
+
+    :global(.mantine-Flex-root) {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+:global(.mantine-Alert-icon) {
+    margin: 0;
 }
 
 .root {
@@ -25,6 +38,10 @@
     display: inline-block;
     width: fit-content;
     min-width: 240px;
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    border-radius: 0.5rem;
 
     &[data-variant="error"] {
         border-color: var(--mantine-color-red-3);
@@ -52,4 +69,14 @@
 }
 .wrapper {
     align-items: center;
+    gap: 1rem;
+}
+
+.buttonsContainer {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    gap: rem(8px);
+    display: flex;
 }

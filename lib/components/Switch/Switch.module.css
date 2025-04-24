@@ -197,7 +197,6 @@
     display: none;
 }
 
-
 .label .error p {
     color: var(--mantine-color-red-7);
     display: flex;
@@ -220,3 +219,5 @@
     margin: 0;
     padding: 0;
 }
+
+

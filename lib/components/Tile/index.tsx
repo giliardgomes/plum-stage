@@ -5,9 +5,9 @@ import { clsx } from "clsx"
 
 import classes from "@/components/Tile/Tile.module.css"
 
-export type TileOrientation = "horizontal" | "vertical"
+export type TileOrientation = "vertical"
 export type TileSize = "sm" | "md" | "lg"
-export type TileVariant = "primary" | "secondary"
+export type TileVariant = "primary"
 
 export interface TileProps extends PaperProps {
     /** Tile Size */
@@ -57,7 +57,6 @@ const _Tile = forwardRef<HTMLButtonElement, TileProps>((props, ref) => {
         <Paper
             component="button"
             className={clsx(classes.root, className)}
-            // Allow setting polymorphic props eg: `href` for an `<a />`
             ref={ref}
             mod={{
                 size,

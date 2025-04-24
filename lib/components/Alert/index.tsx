@@ -2,7 +2,7 @@ import React from "react"
 import { Flex, Alert as MantineAlert, AlertProps as MantineAlertProps, Text, useMantineTheme, rem, Loader } from "@mantine/core"
 
 import { Button } from "@/components/Button"
-import { CircleInfoFarFAIcon, CircleExclamationFarFAIcon, TriangleExclamationFarFAIcon } from "@/components/Icons"
+import { CircleInfoFarFAIcon, CircleExclamationFarFAIcon, TriangleExclamationFarFAIcon, XMarkFarFAIcon } from "@/components/Icons"
 
 import classes from "@/components/Alert/Alert.module.css"
 
@@ -69,20 +69,34 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(({
             title={titleElement}
             {...{
                 icon,
-                onClose,
                 ref,
             }}
             data-variant={variant}
-            withCloseButton={Boolean(onClose) || undefined}
+            withCloseButton={false}
         >
-            {!action
-                ? children
-                : (
-                    <Flex className={classes.flex}>
-                        {children}
-                        <Button data-plum-id="alert-action-button" onClick={action} variant="secondary">{actionLabel}</Button>
-                    </Flex>
-                )}
+            <Flex className={classes.flex}>
+                {children}
+                <div className={classes.buttonsContainer}>
+                    {action && (
+                        <Button
+                            data-plum-id="alert-action-button"
+                            onClick={action}
+                            variant="secondary"
+                        >
+                            {actionLabel}
+                        </Button>
+                    )}
+                    {onClose && (
+                        <Button
+                            onClick={onClose}
+                            variant="tertiary"
+                            size="sm"
+                        >
+                            <XMarkFarFAIcon />
+                        </Button>
+                    )}
+                </div>
+            </Flex>
         </MantineAlert>
     )
 })
